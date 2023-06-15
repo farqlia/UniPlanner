@@ -3,7 +3,6 @@
         {
             "name": "Bazy danych",
             "code": "INZ002007C",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394410&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -535,7 +534,6 @@
         {
             "name": "Bazy danych",
             "code": "INZ002007L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394407&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -1067,7 +1065,6 @@
         {
             "name": "Bazy danych",
             "code": "INZ002007W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394408&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -1599,7 +1596,6 @@
         {
             "name": "Metody systemowe i decyzyjne",
             "code": "INZ002008C",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394412&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -2131,7 +2127,6 @@
         {
             "name": "Metody systemowe i decyzyjne",
             "code": "INZ002008L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394414&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -2663,7 +2658,6 @@
         {
             "name": "Metody systemowe i decyzyjne",
             "code": "INZ002008W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394415&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -3195,7 +3189,6 @@
         {
             "name": "Języki skryptowe",
             "code": "INZ002009L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394417&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -3727,7 +3720,6 @@
         {
             "name": "Języki skryptowe",
             "code": "INZ002009W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=394416&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -4259,7 +4251,6 @@
         {
             "name": "Podstawy inżynierii oprogram.",
             "code": "INZ004353C",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381866&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -4791,7 +4782,6 @@
         {
             "name": "Podstawy inżynierii oprogram.",
             "code": "INZ004353L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381864&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -5323,7 +5313,6 @@
         {
             "name": "Podstawy inżynierii oprogram.",
             "code": "INZ004353W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381865&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -5855,7 +5844,6 @@
         {
             "name": "Administracja serwerami Linux",
             "code": "INZ004354L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381868&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -6387,7 +6375,6 @@
         {
             "name": "Administracja serwerami Linux",
             "code": "INZ004354W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381867&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -6919,7 +6906,6 @@
         {
             "name": "Routing i przełącz. w sieciach",
             "code": "INZ004356L",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381873&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",
@@ -7451,7 +7437,6 @@
         {
             "name": "Routing i przełącz. w sieciach",
             "code": "INZ004356W",
-            "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njg3MTkxNTE0Mg==&event=wyborKursuWGrupieBlokuRow&rowId=381872&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
             "classes": [
                 {
                     "code": "K01-17a",

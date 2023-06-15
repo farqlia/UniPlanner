@@ -165,7 +165,6 @@ def obj_to_dict(obj):
         return {
             "name": obj.name,
             "code": obj.code,
-            "link": obj.link,
             "classes": [obj_to_dict(c) for c in obj.classes]
         }
 
