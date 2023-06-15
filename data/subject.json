@@ -1,14 +1,14 @@
-{
+[{
   "id": "INZ004354W",
   "name": "Administracja serwerami Linux",
   "groups": [
     {
-      "groupName": "K01-22a",
+      "groupName": "Administracja serwerami Linux",
       "teacher": "Dr inż. Krzysztof Chudzik",
       "date": "wt 17:05-18:45",
       "form": "L",
-      "code": "INZ004354W"
+      "code": "K01-22a"
     }
   ],
   "groupsLink": "Administracja systemami"
-}
+}]

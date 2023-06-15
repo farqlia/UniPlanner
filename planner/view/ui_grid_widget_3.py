@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QSizePolicy, QTextEdit, QWidget, QMainWindow)
 import planner.models.classes as classes
 from datetime import datetime, timedelta
+from typing import Iterable
 
 DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
@@ -33,8 +34,10 @@ class ClassWidget(QWidget):
         class_description.setGeometry(QRect(0, 0, width, height))
         class_description.setReadOnly(True)
         # class_description.setCursor(QCursor(Qt.ArrowCursor))
-        class_description.setText(class_.class_code)
-
+        class_description.append(class_.class_code)
+        class_description.append(class_.form.name)
+        class_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        class_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
 
 # A panel to place courses for a given day of week
@@ -59,7 +62,7 @@ class DayOfWeekWidget(QWidget):
         day_label.setReadOnly(True)
         day_label.setText(day_of_week)
 
-    def place_course_widget(self, class_: classes.Class):
+    def place_class_widget(self, class_: classes.Class):
         class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
                                 self._compute_width(class_), self._compute_height(class_))
         self.widgets.append(class_widget)
@@ -82,7 +85,6 @@ class GridWidget:
 
     def __init__(self, parent: QWidget, cell_height: int, n_days_of_week: int,
                  start_time: datetime, end_time: datetime) -> None:
-
 
         # What time range we consider
         self.start_time = start_time
@@ -178,6 +180,12 @@ class GridWidget:
         self.text_time.append(" ".join(upper_labels))
         self.text_time.append(" " + " ".join(lower_labels))
 
+    def add_classes(self, classes_ : Iterable[classes.Class]):
+        for class_ in classes_:
+            index_day_of_week = class_.day_of_week - 1
+            if 0 <= index_day_of_week < self.n_days_of_week:
+                self.days_of_weeks_widgets[index_day_of_week].place_class_widget(class_)
+
 
     # retranslateUi
 
@@ -185,6 +193,6 @@ if __name__ == "__main__":
 
     app = QApplication()
     window = QMainWindow()
-    GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("22:00", "%H:%M"))
+    GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("21:00", "%H:%M"))
     window.show()
     app.exec()

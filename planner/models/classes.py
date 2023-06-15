@@ -15,14 +15,17 @@ class Teacher:
 
 # Like "Administracja Systemami"
 class CourseGroup:
-    pass
+
+    def __init__(self, name: str):
+        self.name = name
 
 
 # Classes belong to courses
 class Course:
 
     def __init__(self, name: str, course_group: CourseGroup):
-        pass
+        self.name = name
+        self.course_group = course_group
 
 
 class WeekType(Enum):
