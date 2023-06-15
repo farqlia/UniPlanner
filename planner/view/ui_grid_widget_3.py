@@ -17,9 +17,25 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QSizePolicy, QTextEdit, QWidget, QMainWindow)
 import planner.models.classes as classes
-from datetime import datetime
+from datetime import datetime, timedelta
 
-DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+
+class ClassWidget(QWidget):
+
+    def __init__(self, parent: QObject, class_: classes.Class, x, y, width, height):
+        super(ClassWidget, self).__init__(parent)
+
+        self.class_ = class_
+
+        self.setGeometry(QRect(x, y, width, height))
+        class_description = QTextEdit(self)
+        class_description.setGeometry(QRect(0, 0, width, height))
+        class_description.setReadOnly(True)
+        # class_description.setCursor(QCursor(Qt.ArrowCursor))
+        class_description.setText(class_.class_code)
+
+
 
 # A panel to place courses for a given day of week
 # We assume that 1 minute = 1 unit of width
@@ -39,22 +55,14 @@ class DayOfWeekWidget(QWidget):
 
         day_label = QTextEdit(self)
         day_label.setTextInteractionFlags(Qt.NoTextInteraction)
-        # day_label.setCursor(QCursor(Qt.ArrowCursor))
-        day_label.setGeometry(0, y, label_width, height)
+        day_label.setGeometry(0, 0, label_width, height)
         day_label.setReadOnly(True)
-        day_label.setText(day_of_week[:3].capitalize())
-
+        day_label.setText(day_of_week)
 
     def place_course_widget(self, class_: classes.Class):
-        class_widget = QWidget(self)
-        rectangle_size = QRect(self._compute_x(class_), self._compute_y(class_),
+        class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
                                 self._compute_width(class_), self._compute_height(class_))
-        class_widget.setGeometry(rectangle_size)
-        class_description = QTextEdit(class_widget)
-        class_description.setGeometry(QRect(0, 0, rectangle_size.width(), rectangle_size.height()))
-        class_description.setReadOnly(True)
-        # class_description.setCursor(QCursor(Qt.ArrowCursor))
-        class_description.setText(class_.class_code)
+        self.widgets.append(class_widget)
 
     def _compute_x(self, class_: classes.Class) -> int:
         return self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)
@@ -70,56 +78,113 @@ class DayOfWeekWidget(QWidget):
         return class_.durance
 
 
-class Ui_Form(object):
-    def setupUi(self, Form, width, height, n_days_of_week):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(926, 656)
+class GridWidget:
 
-        time_widget_height = 30
-        days_of_week_labels_widget_width = 60
+    def __init__(self, parent: QWidget, cell_height: int, n_days_of_week: int,
+                 start_time: datetime, end_time: datetime) -> None:
 
-        self.widget = QWidget(Form)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(10, 10, width + days_of_week_labels_widget_width, time_widget_height + height))
+
+        # What time range we consider
+        self.start_time = start_time
+        self.end_time = end_time
+        self.cell_height = cell_height
+        self.height = n_days_of_week * cell_height
+        self.n_minutes = int((end_time - start_time).total_seconds() / 60.0)
+        self.width = self.n_minutes
+        x_offset = 10
+        y_offset = 10
+
+        parent.resize(int(self.width * 1.1), int(self.height * 1.1))
+
+        self.time_widget_height = 30
+        self.days_of_week_labels_widget_width = 60
+        self.n_days_of_week = n_days_of_week
+
+        self.days_of_weeks_widgets = [None for _ in range(n_days_of_week)]
+
+        self.widget = QWidget(parent)
+        self.widget.setGeometry(QRect(x_offset, y_offset, self.width + self.days_of_week_labels_widget_width,
+                                self.time_widget_height + self.height))
 
         self.widget_time = QWidget(self.widget)
         self.widget_time.setObjectName(u"widget_time")
-        self.widget_time.setGeometry(QRect(days_of_week_labels_widget_width, 0, width, time_widget_height))
+        self.widget_time.setGeometry(QRect(self.days_of_week_labels_widget_width, 0,
+                                           self.width,
+                                           self.time_widget_height))
 
-        self.text_time = QTextEdit(self.widget_time)
+        self.text_time = QTextEdit(self.widget)
         self.text_time.setObjectName(u"text_time")
         self.text_time.setReadOnly(True)
         self.text_time.setTextInteractionFlags(Qt.NoTextInteraction)
-        self.text_time.setGeometry(QRect(0, 0, width, time_widget_height))
-
-        self.widget_day_of_week_labels = QWidget(self.widget)
-        self.widget_day_of_week_labels.setObjectName(u"widget_day_of_week_labels")
-        self.widget_day_of_week_labels.setGeometry(QRect(0, time_widget_height, days_of_week_labels_widget_width, height))
+        self.text_time.setGeometry(QRect(self.days_of_week_labels_widget_width,
+                                         0, self.width, self.time_widget_height))
 
         self.main_grid_widget = QWidget(self.widget)
-        self.main_grid_widget.setObjectName(u"widget_3")
-        self.main_grid_widget.setGeometry(QRect(0, time_widget_height, width, height))
+        self.main_grid_widget.setObjectName(u"main_grid_widget")
+        self.main_grid_widget.setGeometry(QRect(0,
+                                                self.time_widget_height, self.width, self.height))
 
-        monday_widget = DayOfWeekWidget('Monday', self.main_grid_widget,
-                                       datetime.strptime("7:00", "%H:%M"), 0, 0, width, height // n_days_of_week,
-                                        days_of_week_labels_widget_width)
-        monday_widget.place_course_widget(classes.Class(1, datetime.strptime("8:00", "%H:%M"), classes.WeekType.EVERY_WEEK,
-                                                      classes.Form.LECTURE, 90, "K01-22a", None, None))
+        self.add_days_of_week_widgets()
+        self.add_minutes_labels()
 
-        self.retranslateUi(Form)
+        # self.retranslateUi(parent)
+        QMetaObject.connectSlotsByName(parent)
 
-        QMetaObject.connectSlotsByName(Form)
-    # setupUi
+    # 1 through 7
+    def add_day_of_week_widget(self, day_of_week: int):
+        index_day_of_week = day_of_week - 1
+        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(DAYS_OF_WEEK[index_day_of_week],
+                                                                        self.main_grid_widget,
+                                                                        self.start_time, 0,
+                                                                        index_day_of_week * self.cell_height,
+                                                                        self.width, self.cell_height,
+                                                                        self.days_of_week_labels_widget_width)
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+    def add_days_of_week_widgets(self):
+        for i in range(1, self.n_days_of_week + 1):
+            self.add_day_of_week_widget(i)
+
+    def add_class_widget(self, class_: classes.Class, day_of_week: int):
+        if 1 <= day_of_week <= self.n_days_of_week:
+            index_day_of_week = day_of_week - 1
+            self.days_of_weeks_widgets[index_day_of_week].place_course_widget(class_)
+
+    def add_minutes_labels(self):
+        font = QFont()
+        font.setFamilies([u"Arial Unicode MS"])
+        font.setPointSize(7)
+        font.setWordSpacing(30)
+        self.text_time.setFont(font)
+
+        time_interval_in_minutes = 30
+        # This will always be 2
+        rows_of_time_label = 2
+
+        n_intervals = self.n_minutes / time_interval_in_minutes
+        n_intervals += int(n_intervals % 2)
+
+        n_labels = int(n_intervals / rows_of_time_label)
+
+        def generate_labels(start_time, n_labels):
+            return [(start_time + timedelta(minutes=i * (rows_of_time_label * time_interval_in_minutes))).strftime("%H:%M")
+                    for i in range(n_labels)]
+
+        upper_labels = generate_labels(self.start_time, n_labels + 1)
+        lower_labels = generate_labels(datetime.strptime((self.start_time
+                                        + timedelta(minutes=time_interval_in_minutes)).strftime("%H:%M"), "%H:%M"),
+                                       n_labels + int(n_intervals % 2))
+
+        # self.text_time.
+        self.text_time.append(" ".join(upper_labels))
+        self.text_time.append(" " + " ".join(lower_labels))
+
 
     # retranslateUi
 
 if __name__ == "__main__":
+
     app = QApplication()
     window = QMainWindow()
-    Ui_Form().setupUi(window, 840, 600, 5)
+    GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("22:00", "%H:%M"))
     window.show()
     app.exec()
