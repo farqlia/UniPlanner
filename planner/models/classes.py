@@ -27,6 +27,9 @@ class DayOfWeek(Enum):
     Saturday = 6
     Sunday = 7
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Teacher:
     # TODO: JAK ROZDZIELAĆ IMIĘ OD NAZWISKA? (i stopnia naukowego)
