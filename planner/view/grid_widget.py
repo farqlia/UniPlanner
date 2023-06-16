@@ -1,3 +1,4 @@
+from PySide6 import QtGui, QtCore
 from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt)
 from PySide6.QtGui import (QFont, QCursor)
@@ -74,6 +75,46 @@ class DayOfWeekWidget(QWidget):
         self.layout = QGridLayout(self)
 
         self.setLayout(self.layout)
+
+        self.begin = QtCore.QPoint()
+        self.end = QtCore.QPoint()
+
+        self.paint_excluded = False
+
+    def paintEvent(self, event):
+        if self.paint_excluded:
+            qp = QtGui.QPainter(self)
+            br = QtGui.QBrush(QtGui.QColor(100, 10, 10, 40))
+            qp.setBrush(br)
+            qp.drawRect(QRect(self.begin, self.end))
+
+    def mousePressEvent(self, event):
+        self.begin = event.pos()
+        self.end = event.pos()
+        self.update()
+
+    def mouseMoveEvent(self, event):
+        self.end = event.pos()
+        self.update()
+
+    def mouseReleaseEvent(self, event):
+        self.draw_excluded_area()
+        self.begin = event.pos()
+        self.end = event.pos()
+        self.update()
+
+    def draw_excluded_area(self):
+        excluded_area_widget = QWidget(self)
+        print(self.begin)
+        print(self.end)
+        excluded_area_widget.setGeometry(QRect(self.begin.x(), 0, self.end.x() - self.begin.x(),
+                                               self.height()))
+        # excluded_area_widget.setAttribute(Qt.Qt.WA_StyledBackground, True)
+        # excluded_area_widget.setStyleSheet('background-color: red;')
+        # p = excluded_area_widget.palette()
+        # p.setColor(excluded_area_widget.backgroundRole(), Qt.red)
+        # excluded_area_widget.setPalette(p)
+        # excluded_area_widget.setAutoFillBackground(True)
 
     def place_group_widget(self, group: Group):
         x = self.label_width + int((group.start_time - self.time_0).total_seconds() / 60.0)
@@ -222,6 +263,10 @@ class GridWidget:
 
     def change_cursor(self, new_cursor):
         self.main_grid_widget.setCursor(QCursor(new_cursor))
+
+    def set_can_exclude_area(self, can_set):
+        for widget in self.days_of_weeks_widgets:
+            widget.paint_excluded = can_set
 
     # retranslateUi
 

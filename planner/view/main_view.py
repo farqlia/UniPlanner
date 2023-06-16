@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 
 ################################################################################
 ## Form generated from reading UI file 'main_window_ui_2mCHydd.ui'
@@ -63,6 +64,8 @@ class MainWindow(QMainWindow):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setGeometry(QRect(1150, 590, 111, 41))
 
+        self.pushButton.clicked.connect(self.generate_plan)
+
         self.checkBox = QCheckBox(self.tab)
         self.checkBox.setObjectName(u"checkBox")
         self.checkBox.setText("Exclude area")
@@ -100,8 +103,20 @@ class MainWindow(QMainWindow):
     def change_grid_cursor(self):
         if self.checkBox.isChecked():
             self.grid_widget.change_cursor(QCursor(Qt.CrossCursor))
+            self.grid_widget.set_can_exclude_area(True)
         else:
             self.grid_widget.change_cursor(QCursor(Qt.ArrowCursor))
+            self.grid_widget.set_can_exclude_area(False)
+
+    # Main functionality !!!
+    def generate_plan(self):
+        # Get groups categorized by user, for each course
+        self.select_groups_widget.get_categorized_courses()
+        # Here will be some additional constraints
+        self.pushButton.setCursor(QCursor(Qt.BusyCursor))
+        # Algorithm ...
+
+        self.pushButton.setCursor(QCursor(Qt.ArrowCursor))
 
 
 if __name__ == "__main__":

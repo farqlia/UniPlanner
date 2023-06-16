@@ -65,7 +65,7 @@ class SelectGroupsWidget:
         self.courses_combo_box.currentIndexChanged.connect(self.update_on_course_change)
 
         self.label_preferred = QLabel(self.group_box_select_courses)
-        self.label_preferred.setText("Prefered")
+        self.label_preferred.setText("Preferred")
         self.label_preferred.setObjectName(u"label_preferred")
         self.label_preferred.setGeometry(QRect(x_offset, 100, widgets_width, 16))
 
@@ -149,6 +149,9 @@ class SelectGroupsWidget:
         for i in range(self.map_list_widget_to_category[category].count()):
             self.courses_to_categorized_groups[course.code].categorized_groups[category]\
                 .append(extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
+
+    def get_categorized_courses(self) -> Dict[str, CategorizedGroups]:
+        return self.courses_to_categorized_groups
 
 
 def format_course_to_string(course: Course):
