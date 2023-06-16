@@ -25,6 +25,7 @@ def test_parse_date_and_place(arg, expected):
     ("Prof. dr hab. inż. Jerzy Świątek", Teacher("Jerzy Świątek", "Prof. dr hab. inż."))
 ])
 
+
 def test_teacher(arg, expected):
     parsed_teacher = parse_teacher(arg)
     assert parsed_teacher.name == expected.name

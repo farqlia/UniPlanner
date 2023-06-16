@@ -93,8 +93,9 @@ class MainWindow(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
-    def display_courses(self, courses):
-        pass
+    def load_courses(self, courses: List[Course]):
+        self.select_groups_widget.load_courses(courses)
+        self.grid_widget.add_groups([group for course in courses for group in course.groups])
 
     def change_grid_cursor(self):
         if self.checkBox.isChecked():
@@ -135,6 +136,6 @@ if __name__ == "__main__":
                                                                          create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
                                                                                       as_hour("11:15"), as_hour("13:00"), "K01-28g")])
     ]
-
+    window.load_courses(test_courses)
     window.show()
     app.exec()

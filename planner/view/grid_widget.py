@@ -21,15 +21,27 @@ class GroupWidget(QWidget):
 
         self.setFixedWidth(width)
         self.setGeometry(QRect(x, y, width, height))
-        group_description = QTextEdit(self)
-        group_description.setGeometry(QRect(0, 0, width, height))
-        group_description.setReadOnly(True)
-        # group_description.setCursor(QCursor(Qt.ArrowCursor))
-        group_description.append(group.code)
-        group_description.append(group.start_time.strftime(TIME_FORMAT)
-                                 + " - " + group.end_time.strftime(TIME_FORMAT))
-        group_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        group_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+        font = QFont()
+        font.setFamilies([u"Arial Unicode MS"])
+        self.font_size = min(height, 8)
+        font.setPointSize(self.font_size)
+        self.setFont(font)
+
+        self.group_description = QTextEdit(self)
+        self.group_description.setGeometry(QRect(0, 0, width, height))
+        self.group_description.setReadOnly(True)
+        self.set_description()
+        self.group_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.group_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+    def set_description(self):
+        self.group_description.append(self.group.code)
+        if self.height > 2 * self.font_size:
+            self.group_description.append(self.group.start_time.strftime(TIME_FORMAT)
+                                     + " - " + self.group.end_time.strftime(TIME_FORMAT))
+
+
 
 
 # A panel to place courses for a given day of week
@@ -171,9 +183,8 @@ class GridWidget:
     def add_minutes_labels(self):
         font = QFont()
         font.setFamilies([u"Arial Unicode MS"])
-        font.setPointSize(7)
-        font.setWordSpacing(1)
-        # self.text_time.setFont(font)
+        font.setPointSize(8)
+        self.widget_time.setFont(font)
 
         time_interval_in_minutes = 30
         # This will always be 2
@@ -194,11 +205,7 @@ class GridWidget:
                                        n_labels + int(n_intervals % 2))
 
         self.place_labels(upper_labels, 0)
-        self.place_labels(lower_labels, 15)
-
-        # TODO: change this to labels
-        # self.text_time.append(" ".join(upper_labels))
-        # self.text_time.append(" " + " ".join(lower_labels))
+        self.place_labels(lower_labels, int(self.time_widget_height / rows_of_time_label))
 
     def place_labels(self, time_labels: List[datetime], y):
         for t_label in time_labels:
@@ -228,6 +235,11 @@ if __name__ == "__main__":
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("8:00"), as_hour("10:00"), "K01-30b"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("10:00"), "K01-30c"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30d"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30e"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30i"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30f"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30g"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30h"),
                    create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31c"),
                    create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31d")]
 
