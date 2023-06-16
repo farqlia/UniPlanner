@@ -6,9 +6,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
-from planner.models.groups import Group, Course, Teacher
+from planner.models.groups import Course
 from planner.parsing.parse_elements import group_factory
-from planner.utils.datetime_utils import TIME_FORMAT
+from planner.parsing.parse_json import obj_to_dict
 
 ENROLLMENT_XPATH = "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[" \
                    "1]/td/table[2]/tbody/tr[15]/td/a"
@@ -130,37 +130,6 @@ class GroupsDownloader:
             return self.download_courses()
         except NoSuchElementException:
             return []
-
-
-def obj_to_dict(obj):
-    if isinstance(obj, list):
-        return {
-            "course": [obj_to_dict(c) for c in obj]
-        }
-    elif isinstance(obj, Teacher):
-        return {
-            "title": obj.title,
-            "name": obj.name
-        }
-    elif isinstance(obj, Group):
-        return {
-            "code": obj.code,
-            "course": obj.course,
-            "lecturer": obj_to_dict(obj.lecturer),
-            "day": str(obj.day),
-            "week_type": str(obj.week_type),
-            "start_time": obj.start_time.strftime(TIME_FORMAT),
-            "end_time": obj.end_time.strftime(TIME_FORMAT),
-            "building": obj.building,
-            "hall": obj.hall,
-            "type": str(obj.type)
-        }
-    elif isinstance(obj, Course):
-        return {
-            "name": obj.name,
-            "code": obj.code,
-            "groups": [obj_to_dict(c) for c in obj.groups]
-        }
 
 
 def dump_to_file(courses, file: str):

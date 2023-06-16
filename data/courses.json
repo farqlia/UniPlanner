@@ -1,1219 +1,1219 @@
 {
-    "course": [
+  "course": [
+    {
+      "name": "Bazy danych",
+      "code": "INZ002007C",
+      "groups": [
         {
-            "name": "Bazy danych",
-            "code": "INZ002007C",
-            "groups": [
-                {
-                    "code": "K01-17a",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-17b",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-17c",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-17e",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-17d",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-17f",
-                    "course": "INZ002007C",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                }
-            ]
+          "code": "K01-17a",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Monday",
+          "week_type": "ODD_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         },
         {
-            "name": "Bazy danych",
-            "code": "INZ002007L",
-            "groups": [
-                {
-                    "code": "K01-18k",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18a",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18c",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18l",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18b",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18d",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18e",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18g",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18i",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-18f",
-                    "course": "INZ002007L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Hanna Mazur"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                }
-            ]
+          "code": "K01-17b",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Monday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         },
         {
-            "name": "Bazy danych",
-            "code": "INZ002007W",
-            "groups": [
-                {
-                    "code": "K01-19a",
-                    "course": "INZ002007W",
-                    "lecturer": {
-                        "title": "Dr hab.",
-                        "name": "Zygmunt Mazur"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "A-1",
-                    "hall": "329",
-                    "type": "LECTURE"
-                }
-            ]
+          "code": "K01-17c",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         },
         {
-            "name": "Metody systemowe i decyzyjne",
-            "code": "INZ002008C",
-            "groups": [
-                {
-                    "code": "K01-20a",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-20c",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-1",
-                    "hall": "311d",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-20b",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-20d",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-1",
-                    "hall": "311d",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-20e",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Friday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "C-3",
-                    "hall": "22",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-20f",
-                    "course": "INZ002008C",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Zbigniew Pliszka"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "C-3",
-                    "hall": "22",
-                    "type": "PRACTICALS"
-                }
-            ]
+          "code": "K01-17e",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         },
         {
-            "name": "Metody systemowe i decyzyjne",
-            "code": "INZ002008L",
-            "groups": [
-                {
-                    "code": "K01-21a",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Michał Czuba"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21b",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Piotr Kawa"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21d",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Piotr Kawa"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21c",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Piotr Kawa"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21e",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Piotr Kawa"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21f",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Konrad Wojtasik"
-                    },
-                    "day": "Thursday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "C-6",
-                    "hall": "129",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21g",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Konrad Wojtasik"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "C-6",
-                    "hall": "129",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21h",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Konrad Wojtasik"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 18:50:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "C-6",
-                    "hall": "129",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21l",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Dominika Dudziak-Gajowiak"
-                    },
-                    "day": "Friday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-21j",
-                    "course": "INZ002008L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Dominika Dudziak-Gajowiak"
-                    },
-                    "day": "Friday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                }
-            ]
+          "code": "K01-17d",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         },
         {
-            "name": "Metody systemowe i decyzyjne",
-            "code": "INZ002008W",
-            "groups": [
-                {
-                    "code": "K01-22a",
-                    "course": "INZ002008W",
-                    "lecturer": {
-                        "title": "Prof. dr hab. inż.",
-                        "name": "Jerzy Świątek"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 07:30:00",
-                    "end_time": "1900-01-01 09:00:00",
-                    "building": "A-1",
-                    "hall": "329",
-                    "type": "LECTURE"
-                }
-            ]
-        },
-        {
-            "name": "Języki skryptowe",
-            "code": "INZ002009L",
-            "groups": [
-                {
-                    "code": "K01-23a",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Marcin Pietranik"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23b",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Marcin Jodłowiec"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23c",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Marcin Jodłowiec"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23d",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23e",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Natalia Piórkowska"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23j",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Natalia Piórkowska"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23f",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23g",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23k",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Natalia Piórkowska"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-23h",
-                    "course": "INZ002009L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Natalia Piórkowska"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                }
-            ]
-        },
-        {
-            "name": "Języki skryptowe",
-            "code": "INZ002009W",
-            "groups": [
-                {
-                    "code": "K01-24a",
-                    "course": "INZ002009W",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Marcin Jodłowiec"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "A-1",
-                    "hall": "329",
-                    "type": "LECTURE"
-                }
-            ]
-        },
-        {
-            "name": "Podstawy inżynierii oprogram.",
-            "code": "INZ004353C",
-            "groups": [
-                {
-                    "code": "K01-25a",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Piotr Zabawa"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-1",
-                    "hall": "312a",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-25b",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Piotr Zabawa"
-                    },
-                    "day": "Monday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-25c",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Krystian Wojtkiewicz"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-25d",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Iwona Dubielewicz"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-25e",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Anita Walkowiak-Gall"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                },
-                {
-                    "code": "K01-25f",
-                    "course": "INZ004353C",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Anita Walkowiak-Gall"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 18:55:00",
-                    "end_time": "1900-01-01 20:35:00",
-                    "building": "D-1",
-                    "hall": "311c",
-                    "type": "PRACTICALS"
-                }
-            ]
-        },
-        {
-            "name": "Podstawy inżynierii oprogram.",
-            "code": "INZ004353L",
-            "groups": [
-                {
-                    "code": "K01-26b",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26d",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26f",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Iwona Dubielewicz"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "127c",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26g",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26i",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26k",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26h",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26j",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26l",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "107b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-26c",
-                    "course": "INZ004353L",
-                    "lecturer": {
-                        "title": "Mgr",
-                        "name": "Urszula Staszak"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "ODD_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "127b",
-                    "type": "LABORATORY"
-                }
-            ]
-        },
-        {
-            "name": "Podstawy inżynierii oprogram.",
-            "code": "INZ004353W",
-            "groups": [
-                {
-                    "code": "K01-27a",
-                    "course": "INZ004353W",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Krystian Wojtkiewicz"
-                    },
-                    "day": "Wednesday",
-                    "week_type": "EVEN_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "A-1",
-                    "hall": "329",
-                    "type": "LECTURE"
-                }
-            ]
-        },
-        {
-            "name": "Administracja serwerami Linux",
-            "code": "INZ004354L",
-            "groups": [
-                {
-                    "code": "K01-28a",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Kamil Nowak"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28b",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Wojciech Thomas"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28c",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Wojciech Thomas"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28d",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Dominika Dudziak-Gajowiak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 15:15:00",
-                    "end_time": "1900-01-01 16:55:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28e",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Dominika Dudziak-Gajowiak"
-                    },
-                    "day": "Thursday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28h",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 07:30:00",
-                    "end_time": "1900-01-01 09:00:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28f",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-28g",
-                    "course": "INZ004354L",
-                    "lecturer": {
-                        "title": "Dr",
-                        "name": "Iuliia Arkhangelska"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "D-2",
-                    "hall": "333b",
-                    "type": "LABORATORY"
-                }
-            ]
-        },
-        {
-            "name": "Administracja serwerami Linux",
-            "code": "INZ004354W",
-            "groups": [
-                {
-                    "code": "K01-29a",
-                    "course": "INZ004354W",
-                    "lecturer": {
-                        "title": "Dr inż.",
-                        "name": "Krzysztof Chudzik"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 17:05:00",
-                    "end_time": "1900-01-01 18:45:00",
-                    "building": "A-1",
-                    "hall": "329",
-                    "type": "LECTURE"
-                }
-            ]
-        },
-        {
-            "name": "Routing i przełącz. w sieciach",
-            "code": "INZ004356L",
-            "groups": [
-                {
-                    "code": "K01-30a",
-                    "course": "INZ004356L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Kamil Nowak"
-                    },
-                    "day": "Tuesday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "C-6",
-                    "hall": "128",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-30d",
-                    "course": "INZ004356L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Kamil Nowak"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 11:15:00",
-                    "end_time": "1900-01-01 13:00:00",
-                    "building": "C-6",
-                    "hall": "128",
-                    "type": "LABORATORY"
-                },
-                {
-                    "code": "K01-30c",
-                    "course": "INZ004356L",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Kamil Nowak"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 13:15:00",
-                    "end_time": "1900-01-01 15:00:00",
-                    "building": "C-6",
-                    "hall": "128",
-                    "type": "LABORATORY"
-                }
-            ]
-        },
-        {
-            "name": "Routing i przełącz. w sieciach",
-            "code": "INZ004356W",
-            "groups": [
-                {
-                    "code": "K01-31a",
-                    "course": "INZ004356W",
-                    "lecturer": {
-                        "title": "Mgr inż.",
-                        "name": "Kamil Nowak"
-                    },
-                    "day": "Friday",
-                    "week_type": "EVERY_WEEK",
-                    "start_time": "1900-01-01 09:15:00",
-                    "end_time": "1900-01-01 11:00:00",
-                    "building": "C-16",
-                    "hall": "D3",
-                    "type": "LECTURE"
-                }
-            ]
+          "code": "K01-17f",
+          "course": "INZ002007C",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
         }
-    ]
+      ]
+    },
+    {
+      "name": "Bazy danych",
+      "code": "INZ002007L",
+      "groups": [
+        {
+          "code": "K01-18k",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "ODD_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18a",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "ODD_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18c",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18l",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18b",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18d",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Monday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18e",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18g",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18i",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-18f",
+          "course": "INZ002007L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Hanna Mazur"
+          },
+          "day": "Tuesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Bazy danych",
+      "code": "INZ002007W",
+      "groups": [
+        {
+          "code": "K01-19a",
+          "course": "INZ002007W",
+          "lecturer": {
+            "title": "Dr hab.",
+            "name": "Zygmunt Mazur"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "A-1",
+          "hall": "329",
+          "type": "LECTURE"
+        }
+      ]
+    },
+    {
+      "name": "Metody systemowe i decyzyjne",
+      "code": "INZ002008C",
+      "groups": [
+        {
+          "code": "K01-20a",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Wednesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-20c",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Wednesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-1",
+          "hall": "311d",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-20b",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-20d",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-1",
+          "hall": "311d",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-20e",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Friday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "C-3",
+          "hall": "22",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-20f",
+          "course": "INZ002008C",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Zbigniew Pliszka"
+          },
+          "day": "Friday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "C-3",
+          "hall": "22",
+          "type": "PRACTICALS"
+        }
+      ]
+    },
+    {
+      "name": "Metody systemowe i decyzyjne",
+      "code": "INZ002008L",
+      "groups": [
+        {
+          "code": "K01-21a",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Michał Czuba"
+          },
+          "day": "Wednesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21b",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Piotr Kawa"
+          },
+          "day": "Wednesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21d",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Piotr Kawa"
+          },
+          "day": "Wednesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21c",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Piotr Kawa"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21e",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Piotr Kawa"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21f",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Konrad Wojtasik"
+          },
+          "day": "Thursday",
+          "week_type": "ODD_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "C-6",
+          "hall": "129",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21g",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Konrad Wojtasik"
+          },
+          "day": "Thursday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "C-6",
+          "hall": "129",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21h",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Konrad Wojtasik"
+          },
+          "day": "Thursday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "18:50",
+          "end_time": "20:35",
+          "building": "C-6",
+          "hall": "129",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21l",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Dominika Dudziak-Gajowiak"
+          },
+          "day": "Friday",
+          "week_type": "ODD_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-21j",
+          "course": "INZ002008L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Dominika Dudziak-Gajowiak"
+          },
+          "day": "Friday",
+          "week_type": "ODD_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Metody systemowe i decyzyjne",
+      "code": "INZ002008W",
+      "groups": [
+        {
+          "code": "K01-22a",
+          "course": "INZ002008W",
+          "lecturer": {
+            "title": "Prof. dr hab. inż.",
+            "name": "Jerzy Świątek"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "07:30",
+          "end_time": "09:00",
+          "building": "A-1",
+          "hall": "329",
+          "type": "LECTURE"
+        }
+      ]
+    },
+    {
+      "name": "Języki skryptowe",
+      "code": "INZ002009L",
+      "groups": [
+        {
+          "code": "K01-23a",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Marcin Pietranik"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23b",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Marcin Jodłowiec"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23c",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Marcin Jodłowiec"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23d",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23e",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Natalia Piórkowska"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23j",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Natalia Piórkowska"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23f",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23g",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23k",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Natalia Piórkowska"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-23h",
+          "course": "INZ002009L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Natalia Piórkowska"
+          },
+          "day": "Thursday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Języki skryptowe",
+      "code": "INZ002009W",
+      "groups": [
+        {
+          "code": "K01-24a",
+          "course": "INZ002009W",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Marcin Jodłowiec"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "A-1",
+          "hall": "329",
+          "type": "LECTURE"
+        }
+      ]
+    },
+    {
+      "name": "Podstawy inżynierii oprogram.",
+      "code": "INZ004353C",
+      "groups": [
+        {
+          "code": "K01-25a",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Piotr Zabawa"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-1",
+          "hall": "312a",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-25b",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Piotr Zabawa"
+          },
+          "day": "Monday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-25c",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Krystian Wojtkiewicz"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-25d",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Iwona Dubielewicz"
+          },
+          "day": "Wednesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-25e",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Anita Walkowiak-Gall"
+          },
+          "day": "Thursday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        },
+        {
+          "code": "K01-25f",
+          "course": "INZ004353C",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Anita Walkowiak-Gall"
+          },
+          "day": "Thursday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "18:55",
+          "end_time": "20:35",
+          "building": "D-1",
+          "hall": "311c",
+          "type": "PRACTICALS"
+        }
+      ]
+    },
+    {
+      "name": "Podstawy inżynierii oprogram.",
+      "code": "INZ004353L",
+      "groups": [
+        {
+          "code": "K01-26b",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Tuesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26d",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Tuesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26f",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Iwona Dubielewicz"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "127c",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26g",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "ODD_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26i",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26k",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "ODD_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26h",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26j",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26l",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Thursday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "107b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-26c",
+          "course": "INZ004353L",
+          "lecturer": {
+            "title": "Mgr",
+            "name": "Urszula Staszak"
+          },
+          "day": "Tuesday",
+          "week_type": "ODD_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "127b",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Podstawy inżynierii oprogram.",
+      "code": "INZ004353W",
+      "groups": [
+        {
+          "code": "K01-27a",
+          "course": "INZ004353W",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Krystian Wojtkiewicz"
+          },
+          "day": "Wednesday",
+          "week_type": "EVEN_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "A-1",
+          "hall": "329",
+          "type": "LECTURE"
+        }
+      ]
+    },
+    {
+      "name": "Administracja serwerami Linux",
+      "code": "INZ004354L",
+      "groups": [
+        {
+          "code": "K01-28a",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Kamil Nowak"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28b",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Wojciech Thomas"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28c",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Wojciech Thomas"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28d",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Dominika Dudziak-Gajowiak"
+          },
+          "day": "Thursday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "15:15",
+          "end_time": "16:55",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28e",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Dominika Dudziak-Gajowiak"
+          },
+          "day": "Thursday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28h",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "07:30",
+          "end_time": "09:00",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28f",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-28g",
+          "course": "INZ004354L",
+          "lecturer": {
+            "title": "Dr",
+            "name": "Iuliia Arkhangelska"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "D-2",
+          "hall": "333b",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Administracja serwerami Linux",
+      "code": "INZ004354W",
+      "groups": [
+        {
+          "code": "K01-29a",
+          "course": "INZ004354W",
+          "lecturer": {
+            "title": "Dr inż.",
+            "name": "Krzysztof Chudzik"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "17:05",
+          "end_time": "18:45",
+          "building": "A-1",
+          "hall": "329",
+          "type": "LECTURE"
+        }
+      ]
+    },
+    {
+      "name": "Routing i przełącz. w sieciach",
+      "code": "INZ004356L",
+      "groups": [
+        {
+          "code": "K01-30a",
+          "course": "INZ004356L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Kamil Nowak"
+          },
+          "day": "Tuesday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "C-6",
+          "hall": "128",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-30d",
+          "course": "INZ004356L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Kamil Nowak"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "11:15",
+          "end_time": "13:00",
+          "building": "C-6",
+          "hall": "128",
+          "type": "LABORATORY"
+        },
+        {
+          "code": "K01-30c",
+          "course": "INZ004356L",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Kamil Nowak"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "13:15",
+          "end_time": "15:00",
+          "building": "C-6",
+          "hall": "128",
+          "type": "LABORATORY"
+        }
+      ]
+    },
+    {
+      "name": "Routing i przełącz. w sieciach",
+      "code": "INZ004356W",
+      "groups": [
+        {
+          "code": "K01-31a",
+          "course": "INZ004356W",
+          "lecturer": {
+            "title": "Mgr inż.",
+            "name": "Kamil Nowak"
+          },
+          "day": "Friday",
+          "week_type": "EVERY_WEEK",
+          "start_time": "09:15",
+          "end_time": "11:00",
+          "building": "C-16",
+          "hall": "D3",
+          "type": "LECTURE"
+        }
+      ]
+    }
+  ]
 }

@@ -124,7 +124,7 @@ if __name__ == "__main__":
     app = QApplication()
     window = MainWindow()
 
-    test_courses = [Course("Bazy danych", "INZ002007C", "", groups=[create_group(DayOfWeek.Monday, WeekType.ODD_WEEK,
+    test_courses = [Course("Bazy danych", "INZ002007C", groups=[create_group(DayOfWeek.Monday, WeekType.ODD_WEEK,
                                                                                  as_hour("9:15"), as_hour("11:00"), "K01-17a"),
                                                                     create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
                                                                                  as_hour("9:15"), as_hour("11:00"), "K01-17b"),
@@ -133,7 +133,7 @@ if __name__ == "__main__":
                                                                     create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
                                                                                  as_hour("9:15"), as_hour("11:00"),"K01-17d"),
                                                                     ]),
-                    Course("Metody systemowe i decyzyjne", "INZ002008L", "", groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
+                    Course("Metody systemowe i decyzyjne", "INZ002008L", groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
                                                                                                   as_hour("13:15"), as_hour("15:00"), "K01-21a"),
                                                                                      create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
                                                                                                   as_hour("15:15"), as_hour("16:55"), "K01-21b"),
@@ -142,7 +142,7 @@ if __name__ == "__main__":
                                                                                                   as_hour("15:15"),
                                                                                                   as_hour("16:55"),
                                                                                                    "K01-21d")]),
-                    Course("Języki skryptowe", "INZ002009L", "", groups=[create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
+                    Course("Języki skryptowe", "INZ002009L", groups=[create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
                                                                                       as_hour("13:15"), as_hour("15:00"), "K01-23b"),
                                                                          create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
                                                                                       as_hour("15:15"), as_hour("16:55"), "K01-23c"),

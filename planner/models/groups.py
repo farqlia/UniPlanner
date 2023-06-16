@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from typing import List
@@ -43,12 +43,15 @@ class DayOfWeek(Enum):
         return f'{self.name}'
 
 
+@dataclass
 class Teacher:
-    def __init__(self, name: str, title: str):
-        self.name = name
-        self.title = title
+    name: str
+    title: str
 
     def __str__(self):
+        return f"{self.title} {self.name}"
+
+    def __repr__(self):
         return f"{self.title} {self.name}"
 
 
@@ -84,6 +87,6 @@ class Course:
     """Class for the course student may complete"""
     name: str
     code: str
-    link: str
     groups: List[Group]  # dupa
+    link: str = ''
     # type: GroupType
