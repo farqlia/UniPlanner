@@ -4,6 +4,12 @@ from enum import Enum
 from typing import List
 
 
+class GroupCategory(Enum):
+    PREFERABLE = 1
+    NEUTRAL = 2
+    EXCLUDED = 3
+
+
 class WeekType(Enum):
     EVERY_WEEK = 1
     EVEN_WEEK = 2
@@ -53,8 +59,8 @@ class Class: #może classes zamiast class? MOŻE GROUP? (GRUPA ZAJĘCIOWA)
     code: str
     course: str # code
     #course: Course -< for key in database
-    lecturer: Teacher  # TODO: in future implementation it should be connected with 'Teacher class'
-    # date_and_place: str
+    # lecturer: Teacher  # TODO: in future implementation it should be connected with 'Teacher class'
+    date_and_place: str
     day: DayOfWeek
     week_type: WeekType
     start_time: datetime
@@ -75,6 +81,6 @@ class Course:
     """Class for the course student may complete"""
     name: str
     code: str
-    link: str
-    classes = [] # dupa
+    link: str  # What is it for
+    classes: List[Class] # dupa
     # type: ClassesType
