@@ -1,7 +1,7 @@
 from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt)
-from PySide6.QtGui import (QFont)
-from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout)
+from PySide6.QtGui import (QFont, QCursor)
+from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout, QLabel)
 from planner.models.groups import Group, DayOfWeek, WeekType
 from datetime import datetime, timedelta
 from typing import Iterable, List
@@ -107,10 +107,10 @@ class GridWidget:
         self.height = n_days_of_week * cell_height
         self.n_minutes = int((end_time - start_time).total_seconds() / 60.0)
         self.width = self.n_minutes
-        x_offset = 10
-        y_offset = 10
+        x_offset = 0
+        y_offset = 0
 
-        parent.resize(int(self.width * 1.1), int(self.height * 1.1))
+        # parent.resize(self.width, self.height)
 
         self.time_widget_height = 30
         self.days_of_week_labels_widget_width = 60
@@ -128,7 +128,7 @@ class GridWidget:
                                            self.width,
                                            self.time_widget_height))
 
-        self.text_time = QTextEdit(self.widget)
+        self.text_time = QTextEdit()
         self.text_time.setObjectName(u"text_time")
         self.text_time.setReadOnly(True)
         self.text_time.setTextInteractionFlags(Qt.NoTextInteraction)
@@ -172,8 +172,8 @@ class GridWidget:
         font = QFont()
         font.setFamilies([u"Arial Unicode MS"])
         font.setPointSize(7)
-        font.setWordSpacing(30)
-        self.text_time.setFont(font)
+        font.setWordSpacing(1)
+        # self.text_time.setFont(font)
 
         time_interval_in_minutes = 30
         # This will always be 2
@@ -185,7 +185,7 @@ class GridWidget:
         n_labels = int(n_intervals / rows_of_time_label)
 
         def generate_labels(start_time, n_labels):
-            return [(start_time + timedelta(minutes=i * (rows_of_time_label * time_interval_in_minutes))).strftime(TIME_FORMAT)
+            return [start_time + timedelta(minutes=i * (rows_of_time_label * time_interval_in_minutes))
                     for i in range(n_labels)]
 
         upper_labels = generate_labels(self.start_time, n_labels + 1)
@@ -193,9 +193,19 @@ class GridWidget:
                                         + timedelta(minutes=time_interval_in_minutes)).strftime(TIME_FORMAT), TIME_FORMAT),
                                        n_labels + int(n_intervals % 2))
 
+        self.place_labels(upper_labels, 0)
+        self.place_labels(lower_labels, 15)
+
         # TODO: change this to labels
-        self.text_time.append(" ".join(upper_labels))
-        self.text_time.append(" " + " ".join(lower_labels))
+        # self.text_time.append(" ".join(upper_labels))
+        # self.text_time.append(" " + " ".join(lower_labels))
+
+    def place_labels(self, time_labels: List[datetime], y):
+        for t_label in time_labels:
+            x = (t_label - self.start_time).total_seconds() / 60.0
+            label = QLabel(self.widget_time)
+            label.setText(t_label.strftime(TIME_FORMAT))
+            label.setGeometry(QRect(x, y, 30, int(self.time_widget_height / 2)))
 
     def add_groups(self, groups: Iterable[Group]):
         for group in groups:
@@ -203,6 +213,8 @@ class GridWidget:
             if 0 <= index_day_of_week < self.n_days_of_week:
                 self.days_of_weeks_widgets[index_day_of_week].place_group_widget(group)
 
+    def change_cursor(self, new_cursor):
+        self.main_grid_widget.setCursor(QCursor(new_cursor))
 
     # retranslateUi
 

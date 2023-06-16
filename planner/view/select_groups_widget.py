@@ -27,56 +27,88 @@ def add_groups_to_list(course: Course, group_codes: List[str], list_widget: QLis
     for group_code in group_codes:
         list_widget.addItem(format_group_to_string(find_group_by_code(course.groups, group_code)))
 
-'''
-class DragAndDropList(QListWidget):
-
-    def __init__(self, *args):
-        super(DragAndDropList, self).__init__(*args)
-
-    def dropEvent(self, event: QDropEvent) -> None:
-        super(DragAndDropList, self).dropEvent(event)
-        # drop_item = self.itemAt(event.posF())
-        drop_item = self.itemAt(event.pos().x(), event.pos().y())
-        # drop_item_text = drop_item.text()
-        # print(drop_item_text)
-        # print(drop_item)
-        # print(type(drop_item))
-
-    def dragMoveEvent(self, event: QDragMoveEvent) -> None:
-        super(DragAndDropList, self).dragMoveEvent(event)
-        # drop_item = self.itemAt(event.posF())
-        drop_item = self.itemAt(event.pos())
-        # drop_item_text = drop_item.text()
-        # print(drop_item_text)
-        print(drop_item)
-        print(type(drop_item))
-'''
-
-
-
 
 class SelectGroupsWidget:
 
-    def __init__(self, parent: QWidget, courses: List[Course]):
+    def __init__(self, parent: QWidget, width=340, height=440):
 
         self.parent = parent
-        self.parent.resize(411, 460)
+        self.parent.resize(width, height)
+        widgets_width = int(0.9 * width)
+        x_offset = int(0.05 * width)
 
-        self.courses: List[Course] = courses
-        self.current_course = courses[0]
+        self.courses: List[Course] = []
+        self.current_course = None
         # Store by course code because class 'Course' is unhashable
         self.courses_to_categorized_groups: Dict[str, CategorizedGroups] = {}
 
-        for course in self.courses:
-            self.courses_to_categorized_groups[course.code] = CategorizedGroups({k: [] for k in list(GroupCategory)})
-
         self.group_box_select_courses = QGroupBox(parent)
+        self.group_box_select_courses.setTitle("Select groups")
         self.group_box_select_courses.setObjectName(u"group_box_select_courses")
-        self.group_box_select_courses.setGeometry(QRect(20, 10, 371, 441))
+        self.group_box_select_courses.setGeometry(QRect(0, 10, width, 441))
+
+        self.label_select_courses = QLabel(self.group_box_select_courses)
+        self.label_select_courses.setObjectName(u"label_2")
+        self.label_select_courses.setGeometry(QRect(x_offset, 20, 49, 16))
 
         self.courses_combo_box = QComboBox(self.group_box_select_courses)
         self.courses_combo_box.setObjectName(u"courses_combo_box")
-        self.courses_combo_box.setGeometry(QRect(20, 50, 321, 20))
+        self.courses_combo_box.setGeometry(QRect(x_offset, 50, widgets_width, 20))
+
+        self.label_choose_course = QLabel(self.group_box_select_courses)
+        self.label_choose_course.setText("Choose course")
+        self.label_choose_course.setObjectName(u"label_choose_course")
+        self.label_choose_course.setGeometry(QRect(x_offset, 30, widgets_width, 20))
+
+        self.courses_combo_box.setEditable(False)
+        self.courses_combo_box.setCurrentText("Choose course")
+        self.courses_combo_box.currentIndexChanged.connect(self.update_on_course_change)
+
+        self.label_preferred = QLabel(self.group_box_select_courses)
+        self.label_preferred.setText("Prefered")
+        self.label_preferred.setObjectName(u"label_preferred")
+        self.label_preferred.setGeometry(QRect(x_offset, 100, widgets_width, 16))
+
+        self.list_of_preferred_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_preferred_choices.setObjectName(u"list_of_preferred_choices")
+        self.list_of_preferred_choices.setGeometry(QRect(x_offset, 120, widgets_width, 81))
+        self.list_of_preferred_choices.setDragDropMode(QAbstractItemView.DragDrop)
+        self.list_of_preferred_choices.setDefaultDropAction(Qt.MoveAction)
+
+        self.label_neutral = QLabel(self.group_box_select_courses)
+        self.label_neutral.setText("Neutral")
+        self.label_neutral.setObjectName(u"label_neutral")
+        self.label_neutral.setGeometry(QRect(x_offset, 210, widgets_width, 16))
+
+        self.list_of_neutral_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_neutral_choices.setObjectName(u"list_of_neutral_choices")
+        self.list_of_neutral_choices.setGeometry(QRect(x_offset, 230, widgets_width, 81))
+        self.list_of_neutral_choices.setDragDropMode(QAbstractItemView.DragDrop)
+        self.list_of_neutral_choices.setDefaultDropAction(Qt.MoveAction)
+
+        self.label_excluded = QLabel(self.group_box_select_courses)
+        self.label_excluded.setText("Excluded")
+        self.label_excluded.setObjectName(u"label_excluded")
+        self.label_excluded.setGeometry(QRect(x_offset, 320, widgets_width, 20))
+
+        self.list_of_excluded_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
+        self.list_of_excluded_choices.setGeometry(QRect(x_offset, 340, widgets_width, 81))
+        self.list_of_excluded_choices.setDragDropMode(QAbstractItemView.DragDrop)
+        self.list_of_excluded_choices.setDefaultDropAction(Qt.MoveAction)
+
+        self.map_list_widget_to_category = {GroupCategory.PREFERRED: self.list_of_preferred_choices,
+                                            GroupCategory.NEUTRAL: self.list_of_neutral_choices,
+                                            GroupCategory.EXCLUDED: self.list_of_excluded_choices}
+
+        QMetaObject.connectSlotsByName(parent)
+
+    def load_courses(self, courses: List[Course]):
+        self.courses = courses
+        self.current_course = courses[0]
+
+        for course in self.courses:
+            self.courses_to_categorized_groups[course.code] = CategorizedGroups({k: [] for k in list(GroupCategory)})
 
         for course in courses:
             self.courses_combo_box.addItem(format_course_to_string(course))
@@ -84,70 +116,7 @@ class SelectGroupsWidget:
                 self.courses_to_categorized_groups[course.code].categorized_groups[GroupCategory.NEUTRAL]\
                     .append(group.code)
 
-        self.courses_combo_box.setEditable(False)
-        self.courses_combo_box.setCurrentText("")
-        self.courses_combo_box.currentIndexChanged.connect(self.update_on_course_change)
-
-        self.list_of_neutral_choices = QListWidget(self.group_box_select_courses)
-        self.list_of_neutral_choices.setObjectName(u"list_of_neutral_choices")
-        self.list_of_neutral_choices.setGeometry(QRect(20, 230, 321, 81))
-        self.list_of_neutral_choices.setDragDropMode(QAbstractItemView.DragDrop)
-        self.list_of_neutral_choices.setDefaultDropAction(Qt.MoveAction)
-
-        self.list_of_excluded_choices = QListWidget(self.group_box_select_courses)
-        self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
-        self.list_of_excluded_choices.setGeometry(QRect(20, 340, 321, 81))
-        self.list_of_excluded_choices.setDragDropMode(QAbstractItemView.DragDrop)
-        self.list_of_excluded_choices.setDefaultDropAction(Qt.MoveAction)
-
-        self.label_2 = QLabel(self.group_box_select_courses)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(20, 20, 49, 16))
-        self.label_choose_course = QLabel(self.group_box_select_courses)
-
-        self.label_choose_course.setObjectName(u"label_choose_course")
-        self.label_choose_course.setGeometry(QRect(20, 30, 321, 20))
-        self.label_preferred = QLabel(self.group_box_select_courses)
-
-        self.label_preferred.setObjectName(u"label_preferred")
-        self.label_preferred.setGeometry(QRect(20, 100, 321, 16))
-        self.label_neutral = QLabel(self.group_box_select_courses)
-
-        self.label_neutral.setObjectName(u"label_neutral")
-        self.label_neutral.setGeometry(QRect(20, 210, 321, 16))
-        self.label_excluded = QLabel(self.group_box_select_courses)
-
-        self.label_excluded.setObjectName(u"label_excluded")
-        self.label_excluded.setGeometry(QRect(20, 320, 321, 20))
-        self.list_of_preferred_choices = QListWidget(self.group_box_select_courses)
-        self.list_of_preferred_choices.setObjectName(u"list_of_preferred_choices")
-        self.list_of_preferred_choices.setGeometry(QRect(20, 120, 321, 81))
-        self.list_of_preferred_choices.setDragDropMode(QAbstractItemView.DragDrop)
-        self.list_of_preferred_choices.setDefaultDropAction(Qt.MoveAction)
-        self.retranslateUi()
-
-        # Temporary solution, then we'll fit this widget to the number of groups
-        self.map_list_widget_to_category = {GroupCategory.PREFERRED: self.list_of_preferred_choices,
-                                            GroupCategory.NEUTRAL: self.list_of_neutral_choices,
-                                            GroupCategory.EXCLUDED: self.list_of_excluded_choices}
-
-        # self.list_of_preferred_choices.itemChanged.connect(self.display_list_items)
-        # self.list_of_neutral_choices.itemChanged.connect(self.display_list_items)
-        # self.list_of_excluded_choices.itemChanged.connect(self.display_list_items)
-
-        QMetaObject.connectSlotsByName(parent)
-
         self.display_groups_of_course()
-
-    # setupUi
-    def retranslateUi(self):
-        self.parent.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.group_box_select_courses.setTitle(QCoreApplication.translate("Form", u"Select groups", None))
-        self.label_2.setText("")
-        self.label_choose_course.setText(QCoreApplication.translate("Form", u"Choose course ", None))
-        self.label_preferred.setText(QCoreApplication.translate("Form", u"Preferred", None))
-        self.label_neutral.setText(QCoreApplication.translate("Form", u"Neutral", None))
-        self.label_excluded.setText(QCoreApplication.translate("Form", u"Excluded", None))
 
     def display_groups_of_course(self):
         self.clear_lists()
@@ -159,18 +128,6 @@ class SelectGroupsWidget:
                 # For a given course and given category
                 self.courses_to_categorized_groups[course.code].categorized_groups[category],
                 self.map_list_widget_to_category[category])
-
-    def print_items_of_list(self, qlist):
-        for i in range(qlist.count()):
-            print(qlist.item(i).text())
-
-    def display_list_items(self):
-        self.print_items_of_list(self.list_of_preferred_choices)
-        print("\n")
-        self.print_items_of_list(self.list_of_neutral_choices)
-        print("\n")
-        self.print_items_of_list(self.list_of_excluded_choices)
-        print("----------------------------")
 
     def clear_lists(self):
         self.list_of_preferred_choices.clear()
@@ -189,11 +146,9 @@ class SelectGroupsWidget:
 
     def update_groups_for_category(self, course, category):
         self.courses_to_categorized_groups[course.code].categorized_groups[category].clear()
-        self.print_items_of_list(self.map_list_widget_to_category[category])
         for i in range(self.map_list_widget_to_category[category].count()):
             self.courses_to_categorized_groups[course.code].categorized_groups[category]\
                 .append(extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
-
 
 
 def format_course_to_string(course: Course):
@@ -208,11 +163,12 @@ def extract_group_code(group_repr: str):
     return group_repr.split(", ")[0]
 
 
-def format_group_to_string(group_: Group):
-    return group_.code + ", " + group_.day.name.lower() + \
-           ("/" + WEEK_TYPE_POLISH_FORM[group_.week_type] if len(
-               WEEK_TYPE_POLISH_FORM[group_.week_type]) > 0 else "") + " " + \
-           group_.start_time.strftime(TIME_FORMAT) + "-" + group_.end_time.strftime(TIME_FORMAT)
+def format_group_to_string(group: Group):
+    return group.code + ", " + group.day.name.lower() + \
+           ("/" + WEEK_TYPE_POLISH_FORM[group.week_type] if len(
+               WEEK_TYPE_POLISH_FORM[group.week_type]) > 0 else "") + " " + \
+           group.start_time.strftime(TIME_FORMAT) + "-" + group.end_time.strftime(TIME_FORMAT) \
+           + ", " + str(group.lecturer)
 
 
 if __name__ == "__main__":
@@ -248,6 +204,7 @@ if __name__ == "__main__":
                                                                                       as_hour("11:15"), as_hour("13:00"), "K01-28g")])
     ]
 
-    select_groups_widget = SelectGroupsWidget(window, test_courses)
+    select_groups_widget = SelectGroupsWidget(window)
+    select_groups_widget.load_courses(test_courses)
     window.show()
     app.exec()

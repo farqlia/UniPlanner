@@ -8,6 +8,7 @@ from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
 from planner.models.groups import Group, Course, Teacher
 from planner.parsing.parse_elements import group_factory
+from planner.utils.datetime_utils import TIME_FORMAT
 
 ENROLLMENT_XPATH = "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[" \
                    "1]/td/table[2]/tbody/tr[15]/td/a"
@@ -148,8 +149,8 @@ def obj_to_dict(obj):
             "lecturer": obj_to_dict(obj.lecturer),
             "day": str(obj.day),
             "week_type": str(obj.week_type),
-            "start_time": str(obj.start_time),
-            "end_time": str(obj.end_time),
+            "start_time": obj.start_time.strftime(TIME_FORMAT),
+            "end_time": obj.end_time.strftime(TIME_FORMAT),
             "building": obj.building,
             "hall": obj.hall,
             "type": str(obj.type)
