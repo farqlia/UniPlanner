@@ -196,8 +196,8 @@ def obj_to_dict(obj):
 
 
 if __name__ == '__main__':
-    user_name = 'pwr384917'
-    user_password = 'Zenonek_306'   # Aj ty nie dziala :(
+    user_name = 'pwr384918'
+    user_password = 'puszek112'   # Aj ty nie dziala :(
     subjects = do_fetch_subjects(user_name, user_password)
     with open('../../data/courses.json', 'w', encoding='utf-8') as f:
         json.dump(obj_to_dict(subjects), f, indent=4, ensure_ascii=False)
