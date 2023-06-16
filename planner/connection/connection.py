@@ -121,11 +121,14 @@ class GroupsDownloader:
         return courses
 
     def download_groups(self, login: str, password: str) -> List[Course]:
-        self.open_website()
-        self.log_user_in(login=login, password=password)
-        self.open_enrollment_website()
-        self.go_to_current_enrollment()
-        return self.download_courses()
+        try:
+            self.open_website()
+            self.log_user_in(login=login, password=password)
+            self.open_enrollment_website()
+            self.go_to_current_enrollment()
+            return self.download_courses()
+        except NoSuchElementException:
+            return []
 
 
 def obj_to_dict(obj):
