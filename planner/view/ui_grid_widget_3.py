@@ -171,7 +171,7 @@ class GridWidget:
     # 1 through 7
     def add_day_of_week_widget(self, day_of_week: int):
         index_day_of_week = day_of_week - 1
-        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(list(classes.DayOfWeek)[index_day_of_week],
+        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(str(list(classes.DayOfWeek)[index_day_of_week]),
                                                                         self.main_grid_widget,
                                                                         self.start_time, 0,
                                                                         index_day_of_week * self.cell_height,
