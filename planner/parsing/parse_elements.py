@@ -10,6 +10,9 @@ PLACE_AND_DATE_REGEX = re.compile("(?P<day_of_week>\w{2})(?P<type_of_week>[TPN+1
                                 "(?P<hour_start>\d{2}:\d{2})-(?P<hour_end>\d{2}:\d{2}), "
                                   "bud. (?P<building>[-\w]+), sala (?P<hall>\w+)")
 
+TEACHER_REGEX = re.compile("(?P<title>(Prof. dr hab. inż.|Mgr inż.|Mgr|Dr hab. inż.|Dr hab.|Dr inż.|Dr)) "
+                           "(?P<name>.+)")
+
 MAP_POLISH_FORM = {'Zajęcia laboratoryjne': ClassesType.LABORATORY,
                    'Ćwiczenia': ClassesType.PRACTICALS,
                    'Wykład': ClassesType.LECTURE}
@@ -28,5 +31,7 @@ def parse_date_and_place(date_and_place: str) -> Tuple[DayOfWeek, WeekType, date
 def map_form_of_classes(polish_form: str) -> ClassesType:
     return MAP_POLISH_FORM[polish_form]
 
+
 def parse_teacher(teacher: str) -> Teacher:
-    pass
+    matched_elements = TEACHER_REGEX.match(teacher)
+    return Teacher(name=matched_elements.group("name"), title=matched_elements.group("title"))

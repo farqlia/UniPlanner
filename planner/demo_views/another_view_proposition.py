@@ -160,7 +160,7 @@ class Ui_MainWindow(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.setObjectName(u"select_course_combo_box")
         self.comboBox.setGeometry(QRect(20, 50, 300, 20))
         self.listWidget = QListWidget(self.group_box_select_courses)
         QListWidgetItem(self.listWidget)

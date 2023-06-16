@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## ClassesType generated from reading UI file 'grid_widgetoXfMlN.ui'
-##
-## Created by: Qt User Interface Compiler version 6.4.3
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt)
 from PySide6.QtGui import (QFont)
@@ -46,6 +36,11 @@ class ClassWidget(QWidget):
 # The total width should be computed based on all possible classes
 # (usually it is 7-21, but could be 7-22/7-23)
 # Height depends on whether we include Saturday & Sunday
+def overlap_along_x_axis(class_widget_1: ClassWidget, class_widget_2: ClassWidget):
+    return class_widget_1.x <= class_widget_2.x <= class_widget_1.x + class_widget_1.width or \
+           class_widget_2.x <= class_widget_1.x <= class_widget_2.x + class_widget_2.width
+
+
 class DayOfWeekWidget(QWidget):
 
     # x, y are positions regarding the 'widget_classes' widget
@@ -68,8 +63,11 @@ class DayOfWeekWidget(QWidget):
         self.setLayout(self.layout)
 
     def place_class_widget(self, class_: Class):
-        class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
-                                self._compute_width(class_), self._compute_height(class_))
+        x = self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)
+        y = 0
+        width = class_.durance
+        height = self.height()
+        class_widget = ClassWidget(self, class_, x, y, width, height)
         self.add_to_list(class_widget)
 
     def add_to_list(self, class_widget: ClassWidget):
@@ -77,7 +75,7 @@ class DayOfWeekWidget(QWidget):
         overlapping_widgets: List[ClassWidget] = []
 
         while i < len(self.widgets) and class_widget.x <= self.widgets[i].x:
-            if self.overlap_along_x_axis(class_widget, self.widgets[i]):
+            if overlap_along_x_axis(class_widget, self.widgets[i]):
                 overlapping_widgets.append(self.widgets[i])
             i += 1
 
@@ -85,7 +83,7 @@ class DayOfWeekWidget(QWidget):
         self.widgets.insert(i, class_widget)
         i += 1
 
-        while i < len(self.widgets) and self.overlap_along_x_axis(class_widget, self.widgets[i]):
+        while i < len(self.widgets) and overlap_along_x_axis(class_widget, self.widgets[i]):
             overlapping_widgets.append(self.widgets[i])
             i += 1
 
@@ -94,23 +92,6 @@ class DayOfWeekWidget(QWidget):
 
         for i, widget in enumerate(overlapping_widgets):
             widget.setGeometry(QRect(widget.x, i * new_height, widget.width, new_height))
-
-    def overlap_along_x_axis(self, class_widget_1: ClassWidget, class_widget_2: ClassWidget):
-        return class_widget_1.x <= class_widget_2.x <= class_widget_1.x + class_widget_1.width or \
-               class_widget_2.x <= class_widget_1.x <= class_widget_2.x + class_widget_2.width
-
-    def _compute_x(self, class_: Class) -> int:
-        return self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)
-
-    # Just for now
-    def _compute_y(self, class_: Class) -> int:
-        return 0
-
-    def _compute_height(self, class_: Class) -> int:
-        return self.height()
-
-    def _compute_width(self, class_: Class) -> int:
-        return class_.durance
 
 
 class GridWidget:
@@ -211,9 +192,9 @@ class GridWidget:
                                         + timedelta(minutes=time_interval_in_minutes)).strftime(TIME_FORMAT), TIME_FORMAT),
                                        n_labels + int(n_intervals % 2))
 
-        # self.text_time.
-        # self.text_time.append(" ".join(upper_labels))
-        # self.text_time.append(" " + " ".join(lower_labels))
+        # TODO: change this to labels
+        self.text_time.append(" ".join(upper_labels))
+        self.text_time.append(" " + " ".join(lower_labels))
 
     def add_classes(self, classes_: Iterable[Class]):
         for class_ in classes_:

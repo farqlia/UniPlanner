@@ -33,12 +33,12 @@ class DayOfWeek(Enum):
 
 class Teacher:
     # TODO: JAK ROZDZIELAĆ IMIĘ OD NAZWISKA? (i stopnia naukowego)
-    def __init__(self, firstname: str, surname: str):
-        self.firstname = firstname
-        self.surname = surname
+    def __init__(self, name: str, title: str):
+        self.name = name
+        self.title = title
 
     def __str__(self):
-        return f"{self.firstname} {self.surname}"
+        return f"{self.title} {self.name}"
 
 
 # Like "Administracja Systemami" nie wiem skąd to wziąć,
@@ -53,7 +53,7 @@ class Class: #może classes zamiast class? MOŻE GROUP? (GRUPA ZAJĘCIOWA)
     code: str
     course: str # code
     #course: Course -< for key in database
-    lecturer: str  # TODO: in future implementation it should be connected with 'Teacher class'
+    lecturer: Teacher  # TODO: in future implementation it should be connected with 'Teacher class'
     # date_and_place: str
     day: DayOfWeek
     week_type: WeekType
