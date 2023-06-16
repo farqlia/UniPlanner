@@ -3,7 +3,6 @@ from typing import List
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
@@ -26,14 +25,14 @@ class GroupsDownloader:
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
 
     def open_website(self):
-        url = 'https://edukacja.pwr.wroc.pl/EdukacjaWeb/studia.do'
-        self.driver.get("https://edukacja.pwr.wroc.pl/")
+        url = "https://edukacja.pwr.wroc.pl/"
+        self.driver.get(url)
 
-    def log_user_in(self, user_login: str, user_password: str) -> WebDriver:
+    def log_user_in(self, login: str, password: str):
         username_input = self.driver.find_element(By.NAME, "login")
-        username_input.send_keys(user_login)
+        username_input.send_keys(login)
         password_input = self.driver.find_element(By.NAME, "password")
-        password_input.send_keys(user_password)
+        password_input.send_keys(password)
         login_button = self.driver.find_element(By.CSS_SELECTOR, ".BUTTON_ZALOGUJ")
         login_button.click()
         self.check_if_success()
@@ -55,8 +54,8 @@ class GroupsDownloader:
         element.click()
         button = self.driver.find_elements_by_css_selector('input[name="event_ZapisyPrzegladanieGrup"]')[1]
         button.click()
-        filter = Select(self.driver.find_element(By.NAME, "KryteriumFiltrowania"))
-        filter.select_by_visible_text("Z wektora zapisowego, do których słuchacz ma uprawnienia")
+        criteria = Select(self.driver.find_element(By.NAME, "KryteriumFiltrowania"))
+        criteria.select_by_visible_text("Z wektora zapisowego, do których słuchacz ma uprawnienia")
 
     def get_courses(self):
         courses_list, i, j = [], 2, 0
@@ -86,9 +85,9 @@ class GroupsDownloader:
                 i += 3
             except NoSuchElementException:
                 pages = self.driver.find_elements(By.XPATH,
-                                                 '/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr['
-                                                 '1]/td[3]/table/tbody/tr/td/table[7]/tbody/tr['
-                                                 '41]/td/table/tbody/tr/td/span/input[2]')
+                                                  '/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr['
+                                                  '1]/td[3]/table/tbody/tr/td/table[7]/tbody/tr['
+                                                  '41]/td/table/tbody/tr/td/span/input[2]')
                 if curr_page < len(pages):
                     i = 4
                     pages[curr_page].click()
@@ -123,7 +122,7 @@ class GroupsDownloader:
 
     def download_groups(self, login: str, password: str) -> List[Course]:
         self.open_website()
-        self.log_user_in(user_login=login, user_password=password)
+        self.log_user_in(login=login, password=password)
         self.open_enrollment_website()
         self.go_to_current_enrollment()
         return self.download_courses()
@@ -173,9 +172,9 @@ if __name__ == '__main__':
     file_name = '../../data/new_.json'
     dump_to_file(subjects, file_name)
 
-    """ # Kliknięcie najnowszego zapisu
-    driver.find_element(By.CSS_SELECTOR,
-                        "#GORAPORTALU > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(1) > td.PRAWA_KOMORKA > table > tbody > tr > td > table:nth-child(16) > tbody > tr:nth-child(3) > td:nth-child(1) > a").click()
+    """# Kliknięcie najnowszego zapisu driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) > 
+    td > table > tbody > tr:nth-child(1) > td.PRAWA_KOMORKA > table > tbody > tr > td > table:nth-child(16) > tbody > 
+    tr:nth-child(3) > td:nth-child(1) > a").click()
 
     trTable = driver.find_elements(By.XPATH,
                                    "//*[@id=\"GORAPORTALU\"]/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[8]/tbody/tr")
