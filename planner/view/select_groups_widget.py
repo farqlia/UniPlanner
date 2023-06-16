@@ -103,10 +103,10 @@ class SelectGroupsWidget:
 
         self.label_choose_course.setObjectName(u"label_choose_course")
         self.label_choose_course.setGeometry(QRect(20, 30, 321, 20))
-        self.label_preferable = QLabel(self.group_box_select_courses)
+        self.label_preferred = QLabel(self.group_box_select_courses)
 
-        self.label_preferable.setObjectName(u"label_preferable")
-        self.label_preferable.setGeometry(QRect(20, 100, 321, 16))
+        self.label_preferred.setObjectName(u"label_preferred")
+        self.label_preferred.setGeometry(QRect(20, 100, 321, 16))
         self.label_neutral = QLabel(self.group_box_select_courses)
 
         self.label_neutral.setObjectName(u"label_neutral")
@@ -115,15 +115,15 @@ class SelectGroupsWidget:
 
         self.label_excluded.setObjectName(u"label_excluded")
         self.label_excluded.setGeometry(QRect(20, 320, 321, 20))
-        self.list_of_preferable_choices = QListWidget(self.group_box_select_courses)
-        self.list_of_preferable_choices.setObjectName(u"list_of_preferable_choices")
-        self.list_of_preferable_choices.setGeometry(QRect(20, 120, 321, 81))
-        self.list_of_preferable_choices.setDragDropMode(QAbstractItemView.DragDrop)
-        self.list_of_preferable_choices.setDefaultDropAction(Qt.MoveAction)
+        self.list_of_preferred_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_preferred_choices.setObjectName(u"list_of_preferred_choices")
+        self.list_of_preferred_choices.setGeometry(QRect(20, 120, 321, 81))
+        self.list_of_preferred_choices.setDragDropMode(QAbstractItemView.DragDrop)
+        self.list_of_preferred_choices.setDefaultDropAction(Qt.MoveAction)
         self.retranslateUi()
 
         # Temporary solution, then we'll fit this widget to the number of groups
-        self.map_list_widget_to_category = {GroupCategory.PREFERABLE: self.list_of_preferable_choices,
+        self.map_list_widget_to_category = {GroupCategory.PREFERRED: self.list_of_preferred_choices,
                                             GroupCategory.NEUTRAL: self.list_of_neutral_choices,
                                             GroupCategory.EXCLUDED: self.list_of_excluded_choices}
 
@@ -135,7 +135,7 @@ class SelectGroupsWidget:
         self.group_box_select_courses.setTitle(QCoreApplication.translate("Form", u"Select groups", None))
         self.label_2.setText("")
         self.label_choose_course.setText(QCoreApplication.translate("Form", u"Choose course ", None))
-        self.label_preferable.setText(QCoreApplication.translate("Form", u"Preferable", None))
+        self.label_preferred.setText(QCoreApplication.translate("Form", u"Preferred", None))
         self.label_neutral.setText(QCoreApplication.translate("Form", u"Neutral", None))
         self.label_excluded.setText(QCoreApplication.translate("Form", u"Excluded", None))
 
@@ -151,7 +151,7 @@ class SelectGroupsWidget:
                 self.map_list_widget_to_category[category])
 
     def clear_lists(self):
-        self.list_of_preferable_choices.clear()
+        self.list_of_preferred_choices.clear()
         self.list_of_neutral_choices.clear()
         self.list_of_excluded_choices.clear()
 

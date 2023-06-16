@@ -5,7 +5,7 @@ from typing import List
 
 
 class GroupCategory(Enum):
-    PREFERABLE = 1
+    PREFERRED = 1
     NEUTRAL = 2
     EXCLUDED = 3
 
