@@ -15,7 +15,7 @@ from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QG
 from planner.models.classes import Class, DayOfWeek, WeekType
 from datetime import datetime, timedelta
 from typing import Iterable, List
-from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour
+from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
 
 
 class ClassWidget(QWidget):
@@ -34,8 +34,9 @@ class ClassWidget(QWidget):
         class_description.setGeometry(QRect(0, 0, width, height))
         class_description.setReadOnly(True)
         # class_description.setCursor(QCursor(Qt.ArrowCursor))
-        class_description.append(class_.start_time.strftime("%H:%M"))
         class_description.append(class_.code)
+        class_description.append(class_.start_time.strftime(TIME_FORMAT)
+                                 + " - " + class_.end_time.strftime(TIME_FORMAT))
         class_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         class_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
@@ -152,6 +153,9 @@ class GridWidget:
         self.text_time.setGeometry(QRect(self.days_of_week_labels_widget_width,
                                          0, self.width, self.time_widget_height))
 
+        self.text_time.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.text_time.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
         self.main_grid_widget = QWidget(self.widget)
         self.main_grid_widget.setObjectName(u"main_grid_widget")
         self.main_grid_widget.setGeometry(QRect(0,
@@ -199,17 +203,17 @@ class GridWidget:
         n_labels = int(n_intervals / rows_of_time_label)
 
         def generate_labels(start_time, n_labels):
-            return [(start_time + timedelta(minutes=i * (rows_of_time_label * time_interval_in_minutes))).strftime("%H:%M")
+            return [(start_time + timedelta(minutes=i * (rows_of_time_label * time_interval_in_minutes))).strftime(TIME_FORMAT)
                     for i in range(n_labels)]
 
         upper_labels = generate_labels(self.start_time, n_labels + 1)
         lower_labels = generate_labels(datetime.strptime((self.start_time
-                                        + timedelta(minutes=time_interval_in_minutes)).strftime("%H:%M"), "%H:%M"),
+                                        + timedelta(minutes=time_interval_in_minutes)).strftime(TIME_FORMAT), TIME_FORMAT),
                                        n_labels + int(n_intervals % 2))
 
         # self.text_time.
-        self.text_time.append(" ".join(upper_labels))
-        self.text_time.append(" " + " ".join(lower_labels))
+        # self.text_time.append(" ".join(upper_labels))
+        # self.text_time.append(" " + " ".join(lower_labels))
 
     def add_classes(self, classes_: Iterable[Class]):
         for class_ in classes_:

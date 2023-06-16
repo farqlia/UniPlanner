@@ -10,6 +10,8 @@ POLISH_ABBR_DAY_OF_WEEK = {'pn': DayOfWeek.Monday, 'wt': DayOfWeek.Tuesday,
 
 DAYS_OF_WEEK_ABBR = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
+TIME_FORMAT = "%H:%M"
+
 
 def get_eng_day_abbr(day_of_week: DayOfWeek) -> str:
     return DAYS_OF_WEEK_ABBR[day_of_week.value - 1]
