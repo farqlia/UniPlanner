@@ -37,7 +37,7 @@ def parse_teacher(teacher: str) -> Teacher:
     return Teacher(name=matched_elements.group("name"), title=matched_elements.group("title"))
 
 
-def create_group(code: str, course: str, lecturer: str, date_and_place: str, type: str):
+def group_factory(code: str, course: str, lecturer: str, date_and_place: str, type: str):
     day_of_week, type_of_week, start_time, end_time, building, hall = parse_date_and_place(date_and_place)
     lecturer = parse_teacher(lecturer)
     group_type = map_form_of_classes(type)

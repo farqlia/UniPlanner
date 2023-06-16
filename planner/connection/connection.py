@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
 from planner.models.groups import Group, Course, Teacher
-from planner.parsing.parse_elements import create_group
+from planner.parsing.parse_elements import group_factory
 
 
 def login(driver: WebDriver, user_login: str, user_password: str) -> WebDriver:
@@ -146,8 +146,8 @@ def do_fetch_subjects(user_login, user_password):
                 classes_type = driver.find_element(By.XPATH,
                                                   '//*[@id="GORAPORTALU"]/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[7]/tbody/tr[' + str(
                                                       it + 1) + ']/td[2]').text
-                curr_course.groups.append(create_group(code=classes_code, course=course_code, lecturer=lecturer,
-                                                       date_and_place=date_and_place, type=classes_type))
+                curr_course.groups.append(group_factory(code=classes_code, course=course_code, lecturer=lecturer,
+                                                        date_and_place=date_and_place, type=classes_type))
                 it += 3
 
             except NoSuchElementException:
