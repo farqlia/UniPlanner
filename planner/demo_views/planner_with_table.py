@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uni_plannerzawAkV.ui'
+## ClassesType generated from reading UI file 'uni_plannerzawAkV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##

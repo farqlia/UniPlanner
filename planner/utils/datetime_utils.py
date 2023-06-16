@@ -11,12 +11,17 @@ POLISH_ABBR_DAY_OF_WEEK = {'pn': DayOfWeek.Monday, 'wt': DayOfWeek.Tuesday,
 DAYS_OF_WEEK_ABBR = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
 
-def get_eng_abbr(day_of_week: DayOfWeek) -> str:
+def get_eng_day_abbr(day_of_week: DayOfWeek) -> str:
     return DAYS_OF_WEEK_ABBR[day_of_week.value - 1]
 
 
-def from_polish_abbr(abbr: str) -> DayOfWeek:
+def day_from_polish_abbr(abbr: str) -> DayOfWeek:
     return POLISH_ABBR_DAY_OF_WEEK[abbr]
+
+
+# Days are 1 - 7
+def get_day_from_int(day: int) -> DayOfWeek:
+    return list(DayOfWeek)[day - 1]
 
 
 def as_hour(hour: str) -> datetime:

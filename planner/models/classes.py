@@ -10,7 +10,7 @@ class WeekType(Enum):
     ODD_WEEK = 3
 
 
-class Form(Enum):
+class ClassesType(Enum):
     LECTURE = 1
     PRACTICALS = 2
     LABORATORY = 3
@@ -26,8 +26,6 @@ class DayOfWeek(Enum):
     Friday = 5
     Saturday = 6
     Sunday = 7
-
-
 
 
 class Teacher:
@@ -76,4 +74,4 @@ class Course:
     code: str
     link: str
     classes = [] # dupa
-    # type: Form
+    # type: ClassesType

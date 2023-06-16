@@ -1,4 +1,5 @@
-from planner.connection.connection import parse_date_and_place, as_hour
+from planner.parsing.parse_json import parse_date_and_place
+from planner.utils.datetime_utils import as_hour
 from planner.models.classes import DayOfWeek, WeekType
 from datetime import datetime
 import pytest

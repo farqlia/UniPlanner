@@ -1,29 +1,26 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'grid_widgetoXfMlN.ui'
+## ClassesType generated from reading UI file 'grid_widgetoXfMlN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QSizePolicy, QTextEdit, QWidget, QMainWindow, QGridLayout)
-import planner.models.classes as classes
+from PySide6.QtCore import (QMetaObject, QObject, QRect,
+                            Qt)
+from PySide6.QtGui import (QFont)
+from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout)
+from planner.models.classes import Class, DayOfWeek, WeekType
 from datetime import datetime, timedelta
 from typing import Iterable, List
+from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour
 
 
 class ClassWidget(QWidget):
 
-    def __init__(self, parent: QObject, class_: classes.Class, x, y, width, height):
+    def __init__(self, parent: QObject, class_: Class, x, y, width, height):
         super(ClassWidget, self).__init__(parent)
         self.x = x
         self.y = y
@@ -37,7 +34,7 @@ class ClassWidget(QWidget):
         class_description.setGeometry(QRect(0, 0, width, height))
         class_description.setReadOnly(True)
         # class_description.setCursor(QCursor(Qt.ArrowCursor))
-        class_description.append(class_.date_and_place)
+        class_description.append(class_.start_time.strftime("%H:%M"))
         class_description.append(class_.code)
         class_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         class_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -53,7 +50,6 @@ class DayOfWeekWidget(QWidget):
     # x, y are positions regarding the 'widget_classes' widget
     def __init__(self, day_of_week: str, parent: QObject, time_0: datetime, x, y, width, height, label_width) -> None:
         super().__init__(parent)
-        self.height = height
         self.setGeometry(QRect(x, y, width + label_width, height))
         self.time_0 = time_0
         self.widgets = []      # all classes currently placed - sorted by x cooridnate
@@ -70,20 +66,19 @@ class DayOfWeekWidget(QWidget):
 
         self.setLayout(self.layout)
 
-    def place_class_widget(self, class_: classes.Class):
+    def place_class_widget(self, class_: Class):
         class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
                                 self._compute_width(class_), self._compute_height(class_))
         self.add_to_list(class_widget)
-
 
     def add_to_list(self, class_widget: ClassWidget):
         i = 0
         overlapping_widgets: List[ClassWidget] = []
 
-        while class_widget.x <= self.widgets[i].x and i < len(self.widgets):
-            i += 1
+        while i < len(self.widgets) and class_widget.x <= self.widgets[i].x:
             if self.overlap_along_x_axis(class_widget, self.widgets[i]):
                 overlapping_widgets.append(self.widgets[i])
+            i += 1
 
         overlapping_widgets.append(class_widget)
         self.widgets.insert(i, class_widget)
@@ -93,7 +88,7 @@ class DayOfWeekWidget(QWidget):
             overlapping_widgets.append(self.widgets[i])
             i += 1
 
-        new_height = int(self.height / len(overlapping_widgets))
+        new_height = int(self.height() / len(overlapping_widgets))
         # sorted_widgets = sorted(overlapping_widgets, key=lambda w: (w.x, w.y))
 
         for i, widget in enumerate(overlapping_widgets):
@@ -103,17 +98,17 @@ class DayOfWeekWidget(QWidget):
         return class_widget_1.x <= class_widget_2.x <= class_widget_1.x + class_widget_1.width or \
                class_widget_2.x <= class_widget_1.x <= class_widget_2.x + class_widget_2.width
 
-    def _compute_x(self, class_: classes.Class) -> int:
+    def _compute_x(self, class_: Class) -> int:
         return self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)
 
     # Just for now
-    def _compute_y(self, class_: classes.Class) -> int:
+    def _compute_y(self, class_: Class) -> int:
         return 0
 
-    def _compute_height(self, class_: classes.Class) -> int:
+    def _compute_height(self, class_: Class) -> int:
         return self.height()
 
-    def _compute_width(self, class_: classes.Class) -> int:
+    def _compute_width(self, class_: Class) -> int:
         return class_.durance
 
 
@@ -138,7 +133,7 @@ class GridWidget:
         self.days_of_week_labels_widget_width = 60
         self.n_days_of_week = n_days_of_week
 
-        self.days_of_weeks_widgets = [None for _ in range(n_days_of_week)]
+        self.days_of_weeks_widgets: List[DayOfWeekWidget] = [None for _ in range(n_days_of_week)]
 
         self.widget = QWidget(parent)
         self.widget.setGeometry(QRect(x_offset, y_offset, self.width + self.days_of_week_labels_widget_width,
@@ -171,7 +166,7 @@ class GridWidget:
     # 1 through 7
     def add_day_of_week_widget(self, day_of_week: int):
         index_day_of_week = day_of_week - 1
-        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(list(classes.DayOfWeek)[index_day_of_week],
+        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(get_eng_day_abbr(get_day_from_int(day_of_week)),
                                                                         self.main_grid_widget,
                                                                         self.start_time, 0,
                                                                         index_day_of_week * self.cell_height,
@@ -182,7 +177,7 @@ class GridWidget:
         for i in range(1, self.n_days_of_week + 1):
             self.add_day_of_week_widget(i)
 
-    def add_class_widget(self, class_: classes.Class, day_of_week: int):
+    def add_class_widget(self, class_: Class, day_of_week: int):
         if 1 <= day_of_week <= self.n_days_of_week:
             index_day_of_week = day_of_week - 1
             self.days_of_weeks_widgets[index_day_of_week].place_class_widget(class_)
@@ -216,7 +211,7 @@ class GridWidget:
         self.text_time.append(" ".join(upper_labels))
         self.text_time.append(" " + " ".join(lower_labels))
 
-    def add_classes(self, classes_ : Iterable[classes.Class]):
+    def add_classes(self, classes_: Iterable[Class]):
         for class_ in classes_:
             index_day_of_week = class_.day.value - 1
             if 0 <= index_day_of_week < self.n_days_of_week:
@@ -225,10 +220,23 @@ class GridWidget:
 
     # retranslateUi
 
+def create_class(day, week_type, start_time, end_time, code):
+    return Class(code, None, None, day, week_type, start_time, end_time, None, None, None)
+
+
 if __name__ == "__main__":
 
     app = QApplication()
     window = QMainWindow()
-    GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("21:00", "%H:%M"))
+    grid = GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("21:00", "%H:%M"))
+
+    test_classes = [create_class(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("9:00"), "K01-30a"),
+                    create_class(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("8:00"), as_hour("10:00"), "K01-30b"),
+                    create_class(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("10:00"), "K01-30c"),
+                    create_class(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30d"),
+                    create_class(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31c"),
+                    create_class(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31d")]
+
+    grid.add_classes(test_classes)
     window.show()
     app.exec()
