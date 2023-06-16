@@ -21,7 +21,7 @@ PREFIX_GROUP = '//*[@id="GORAPORTALU"]/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/ta
 class GroupsDownloader:
     def __init__(self):
         op = webdriver.ChromeOptions()
-        # op.add_argument('headless')
+        op.add_argument('headless')
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
 
     def open_website(self):
@@ -168,8 +168,8 @@ def dump_to_file(courses, file: str):
 
 
 if __name__ == '__main__':
-    user_name = 'pwr384918'
-    user_password = 'kocham_moja_dziewczyne'
+    user_name = 'pwr345992'
+    user_password = 'me_gustas_tu'
     downloader = GroupsDownloader()
     subjects = downloader.download_groups(user_name, user_password)
     file_name = '../../data/new_.json'

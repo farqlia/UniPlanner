@@ -52,6 +52,9 @@ class DragAndDropList(QListWidget):
         print(type(drop_item))
 '''
 
+
+
+
 class SelectGroupsWidget:
 
     def __init__(self, parent: QWidget, courses: List[Course]):
@@ -60,6 +63,7 @@ class SelectGroupsWidget:
         self.parent.resize(411, 460)
 
         self.courses: List[Course] = courses
+        self.current_course = courses[0]
         # Store by course code because class 'Course' is unhashable
         self.courses_to_categorized_groups: Dict[str, CategorizedGroups] = {}
 
@@ -82,7 +86,7 @@ class SelectGroupsWidget:
 
         self.courses_combo_box.setEditable(False)
         self.courses_combo_box.setCurrentText("")
-        self.courses_combo_box.currentIndexChanged.connect(self.display_groups_of_course)
+        self.courses_combo_box.currentIndexChanged.connect(self.update_on_course_change)
 
         self.list_of_neutral_choices = QListWidget(self.group_box_select_courses)
         self.list_of_neutral_choices.setObjectName(u"list_of_neutral_choices")
@@ -127,7 +131,13 @@ class SelectGroupsWidget:
                                             GroupCategory.NEUTRAL: self.list_of_neutral_choices,
                                             GroupCategory.EXCLUDED: self.list_of_excluded_choices}
 
+        # self.list_of_preferred_choices.itemChanged.connect(self.display_list_items)
+        # self.list_of_neutral_choices.itemChanged.connect(self.display_list_items)
+        # self.list_of_excluded_choices.itemChanged.connect(self.display_list_items)
+
         QMetaObject.connectSlotsByName(parent)
+
+        self.display_groups_of_course()
 
     # setupUi
     def retranslateUi(self):
@@ -150,20 +160,40 @@ class SelectGroupsWidget:
                 self.courses_to_categorized_groups[course.code].categorized_groups[category],
                 self.map_list_widget_to_category[category])
 
+    def print_items_of_list(self, qlist):
+        for i in range(qlist.count()):
+            print(qlist.item(i).text())
+
+    def display_list_items(self):
+        self.print_items_of_list(self.list_of_preferred_choices)
+        print("\n")
+        self.print_items_of_list(self.list_of_neutral_choices)
+        print("\n")
+        self.print_items_of_list(self.list_of_excluded_choices)
+        print("----------------------------")
+
     def clear_lists(self):
         self.list_of_preferred_choices.clear()
         self.list_of_neutral_choices.clear()
         self.list_of_excluded_choices.clear()
 
+    def update_on_course_change(self):
+        self.update_categorized_groups(self.current_course)
+        self.current_course = find_course_by_code(self.courses,
+                                                  extract_course_code(self.courses_combo_box.currentText()))
+        self.display_groups_of_course()
+
     def update_categorized_groups(self, course):
-        for category in GroupCategory:
+        for category in list(GroupCategory):
             self.update_groups_for_category(course, category)
 
     def update_groups_for_category(self, course, category):
         self.courses_to_categorized_groups[course.code].categorized_groups[category].clear()
+        self.print_items_of_list(self.map_list_widget_to_category[category])
         for i in range(self.map_list_widget_to_category[category].count()):
             self.courses_to_categorized_groups[course.code].categorized_groups[category]\
-                .append(self.map_list_widget_to_category[category].item(i))
+                .append(extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
+
 
 
 def format_course_to_string(course: Course):
@@ -197,7 +227,7 @@ if __name__ == "__main__":
                                                                     create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
                                                                                  as_hour("9:15"), as_hour("11:00"), "K01-17c"),
                                                                     create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"),"K01-17c"),
+                                                                                 as_hour("9:15"), as_hour("11:00"),"K01-17d"),
                                                                     ]),
                     Course("Metody systemowe i decyzyjne", "INZ002008L", "", groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
                                                                                                   as_hour("13:15"), as_hour("15:00"), "K01-21a"),
