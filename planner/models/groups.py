@@ -4,6 +4,12 @@ from enum import Enum
 from typing import List
 
 
+class GroupCategory(Enum):
+    PREFERABLE = 1
+    NEUTRAL = 2
+    EXCLUDED = 3
+
+
 class WeekType(Enum):
     EVERY_WEEK = 1
     EVEN_WEEK = 2

@@ -11,7 +11,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFram
                                QGroupBox, QLabel, QListWidget, QListWidgetItem,
                                QSizePolicy, QWidget, QMainWindow)
 from typing import List, Dict
-from planner.models.classes import Class, Course, DayOfWeek, WeekType, GroupCategory
+from planner.models.groups import Group, Course, DayOfWeek, WeekType, GroupCategory
 from planner.models.classes_utils import find_course_by_code, find_group_by_code
 from planner.view.view_utils import create_class
 from planner.utils.datetime_utils import as_hour, TIME_FORMAT, WEEK_TYPE_POLISH_FORM
@@ -178,7 +178,7 @@ def extract_group_code(group_repr: str):
     return group_repr.split(", ")[0]
 
 
-def format_group_to_string(class_: Class):
+def format_group_to_string(class_: Group):
     return class_.code + ", " + class_.day.name.lower() + \
            ("/" + WEEK_TYPE_POLISH_FORM[class_.week_type] if len(
                WEEK_TYPE_POLISH_FORM[class_.week_type]) > 0 else "") + " " + \

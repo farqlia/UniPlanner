@@ -6,6 +6,7 @@ from planner.models.groups import Group, DayOfWeek, WeekType
 from datetime import datetime, timedelta
 from typing import Iterable, List
 from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
+from planner.view.view_utils import create_class
 
 
 class ClassWidget(QWidget):
@@ -196,7 +197,7 @@ class GridWidget:
         self.text_time.append(" ".join(upper_labels))
         self.text_time.append(" " + " ".join(lower_labels))
 
-    def add_classes(self, classes_: Iterable[Group]):
+    def add_classes(self, classes_: Iterable[Class]):
         for class_ in classes_:
             index_day_of_week = class_.day.value - 1
             if 0 <= index_day_of_week < self.n_days_of_week:
@@ -204,10 +205,6 @@ class GridWidget:
 
 
     # retranslateUi
-
-def create_class(day, week_type, start_time, end_time, code):
-    return Group(code, None, None, day, week_type, start_time, end_time, None, None, None)
-
 
 if __name__ == "__main__":
 
