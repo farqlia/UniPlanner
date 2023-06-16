@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QSizePolicy, QTextEdit, QWidget, QMainWindow)
+from PySide6.QtWidgets import (QApplication, QSizePolicy, QTextEdit, QWidget, QMainWindow, QGridLayout)
 import planner.models.classes as classes
 from datetime import datetime, timedelta
-from typing import Iterable
+from typing import Iterable, List
 
 DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
@@ -26,16 +26,20 @@ class ClassWidget(QWidget):
 
     def __init__(self, parent: QObject, class_: classes.Class, x, y, width, height):
         super(ClassWidget, self).__init__(parent)
-
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
         self.class_ = class_
 
+        self.setFixedWidth(width)
         self.setGeometry(QRect(x, y, width, height))
         class_description = QTextEdit(self)
         class_description.setGeometry(QRect(0, 0, width, height))
         class_description.setReadOnly(True)
         # class_description.setCursor(QCursor(Qt.ArrowCursor))
-        class_description.append(class_.class_code)
-        class_description.append(class_.form.name)
+        class_description.append(class_.date_and_place)
+        class_description.append(class_.code)
         class_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         class_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
@@ -50,9 +54,10 @@ class DayOfWeekWidget(QWidget):
     # x, y are positions regarding the 'widget_classes' widget
     def __init__(self, day_of_week: str, parent: QObject, time_0: datetime, x, y, width, height, label_width) -> None:
         super().__init__(parent)
+        self.height = height
         self.setGeometry(QRect(x, y, width + label_width, height))
         self.time_0 = time_0
-        self.widgets = []      # all classes currently placed
+        self.widgets = []      # all classes currently placed - sorted by x cooridnate
 
         self.label_width = label_width
 
@@ -62,10 +67,46 @@ class DayOfWeekWidget(QWidget):
         day_label.setReadOnly(True)
         day_label.setText(day_of_week)
 
+        self.layout = QGridLayout(self)
+        self.layout.setColumnStretch(width)
+
+        self.setLayout(self.layout)
+
+
     def place_class_widget(self, class_: classes.Class):
         class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
                                 self._compute_width(class_), self._compute_height(class_))
-        self.widgets.append(class_widget)
+        self.add_to_list(class_widget)
+
+
+    def add_to_list(self, class_widget: ClassWidget):
+        i = 0
+
+        overlapping_widgets: List[ClassWidget] = []
+
+        while class_widget.x <= self.widgets[i].x and i < len(self.widgets):
+            i += 1
+            if self.overlap_along_x_axis(class_widget, self.widgets[i]):
+                overlapping_widgets.append(self.widgets[i])
+
+        overlapping_widgets.append(class_widget)
+        self.widgets.insert(i, class_widget)
+        i += 1
+
+        while i < len(self.widgets) and self.overlap_along_x_axis(class_widget, self.widgets[i]):
+            overlapping_widgets.append(self.widgets[i])
+            i += 1
+
+        new_height = int(self.height / len(overlapping_widgets))
+        sorted_widgets = sorted(overlapping_widgets, key=lambda w: (w.x, w.y))
+
+        for i, widget in enumerate(sorted_widgets):
+            widget.setGeometry(QRect(widget.x, i * new_height, widget.width, new_height))
+
+
+    def overlap_along_x_axis(self, class_widget_1: ClassWidget, class_widget_2: ClassWidget):
+        return class_widget_1.x <= class_widget_2.x <= class_widget_1.x + class_widget_1.width or \
+               class_widget_2.x <= class_widget_1.x <= class_widget_2.x + class_widget_2.width
 
     def _compute_x(self, class_: classes.Class) -> int:
         return self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)

@@ -18,6 +18,15 @@ class Form(Enum):
     SEMINAR = 5
 
 
+class DayOfWeek(Enum):
+    Monday = 1
+    Tuesday = 2
+    Wednesday = 3
+    Thursday = 4
+    Friday = 5
+    Saturday = 6
+    Sunday = 7
+
 class Teacher:
     # TODO: JAK ROZDZIELAĆ IMIĘ OD NAZWISKA? (i stopnia naukowego)
     def __init__(self, firstname: str, surname: str):
