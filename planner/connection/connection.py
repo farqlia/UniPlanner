@@ -4,36 +4,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
-from typing import Tuple
-from datetime import datetime
-import re
-from planner.models.classes import Class, Course, DayOfWeek, WeekType
+from planner.models.classes import Class, Course
 
-# Sorry ze tutaj ale to na szybko zebys zobaczyl
-# Do testow odsylam jak to wyglada
-# Mysle ze mozemy miec te pola w klasie Class zamiast wlasnie tego stringa
-
-PLACE_AND_DATE_REGEX = re.compile("(?P<day_of_week>\w{2})(?P<type_of_week>[TPN+12/]*) "
-                                "(?P<hour_start>\d{2}:\d{2})-(?P<hour_end>\d{2}:\d{2}), bud. (?P<building>[-\w]+), sala (?P<hall>\w+)")
-
-POLISH_ABBR_DAY_OF_WEEK = {'pn': DayOfWeek.Monday, 'wt':
-    DayOfWeek.Tuesday, 'śr': DayOfWeek.Wednesday, 'cz': DayOfWeek.Thursday,
-                           'pt': DayOfWeek.Friday}
-
-
-def as_hour(hour: str) -> datetime:
-    return datetime.strptime(hour, "%H:%M")
-
-
-def parse_date_and_place(date_and_place: str) -> Tuple[DayOfWeek, WeekType, datetime, datetime, str, str]:
-    match = PLACE_AND_DATE_REGEX.match(date_and_place)
-    day_of_week = POLISH_ABBR_DAY_OF_WEEK[match.group("day_of_week")]
-    type_of_week = WeekType.EVERY_WEEK if len(match.group("type_of_week")) == 0 \
-        else WeekType.EVEN_WEEK if match.group("type_of_week").startswith("/TP") else WeekType.ODD_WEEK
-    start_time = as_hour(match.group("hour_start"))
-    end_time = as_hour(match.group("hour_end"))
-    return day_of_week, type_of_week, start_time, end_time, match.group("building"), match.group("hall")
-
+# Super jak masz jakies funkcje do parsowania czy cos to moze je wrzucaj do modulu parsing
 
 def do_fetch_subjects(login, password): # TA FUNKCJA JEST STRASZNA JUTRO TO NAPRAWIĘ  # Jest super!!!
     op = webdriver.ChromeOptions()
@@ -198,7 +171,7 @@ def obj_to_dict(obj):
 
 if __name__ == '__main__':
     login = 'pwr384918'
-    password = 'puszek112'
+    password = 'puszek112'   # Aj ty nie dziala :(
     subjects = do_fetch_subjects(login, password)
     with open('../../data/courses.json', 'w', encoding='utf-8') as f:
         json.dump(obj_to_dict(subjects), f, indent=4, ensure_ascii=False)

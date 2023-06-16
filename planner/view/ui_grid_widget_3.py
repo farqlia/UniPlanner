@@ -20,7 +20,6 @@ import planner.models.classes as classes
 from datetime import datetime, timedelta
 from typing import Iterable, List
 
-DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
 class ClassWidget(QWidget):
 
@@ -68,10 +67,8 @@ class DayOfWeekWidget(QWidget):
         day_label.setText(day_of_week)
 
         self.layout = QGridLayout(self)
-        self.layout.setColumnStretch(width)
 
         self.setLayout(self.layout)
-
 
     def place_class_widget(self, class_: classes.Class):
         class_widget = ClassWidget(self, class_, self._compute_x(class_), self._compute_y(class_),
@@ -81,7 +78,6 @@ class DayOfWeekWidget(QWidget):
 
     def add_to_list(self, class_widget: ClassWidget):
         i = 0
-
         overlapping_widgets: List[ClassWidget] = []
 
         while class_widget.x <= self.widgets[i].x and i < len(self.widgets):
@@ -98,11 +94,10 @@ class DayOfWeekWidget(QWidget):
             i += 1
 
         new_height = int(self.height / len(overlapping_widgets))
-        sorted_widgets = sorted(overlapping_widgets, key=lambda w: (w.x, w.y))
+        # sorted_widgets = sorted(overlapping_widgets, key=lambda w: (w.x, w.y))
 
-        for i, widget in enumerate(sorted_widgets):
+        for i, widget in enumerate(overlapping_widgets):
             widget.setGeometry(QRect(widget.x, i * new_height, widget.width, new_height))
-
 
     def overlap_along_x_axis(self, class_widget_1: ClassWidget, class_widget_2: ClassWidget):
         return class_widget_1.x <= class_widget_2.x <= class_widget_1.x + class_widget_1.width or \
@@ -176,7 +171,7 @@ class GridWidget:
     # 1 through 7
     def add_day_of_week_widget(self, day_of_week: int):
         index_day_of_week = day_of_week - 1
-        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(DAYS_OF_WEEK[index_day_of_week],
+        self.days_of_weeks_widgets[index_day_of_week] = DayOfWeekWidget(list(classes.DayOfWeek)[index_day_of_week],
                                                                         self.main_grid_widget,
                                                                         self.start_time, 0,
                                                                         index_day_of_week * self.cell_height,
@@ -190,7 +185,7 @@ class GridWidget:
     def add_class_widget(self, class_: classes.Class, day_of_week: int):
         if 1 <= day_of_week <= self.n_days_of_week:
             index_day_of_week = day_of_week - 1
-            self.days_of_weeks_widgets[index_day_of_week].place_course_widget(class_)
+            self.days_of_weeks_widgets[index_day_of_week].place_class_widget(class_)
 
     def add_minutes_labels(self):
         font = QFont()
@@ -223,7 +218,7 @@ class GridWidget:
 
     def add_classes(self, classes_ : Iterable[classes.Class]):
         for class_ in classes_:
-            index_day_of_week = class_.day_of_week - 1
+            index_day_of_week = class_.day.value - 1
             if 0 <= index_day_of_week < self.n_days_of_week:
                 self.days_of_weeks_widgets[index_day_of_week].place_class_widget(class_)
 
