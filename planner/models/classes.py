@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import time
+from datetime import datetime
 from enum import Enum
 from typing import List
 
@@ -50,12 +50,19 @@ class Class: #może classes zamiast class? MOŻE GROUP? (GRUPA ZAJĘCIOWA)
     course: str # code
     #course: Course -< for key in database
     lecturer: str  # TODO: in future implementation it should be connected with 'Teacher class'
-    date_and_place: str
-    #day: int TODO: REGEXAMI 2. DZIEŃ MOŻE JAKO ENUM, ŻEBY BYŁO JAŚNIEJ??
-    #time: time
-    #week_type: WeekType
+    # date_and_place: str
+    day: DayOfWeek
+    week_type: WeekType
+    start_time: datetime
+    end_time: datetime
+    building: str
+    hall: str
     #place: str
     type: str # TODO: mapping to classes_type
+
+    @property
+    def durance(self):
+        return int((self.end_time - self.start_time).total_seconds() / 60.0)
 
 
 # Classes belong to courses

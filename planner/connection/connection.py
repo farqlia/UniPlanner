@@ -35,7 +35,6 @@ def parse_date_and_place(date_and_place: str) -> Tuple[DayOfWeek, WeekType, date
     return day_of_week, type_of_week, start_time, end_time, match.group("building"), match.group("hall")
 
 
-# Changed to lower case to have one naming convention
 def do_fetch_subjects(login, password): # TA FUNKCJA JEST STRASZNA JUTRO TO NAPRAWIĘ  # Jest super!!!
     op = webdriver.ChromeOptions()
     op.add_argument('headless')
@@ -200,6 +199,6 @@ def obj_to_dict(obj):
 if __name__ == '__main__':
     login = 'pwr384918'
     password = 'puszek112'
-    subjects = doFetchSubjects(login, password)
+    subjects = do_fetch_subjects(login, password)
     with open('../../data/courses.json', 'w', encoding='utf-8') as f:
         json.dump(obj_to_dict(subjects), f, indent=4, ensure_ascii=False)
