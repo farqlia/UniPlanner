@@ -2,7 +2,7 @@ from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt)
 from PySide6.QtGui import (QFont)
 from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout)
-from planner.models.classes import Class, DayOfWeek, WeekType
+from planner.models.groups import Group, DayOfWeek, WeekType
 from datetime import datetime, timedelta
 from typing import Iterable, List
 from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
@@ -10,7 +10,7 @@ from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_
 
 class ClassWidget(QWidget):
 
-    def __init__(self, parent: QObject, class_: Class, x, y, width, height):
+    def __init__(self, parent: QObject, class_: Group, x, y, width, height):
         super(ClassWidget, self).__init__(parent)
         self.x = x
         self.y = y
@@ -62,7 +62,7 @@ class DayOfWeekWidget(QWidget):
 
         self.setLayout(self.layout)
 
-    def place_class_widget(self, class_: Class):
+    def place_class_widget(self, class_: Group):
         x = self.label_width + int((class_.start_time - self.time_0).total_seconds() / 60.0)
         y = 0
         width = class_.durance
@@ -162,7 +162,7 @@ class GridWidget:
         for i in range(1, self.n_days_of_week + 1):
             self.add_day_of_week_widget(i)
 
-    def add_class_widget(self, class_: Class, day_of_week: int):
+    def add_class_widget(self, class_: Group, day_of_week: int):
         if 1 <= day_of_week <= self.n_days_of_week:
             index_day_of_week = day_of_week - 1
             self.days_of_weeks_widgets[index_day_of_week].place_class_widget(class_)
@@ -196,7 +196,7 @@ class GridWidget:
         self.text_time.append(" ".join(upper_labels))
         self.text_time.append(" " + " ".join(lower_labels))
 
-    def add_classes(self, classes_: Iterable[Class]):
+    def add_classes(self, classes_: Iterable[Group]):
         for class_ in classes_:
             index_day_of_week = class_.day.value - 1
             if 0 <= index_day_of_week < self.n_days_of_week:
@@ -206,7 +206,7 @@ class GridWidget:
     # retranslateUi
 
 def create_class(day, week_type, start_time, end_time, code):
-    return Class(code, None, None, day, week_type, start_time, end_time, None, None, None)
+    return Group(code, None, None, day, week_type, start_time, end_time, None, None, None)
 
 
 if __name__ == "__main__":

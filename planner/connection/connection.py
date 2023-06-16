@@ -1,38 +1,54 @@
 import json
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
-from planner.models.classes import Class, Course
+from planner.models.groups import Group, Course, Teacher
+from planner.parsing.parse_elements import create_group
 
 
-# Super jak masz jakies funkcje do parsowania czy cos to moze je wrzucaj do modulu parsing
-def do_fetch_subjects(login, password): # TA FUNKCJA JEST STRASZNA JUTRO TO NAPRAWIĘ  # Jest super!!!
-    op = webdriver.ChromeOptions()
-    op.add_argument('headless')
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
-    url = 'https://edukacja.pwr.wroc.pl/EdukacjaWeb/studia.do'
-    driver.get("https://edukacja.pwr.wroc.pl/")
+def login(driver: WebDriver, user_login: str, user_password: str) -> WebDriver:
     # Wprowadzenie nazwy użytkownika
     username_input = driver.find_element(By.NAME, "login")
-    username_input.send_keys(login)
+    username_input.send_keys(user_login)
 
     # Wprowadzenie hasła
     password_input = driver.find_element(By.NAME, "password")
-    password_input.send_keys(password)
+    password_input.send_keys(user_password)
 
     # Kliknięcie przycisku "ZALOGUJ"
     login_button = driver.find_element(By.CSS_SELECTOR, ".BUTTON_ZALOGUJ")
     login_button.click()
 
+    return driver
+
+
+def do_fetch_subjects(user_login, user_password):
+    op = webdriver.ChromeOptions()
+    #op.add_argument('headless')
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
+    url = 'https://edukacja.pwr.wroc.pl/EdukacjaWeb/studia.do'
+    driver.get("https://edukacja.pwr.wroc.pl/")
+
+    username_input = driver.find_element(By.NAME, "login")
+    username_input.send_keys(user_login)
+
+    # Wprowadzenie hasła
+    password_input = driver.find_element(By.NAME, "password")
+    password_input.send_keys(user_password)
+
+    # Kliknięcie przycisku "ZALOGUJ"
+    login_button = driver.find_element(By.CSS_SELECTOR, ".BUTTON_ZALOGUJ")
+    login_button.click()
     # Sprawdzenie czy wystąpił błąd logowania
-    """try:
+    try:
         potentialLoginError = driver.find_element(By.XPATH,
                                                   "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/b[2]/font").text
-        raise LoginException()
+        print("ok")
     except NoSuchElementException:
-        pass"""
+        print("no such")
 
 
 
@@ -93,7 +109,7 @@ def do_fetch_subjects(login, password): # TA FUNKCJA JEST STRASZNA JUTRO TO NAPR
             course_link = driver.find_element(By.XPATH,
                                                     "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[6]/tbody/tr[" + str(
                                                         i) + "]/td[1]/a").get_attribute("href")
-            courses.append(Course(code=course_code, name=course_name, link=course_link))
+            courses.append(Course(code=course_code, name=course_name, link=course_link, groups=[]))
             i += 1
         except NoSuchElementException:
             if j < len(pagination):
@@ -130,8 +146,8 @@ def do_fetch_subjects(login, password): # TA FUNKCJA JEST STRASZNA JUTRO TO NAPR
                 classes_type = driver.find_element(By.XPATH,
                                                   '//*[@id="GORAPORTALU"]/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[7]/tbody/tr[' + str(
                                                       it + 1) + ']/td[2]').text
-                curr_course.classes.append(Class(code=classes_code, course=course_code, lecturer=lecturer,
-                      date_and_place=date_and_place, type=classes_type))
+                curr_course.groups.append(create_group(code=classes_code, course=course_code, lecturer=lecturer,
+                                                       date_and_place=date_and_place, type=classes_type))
                 it += 3
 
             except NoSuchElementException:
@@ -153,25 +169,35 @@ def obj_to_dict(obj):
         return{
             "course": [obj_to_dict(c) for c in obj]
         }
-    elif isinstance(obj, Class):
+    elif isinstance(obj, Teacher):
+        return{
+            "title": obj.title,
+            "name": obj.name
+        }
+    elif isinstance(obj, Group):
         return {
             "code": obj.code,
             "course": obj.course,
-            "lecturer": obj.lecturer,
-            "date_and_place": obj.date_and_place,
-            "type": obj.type
+            "lecturer": obj_to_dict(obj.lecturer),
+            "day": str(obj.day),
+            "week_type": str(obj.week_type),
+            "start_time": str(obj.start_time),
+            "end_time": str(obj.end_time),
+            "building": obj.building,
+            "hall": obj.hall,
+            "type": str(obj.type)
         }
     elif isinstance(obj, Course):
         return {
             "name": obj.name,
             "code": obj.code,
-            "classes": [obj_to_dict(c) for c in obj.classes]
+            "groups": [obj_to_dict(c) for c in obj.groups]
         }
 
 
 if __name__ == '__main__':
-    login = 'XXX'
-    password = 'puszek111'   # Aj ty nie dziala :(
-    subjects = do_fetch_subjects(login, password)
+    user_name = 'pwr384917'
+    user_password = 'Zenonek_306'   # Aj ty nie dziala :(
+    subjects = do_fetch_subjects(user_name, user_password)
     with open('../../data/courses.json', 'w', encoding='utf-8') as f:
         json.dump(obj_to_dict(subjects), f, indent=4, ensure_ascii=False)

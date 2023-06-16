@@ -9,13 +9,19 @@ class WeekType(Enum):
     EVEN_WEEK = 2
     ODD_WEEK = 3
 
+    def __str__(self):
+        return f'{self.name}'
 
-class ClassesType(Enum):
+
+class GroupType(Enum):
     LECTURE = 1
     PRACTICALS = 2
     LABORATORY = 3
     PRACTICE = 4
     SEMINAR = 5
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class DayOfWeek(Enum):
@@ -48,21 +54,19 @@ class CourseGroup:
 
 
 @dataclass
-class Class: #może classes zamiast class? MOŻE GROUP? (GRUPA ZAJĘCIOWA)
+class Group:
     """Class for classes the student may enrol on"""
     code: str
-    course: str # code
-    #course: Course -< for key in database
-    lecturer: Teacher  # TODO: in future implementation it should be connected with 'Teacher class'
-    # date_and_place: str
+    course: str  # code
+    # course: Course -< for key in database
+    lecturer: Teacher
     day: DayOfWeek
     week_type: WeekType
     start_time: datetime
     end_time: datetime
     building: str
     hall: str
-    #place: str
-    type: str # TODO: mapping to classes_type
+    type: GroupType
 
     @property
     def durance(self):
@@ -76,5 +80,5 @@ class Course:
     name: str
     code: str
     link: str
-    classes = [] # dupa
-    # type: ClassesType
+    groups: List[Group]  # dupa
+    # type: GroupType

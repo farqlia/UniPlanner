@@ -1,6 +1,6 @@
 from planner.parsing.parse_elements import parse_date_and_place, parse_teacher
 from planner.utils.datetime_utils import as_hour
-from planner.models.classes import DayOfWeek, WeekType, Teacher
+from planner.models.groups import DayOfWeek, WeekType, Teacher
 from datetime import datetime
 import pytest
 

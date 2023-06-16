@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFram
                                QGroupBox, QLabel, QListWidget, QListWidgetItem,
                                QSizePolicy, QWidget, QMainWindow)
 from typing import List
-from planner.models.classes import Class, Course
+from planner.models.groups import Group, Course
 
 class SelectGroupsWidget:
 
@@ -75,11 +75,11 @@ class SelectGroupsWidget:
         self.group_box_select_courses.setTitle(QCoreApplication.translate("Form", u"Select groups", None))
         self.label_2.setText("")
         self.label_choose_course.setText(QCoreApplication.translate("Form", u"Choose course ", None))
-        self.label_preferable.setText(QCoreApplication.translate("Form", u"Preferable", None))
+        self.label_preferable.setText(QCoreApplication.translate("Form", u"Prefered", None))
         self.label_neutral.setText(QCoreApplication.translate("Form", u"Neutral", None))
         self.label_excluded.setText(QCoreApplication.translate("Form", u"Excluded", None))
 
-    def add_courses(self, courses: List[Class]):
+    def add_courses(self, courses: List[Group]):
         pass
 
 

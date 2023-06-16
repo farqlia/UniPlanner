@@ -1,7 +1,7 @@
 from typing import Tuple
 from datetime import datetime
 import re
-from planner.models.classes import DayOfWeek, WeekType
+from planner.models.groups import DayOfWeek, WeekType
 
 
 POLISH_ABBR_DAY_OF_WEEK = {'pn': DayOfWeek.Monday, 'wt': DayOfWeek.Tuesday,
