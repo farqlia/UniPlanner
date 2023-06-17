@@ -79,7 +79,7 @@ class Search:
             'num_genes': len(courses),
             'gene_space': [range(len(course.groups)) for course in courses],
             'fitness_func': self.fitness_func,
-            'keep_elitism': 25,
+            'keep_elitism': 5,
             'parent_selection_type': 'tournament',
             'K_tournament':  10,
             'crossover_type': 'scattered',
