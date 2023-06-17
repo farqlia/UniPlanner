@@ -28,8 +28,9 @@ def is_possible(groups: List[Group]) -> bool:
 def fitness_func(ga_instance, solution, solution_idx):
     sol_groups = translate_solution(solution)
     if is_possible(sol_groups):
-        print(sol_groups)
-    return 0
+        return 1000
+    else:
+        return 0
 
 num_generations = 1  # Number of generations.
 num_parents_mating = 1  # Number of solutions to be selected as parents in the mating pool.
@@ -66,7 +67,10 @@ solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance
 """print("Parameters of the best solution : {solution}".format(solution=solution))
 print("Fitness value of the best solution = {solution_fitness}".format(solution_fitness=solution_fitness))
 print("Index of the best solution : {solution_idx}".format(solution_idx=solution_idx))"""
-
+for group in translate_solution(solution):
+    print(group)
+print('fitness = ', solution_fitness)
+print('solution idx = ', solution_idx)
 #prediction = np.sum(np.array(function_inputs) * solution)
 #print("Predicted output based on the best solution : {prediction}".format(prediction=prediction))
 
