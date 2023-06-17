@@ -29,6 +29,7 @@ class DragDropList(QListWidget):
         super(DragDropList, self).__init__(parent)
         self.category = category
         self.currently_selected_course = None
+        self.drop_event_listener = None
         print(self)
 
     def dropEvent(self, event: QDropEvent) -> None:
@@ -37,6 +38,7 @@ class DragDropList(QListWidget):
             source_list = event.source()
             source_list.update_groups()
             self.update_groups()
+        self.drop_event_listener()
 
     def update_groups(self):
         print(self)
@@ -119,6 +121,7 @@ class SelectGroupsWidget:
         self.label_preferred.setGeometry(QRect(x_offset, 100, widgets_width, 16))
 
         self.list_of_preferred_choices = DragDropList(self.group_box_select_courses, GroupCategory.PREFERRED)
+        self.list_of_preferred_choices.drop_event_listener = grid_widget.update
         self.list_of_preferred_choices.setObjectName(u"list_of_preferred_choices")
         self.list_of_preferred_choices.setGeometry(QRect(x_offset, 120, widgets_width, 81))
         self.list_of_preferred_choices.setDragDropMode(QAbstractItemView.DragDrop)
@@ -130,6 +133,7 @@ class SelectGroupsWidget:
         self.label_neutral.setGeometry(QRect(x_offset, 210, widgets_width, 16))
 
         self.list_of_neutral_choices = DragDropList(self.group_box_select_courses, GroupCategory.NEUTRAL)
+        self.list_of_neutral_choices.drop_event_listener = grid_widget.update
         self.list_of_neutral_choices.setObjectName(u"list_of_neutral_choices")
         self.list_of_neutral_choices.setGeometry(QRect(x_offset, 230, widgets_width, 81))
         self.list_of_neutral_choices.setDragDropMode(QAbstractItemView.DragDrop)
@@ -144,6 +148,7 @@ class SelectGroupsWidget:
                                                                        GroupCategory.EXCLUDED,
                                                                        lambda w, i: disable_if_in_excluded_area(grid_widget, w, i))
         grid_widget.add_listener_on_excluding_areas(self.list_of_excluded_choices.react_on_signal)
+        self.list_of_excluded_choices.drop_event_listener = grid_widget.update
         # self.add_listener_for_group_change(self.list_of_excluded_choices.react_on_signal)
         self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
         self.list_of_excluded_choices.setGeometry(QRect(x_offset, 340, widgets_width, 81))

@@ -7,7 +7,7 @@ from planner.models.groups import Group, DayOfWeek, WeekType, GroupCategory, Gro
 from datetime import datetime, timedelta
 from typing import Iterable, List, Dict
 from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
-from planner.view.view_utils import create_group
+from planner.view.view_utils import create_group, POLISH_GROUP_TYPE
 
 BLACK = (0, 0, 0, 255)
 GREEN = (0, 170, 0, 255)
@@ -54,7 +54,7 @@ class GroupWidget(QFrame):
                            .format(255, 255, 255))
 
     def set_description(self):
-        self.group_description.append(self.group.type.name[0].upper() + " " + self.group.course)
+        self.group_description.append(POLISH_GROUP_TYPE[self.group.type] + " " + self.group.course)
         label = QLabel()
         label.setFont(self.group_description.font())
         label.setText(self.group.course)
