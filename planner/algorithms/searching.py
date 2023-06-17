@@ -1,18 +1,11 @@
 import pygad
-from planner.parsing.parse_json import load_from_json
 from planner.models.groups import Group, Course
 from typing import List
 
-file_name = '../../data/courses.json'
-courses = load_from_json(file_name)
+from planner.parsing.parse_json import load_from_json
 
 
-def get_group(course_id, group_id):
-    return courses[course_id].groups[group_id]
 
-
-def translate_solution(gen_solution):
-    return sorted([get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)])
 
 
 def is_possible(groups: List[Group]) -> bool:
@@ -24,70 +17,64 @@ def is_possible(groups: List[Group]) -> bool:
     return True
 
 
-def fitness_func(ga_instance, solution, solution_idx):
-    sol_groups = translate_solution(solution)
-    if is_possible(sol_groups):
-        return 0
-    else:
-        return -9999
+class Search:
+    def __init__(self, courses: List[Course]):
+        self.courses = Search.preprocess(courses)
 
+    def get_group(self, course_id: int, group_id: int) -> Group:
+        return self.courses[course_id][group_id]
 
-num_generations = 100  # Number of generations.
-num_parents_mating = 2  # Number of solutions to be selected as parents in the mating pool.
-sol_per_pop = 4  # Number of solutions in the population.
-num_genes = len(courses)
-gene_space = [range(len(course.groups)) for course in courses]
+    def translate_solution(self, gen_solution: List[int]) -> List[Group]:
+        return sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)])
 
+    def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
+        sol_groups = self.translate_solution(solution)
+        if is_possible(sol_groups):
+            return 0
+        else:
+            return -9999
 
-def on_generation(ga_instance):
-    global last_fitness
-    print("Generation = {generation}".format(generation=ga_instance.generations_completed))
-    print("Fitness    = {fitness}".format(
-        fitness=ga_instance.best_solution(pop_fitness=ga_instance.last_generation_fitness)[1]))
-    print("Change     = {change}".format(
-        change=ga_instance.best_solution(pop_fitness=ga_instance.last_generation_fitness)[1] - last_fitness))
-    last_fitness = ga_instance.best_solution(pop_fitness=ga_instance.last_generation_fitness)[1]
+    def find_solutions(self):
+        ga_instance = pygad.GA(**self.setup_parameters())
+        ga_instance.run()
+        ga_instance.plot_fitness()
+        solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance.last_generation_fitness)
+        for group in self.translate_solution(solution):
+            print(group)
+        print('fitness = ', solution_fitness)
+        print('solution idx = ', solution_idx)
+        filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
+        ga_instance.save(filename=filename)
+        return [self.translate_solution(solution)]
+
+    def setup_parameters(self):
+        return {
+            'num_generations': 100,  # Number of generations.
+            'num_parents_mating': 3,  # Number of solutions to be selected as parents in the mating pool.
+            'sol_per_pop': 10,  # Number of solutions in the population.
+            'num_genes': len(courses),
+            'gene_space': [range(len(course.groups)) for course in courses],
+            'fitness_func': self.fitness_func,
+            'crossover_type': 'scattered',
+            'gene_type': int,
+            'random_seed': 1,
+        }
+
+    @staticmethod
+    def delete_excluded(courses):
+        return [[group_ for group_ in course.groups if not group_.is_excluded()] for course in courses]
+
+    @staticmethod
+    def preprocess(courses):
+        return Search.delete_excluded(courses)
 
 
 def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
-    pass
+    search = Search(courses=courses)
+    return search.find_solutions()
 
 
-ga_instance = pygad.GA(num_generations=num_generations,
-                       num_parents_mating=num_parents_mating,
-                       sol_per_pop=sol_per_pop,
-                       num_genes=num_genes,
-                       fitness_func=fitness_func,
-                       on_generation=None,
-                       gene_type=int,
-                       gene_space=gene_space,
-                       random_seed=1)
+if __name__ == '__main__':
+    courses = load_from_json('../../data/courses.json')
+    print(get_best_solutions(courses))
 
-# Running the GA to optimize the parameters of the function.
-ga_instance.run()
-
-# ga_instance.plot_fitness()
-ga_instance.plot_fitness()
-# Returning the details of the best solution.
-solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance.last_generation_fitness)
-"""print("Parameters of the best solution : {solution}".format(solution=solution))
-print("Fitness value of the best solution = {solution_fitness}".format(solution_fitness=solution_fitness))
-print("Index of the best solution : {solution_idx}".format(solution_idx=solution_idx))"""
-for group in translate_solution(solution):
-    print(group)
-print('fitness = ', solution_fitness)
-print('solution idx = ', solution_idx)
-# prediction = np.sum(np.array(function_inputs) * solution)
-# print("Predicted output based on the best solution : {prediction}".format(prediction=prediction))
-
-"""if ga_instance.best_solution_generation != -1:
-    print("Best fitness value reached after {best_solution_generation} generations.".format(
-        best_solution_generation=ga_instance.best_solution_generation))"""
-
-# Saving the GA instance.
-filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
-ga_instance.save(filename=filename)
-
-# Loading the saved GA instance.
-loaded_ga_instance = pygad.load(filename=filename)
-"""loaded_ga_instance.plot_fitness()"""

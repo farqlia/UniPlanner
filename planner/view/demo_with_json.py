@@ -4,7 +4,7 @@ from planner.parsing.parse_json import load_from_json
 from planner.view.main_view import MainWindow
 
 if __name__ == "__main__":
-    path = r"C:\Users\julia\PycharmProjects\UniPlanner\data\courses.json"
+    path = r"..\..\data\courses.json"
 
     courses = load_from_json(path)
     app = QApplication()
