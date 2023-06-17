@@ -1,13 +1,14 @@
 from PySide6 import QtGui, QtCore
 from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt, QPoint)
-from PySide6.QtGui import (QFont, QCursor, QPalette, QBrush, QColor)
+from PySide6.QtGui import (QFont, QCursor, QPalette, QBrush, QColor, QTextOption)
 from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout, QLabel, QFrame)
 from planner.models.groups import Group, DayOfWeek, WeekType, GroupCategory, GroupType
 from datetime import datetime, timedelta
 from typing import Iterable, List, Dict
 from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
 from planner.view.view_utils import create_group, POLISH_GROUP_TYPE
+from planner.demo_views.resizable_label import myQLabel
 
 BLACK = (0, 0, 0, 255)
 GREEN = (0, 170, 0, 255)
@@ -15,6 +16,7 @@ RED = (170, 39, 39, 255)
 GROUP_CATEGORY_COLORS = {GroupCategory.NEUTRAL: BLACK, GroupCategory.EXCLUDED: RED,
                          GroupCategory.PREFERRED: GREEN}
 
+# TODO: Add colors for other types
 COLOR_FOR_GROUP_TYPE = {GroupType.LECTURE: (24, 131, 22), GroupType.PRACTICALS: (255, 191, 80),
                         GroupType.LABORATORY: (22, 166, 218)}
 
@@ -29,40 +31,33 @@ class GroupWidget(QFrame):
         self.width = width
         self.height = height
         self.group = group
-        self.color_margin = 2
+        self.margin = 2
         self.color = COLOR_FOR_GROUP_TYPE[group.type]
-
-        self.font_size = 0
 
         self.group_description = QTextEdit(self)
         self.group_description.setReadOnly(True)
-        self.set_description()
         self.group_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.group_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.change_font_color()
 
+    def text_height(self):
+        return self.geometry().height() - 2 * self.margin
+
+    def text_width(self):
+        return self.geometry().width() - 2 * self.margin
+
     def setGeometry(self, arg__1: QRect) -> None:
         super(GroupWidget, self).setGeometry(arg__1)
         self.setAutoFillBackground(False)
-        r_2 = QRect(self.color_margin, self.color_margin, arg__1.width() - 2 * self.color_margin,
-                  arg__1.height() - 2 * self.color_margin)
+        r_2 = QRect(self.margin, self.margin, arg__1.width() - 2 * self.margin,
+                    arg__1.height() - 2 * self.margin)
+        self.group_description.setText(name_and_lecturer(self.group))
         self.group_description.setGeometry(r_2)
         self.setStyleSheet("background-color: rgb({}, {}, {});"
                            .format(*self.color))
         self.group_description.setStyleSheet("background-color: rgb({}, {}, {});"
                            .format(255, 255, 255))
-
-    def set_description(self):
-        self.group_description.append(POLISH_GROUP_TYPE[self.group.type] + " " + self.group.course.name)
-        label = QLabel()
-        label.setFont(self.group_description.font())
-        label.setText(self.group.course.name)
-        print(label.width())
-
-        # if self.height > 2 * self.font_size:
-          #   self.group_description.append(self.group.start_time.strftime(TIME_FORMAT)
-            #                          + " - " + self.group.end_time.strftime(TIME_FORMAT))
 
     def change_font_color(self):
         palette = QPalette()
@@ -73,25 +68,54 @@ class GroupWidget(QFrame):
         self.group_description.setPalette(palette)
         self.update()
 
-    def change_font_size(self, size):
-        font = QFont()
-        font.setFamilies([u"Arial Unicode MS"])
-        self.font_size = size
-        font.setPixelSize(self.font_size)
-        self.setFont(font)
-        self.group_description.setFont(font)
-        self.update()
-
     def set_group_category(self, new_cat: GroupCategory):
         self.group.category = new_cat
         self.change_font_color()
+
+    def style_group_description(self):
+        font = QFont()
+        font_size = int(min(10, self.text_height() / 2))
+        font.setPixelSize(font_size)
+        self.group_description.setFont(font)
+        self.group_description.setText(full_name(self.group))
+
+        '''
+        min_font_size = 5
+        default_font_size = 10
+        widget_height_to_font_size_ratio = 2
+        font_size = min(default_font_size, int(self.height / widget_height_to_font_size_ratio))
+        descriptions = [name_and_lecturer, full_name, acronym_name, lambda x: ""]
+        for description in descriptions:
+            font_size = find_font_size(description(self.group), self.text_height(), widget_height_to_font_size_ratio,
+                                  min_font_size, font_size=font_size)
+            if font_size != -1:
+                font = QFont()
+                font.setPixelSize(font_size)
+                self.group_description.setFont(font)
+                self.group_description.append(description(group=self.group))
+                break
+        self.update()'''
+
+
+def name_and_lecturer(group: Group):
+    return f"{POLISH_GROUP_TYPE[group.type]} {group.course.name} {group.lecturer.name}"
+
+
+def full_name(group: Group):
+    return f"{POLISH_GROUP_TYPE[group.type]} {group.course.name}"
+
+
+def acronym_name(group: Group):
+    split_on_spaces = group.course.name.split()
+    return POLISH_GROUP_TYPE[group.type] + "".join([word[0].upper() for word in split_on_spaces])
+
+
 
 # A panel to place courses for a given day of week
 # We assume that 1 minute = 1 unit of width
 # The total width should be computed based on all possible groups
 # (usually it is 7-21, but could be 7-22/7-23)
 # Height depends on whether we include Saturday & Sunday
-
 
 def overlap_along_x_axis(group_widget_1: GroupWidget, group_widget_2: GroupWidget):
     return group_widget_1.x <= group_widget_2.x <= group_widget_1.x + group_widget_1.width or \
@@ -146,7 +170,6 @@ class DayOfWeekWidget(QWidget):
                 qp.drawRect(QRect(self.begin, self.end).normalized())
 
         self.paint_rectangles(qp)
-
 
     def paint_rectangles(self, qp):
         for r in self.rectangles:
@@ -237,7 +260,7 @@ class DayOfWeekWidget(QWidget):
 
         for i, widget in enumerate(overlapping_widgets):
             widget.setGeometry(QRect(widget.x, self.offset_from_edge + i * new_height, widget.width, new_height))
-            widget.change_font_size(int(min(new_height / 2, 12)))
+            widget.style_group_description()
 
     # This will be used by select groups widget to add excluded groups there
     def mark_group_widgets_as_intersecting(self):

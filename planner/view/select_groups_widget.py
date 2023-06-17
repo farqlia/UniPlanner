@@ -54,8 +54,12 @@ class DragDropListDisableOnCondition(DragDropList):
         super(DragDropListDisableOnCondition, self).__init__(parent, category)
         self.condition = condition
 
-    def react_on_signal(self):
+    def update_groups(self):
+        print(self)
         for i in range(self.count()):
+            group = find_group_by_code(self.currently_selected_course.groups,
+                        extract_group_code(self.item(i).text()))
+            group.category = self.category
             should_be_disabled = self.condition(self, self.item(i))
             if should_be_disabled:
                 disable_item(self.item(i))
@@ -147,7 +151,7 @@ class SelectGroupsWidget:
         self.list_of_excluded_choices = DragDropListDisableOnCondition(self.group_box_select_courses,
                                                                        GroupCategory.EXCLUDED,
                                                                        lambda w, i: disable_if_in_excluded_area(grid_widget, w, i))
-        grid_widget.add_listener_on_excluding_areas(self.list_of_excluded_choices.react_on_signal)
+        grid_widget.add_listener_on_excluding_areas(self.list_of_excluded_choices.update_groups)
         self.list_of_excluded_choices.drop_event_listener = grid_widget.update
         # self.add_listener_for_group_change(self.list_of_excluded_choices.react_on_signal)
         self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
