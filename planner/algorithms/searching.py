@@ -61,8 +61,6 @@ class Search:
             print(group)
         print('fitness = ', solution_fitness)
         print('solution idx = ', solution_idx)
-        filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
-        ga_instance.save(filename=filename)
         return [self.translate_solution(solution)]
 
     def setup_parameters(self):
