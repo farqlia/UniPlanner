@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import time
 
 ################################################################################
 ## Form generated from reading UI file 'main_window_ui_2mCHydd.ui'
@@ -9,23 +8,20 @@ import time
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from typing import List
+
+from PySide6.QtCore import (QMetaObject, QRect,
+                            Qt)
+from PySide6.QtGui import (QCursor)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QMainWindow, QMenuBar,
-    QPushButton, QScrollArea, QSizePolicy, QStatusBar,
-    QTabWidget, QWidget)
+                               QPushButton, QStatusBar,
+                               QTabWidget, QWidget)
 
 from planner.models.groups import Course, DayOfWeek, WeekType
 from planner.utils.datetime_utils import as_hour
-from planner.view.view_utils import create_group
-from typing import List
-from planner.view.select_groups_widget import SelectGroupsWidget
 from planner.view.grid_widget import GridWidget
+from planner.view.select_groups_widget import SelectGroupsWidget
+from planner.view.view_utils import create_group
 
 
 class MainWindow(QMainWindow):
@@ -140,37 +136,45 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-
     app = QApplication()
     window = MainWindow()
 
     test_courses = [Course("Bazy danych", "INZ002007C", groups=[create_group(DayOfWeek.Monday, WeekType.ODD_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17a"),
-                                                                    create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17b"),
-                                                                    create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17c"),
-                                                                    create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"),"K01-17d"),
-                                                                    ]),
-                    Course("Metody systemowe i decyzyjne", "INZ002008L", groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                                                                  as_hour("13:15"), as_hour("15:00"), "K01-21a"),
-                                                                                     create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                                                                  as_hour("15:15"), as_hour("16:55"), "K01-21b"),
-                                                                                     create_group(DayOfWeek.Wednesday,
-                                                                                                  WeekType.EVEN_WEEK,
-                                                                                                  as_hour("15:15"),
-                                                                                                  as_hour("16:55"),
-                                                                                                   "K01-21d")]),
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17a"),
+                                                                create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17b"),
+                                                                create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17c"),
+                                                                create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17d"),
+                                                                ]),
+                    Course("Metody systemowe i decyzyjne", "INZ002008L",
+                           groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
+                                                as_hour("13:15"), as_hour("15:00"), "K01-21a"),
+                                   create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
+                                                as_hour("15:15"), as_hour("16:55"), "K01-21b"),
+                                   create_group(DayOfWeek.Wednesday,
+                                                WeekType.EVEN_WEEK,
+                                                as_hour("15:15"),
+                                                as_hour("16:55"),
+                                                "K01-21d")]),
                     Course("Języki skryptowe", "INZ002009L", groups=[create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("13:15"), as_hour("15:00"), "K01-23b"),
-                                                                         create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("15:15"), as_hour("16:55"), "K01-23c"),
-                                                                         create_group(DayOfWeek.Tuesday, WeekType.EVERY_WEEK, as_hour("17:05"),
-                                                                                      as_hour("18:45"), "K01-23e"),
-                                                                         create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("11:15"), as_hour("13:00"), "K01-28g")])
-    ]
+                                                                                  as_hour("13:15"), as_hour("15:00"),
+                                                                                  "K01-23b"),
+                                                                     create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
+                                                                                  as_hour("15:15"), as_hour("16:55"),
+                                                                                  "K01-23c"),
+                                                                     create_group(DayOfWeek.Tuesday,
+                                                                                  WeekType.EVERY_WEEK, as_hour("17:05"),
+                                                                                  as_hour("18:45"), "K01-23e"),
+                                                                     create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
+                                                                                  as_hour("11:15"), as_hour("13:00"),
+                                                                                  "K01-28g")])
+                    ]
     window.load_courses(test_courses)
     window.show()
     app.exec()

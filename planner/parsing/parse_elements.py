@@ -43,15 +43,3 @@ def group_factory(code: str, course: str, lecturer: str, date_and_place: str, ty
     group_type = map_form_of_classes(type)
     return Group(code=code, course=course, lecturer=lecturer, day=day_of_week, week_type=type_of_week,
                  start_time=start_time, end_time=end_time, building=building, hall=hall, type=group_type)
-
-
-def create_group(code: str, course:str, lecturer: str, day: str, week_type : str,
-                 start_time: str, end_time: str, building: str, hall: str, type: str):
-    lecturer = parse_teacher(lecturer)
-    day = DayOfWeek(day)
-
-    day_of_week, type_of_week, start_time, end_time, building, hall = parse_date_and_place(date_and_place)
-    lecturer = parse_teacher(lecturer)
-    group_type = map_form_of_classes(type)
-    return Group(code=code, course=course, lecturer=lecturer, day=day_of_week, week_type=type_of_week,
-                 start_time=start_time, end_time=end_time, building=building, hall=hall, type=group_type)

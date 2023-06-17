@@ -2,49 +2,18 @@ import json
 
 from planner.models.groups import Teacher, Group, Course
 from planner.utils.datetime_utils import TIME_FORMAT
+from planner.parsing.parse_elements import group_factory
 
 
 def load_from_file(file: str):
     with open(file, encoding='utf-8') as f:
         return json.load(f)
 
-"""
-"course": [
-    {
-      "name": "Bazy danych",
-      "code": "INZ002007C",
-      "groups": [
-        {
-          "code": "K01-17a",
-          "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Monday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
-        },
-        {
-          "code": "K01-17b",
-          "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
-        },
-        """
+
+def load_from_json(file: str):
+    return [Course(groups=[group_factory(**group) for group in loaded_course['groups']],
+                   **{attr: loaded_course[attr] for attr in loaded_course if attr != 'groups'})
+            for loaded_course in load_from_file(file)['courses']]
 
 
 def obj_to_dict(obj):

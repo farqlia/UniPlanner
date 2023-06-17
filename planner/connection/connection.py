@@ -6,9 +6,6 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
-from planner.models.groups import Course
-from planner.parsing.parse_elements import group_factory
-from planner.parsing.parse_json import obj_to_dict
 
 ENROLLMENT_XPATH = "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[" \
                    "1]/td/table[2]/tbody/tr[15]/td/a"
@@ -76,7 +73,7 @@ class GroupsDownloader:
 
     def get_groups(self, curr_course):
         curr_page = 0
-        self.driver.get(curr_course.link)
+        self.driver.get(curr_course['link'])
         i = 4
         while True:
             try:
@@ -100,7 +97,7 @@ class GroupsDownloader:
         course_code = self.driver.find_element(By.XPATH, PREFIX_COURSE + str(index) + "]/td[1]/a").text
         course_name = self.driver.find_element(By.XPATH, PREFIX_COURSE + str(index) + "]/td[2]").text
         course_link = self.driver.find_element(By.XPATH, PREFIX_COURSE + str(index) + "]/td[1]/a").get_attribute("href")
-        courses.append(Course(code=course_code, name=course_name, link=course_link, groups=[]))
+        courses.append(dict(code=course_code, name=course_name, link=course_link, groups=[]))
 
     def add_groups(self, course, index):
         classes_code = self.driver.find_element(By.XPATH, PREFIX_GROUP + str(index) + ']/td[1]').text
@@ -111,8 +108,8 @@ class GroupsDownloader:
                                                                                             '/tbody/tr['
                                                                                             '1]/td').text
         classes_type = self.driver.find_element(By.XPATH, PREFIX_GROUP + str(index + 1) + ']/td[2]').text
-        course.groups.append(group_factory(code=classes_code, course=course_code, lecturer=lecturer,
-                                           date_and_place=date_and_place, type=classes_type))
+        course['groups'].append(dict(code=classes_code, course=course_code, lecturer=lecturer,
+                                     date_and_place=date_and_place, type=classes_type))
 
     def download_courses(self):
         courses = self.get_courses()
@@ -121,7 +118,7 @@ class GroupsDownloader:
         self.driver.quit()
         return courses
 
-    def download_groups(self, login: str, password: str) -> List[Course]:
+    def download_groups(self, login: str, password: str) -> List[dict]:
         try:
             self.open_website()
             self.log_user_in(login=login, password=password)
@@ -134,7 +131,7 @@ class GroupsDownloader:
 
 def dump_to_file(courses, file: str):
     with open(file, 'w', encoding='utf-8') as f:
-        json.dump(obj_to_dict(courses), f, indent=2, ensure_ascii=False)
+        json.dump({'courses': courses}, f, indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
@@ -142,7 +139,7 @@ if __name__ == '__main__':
     user_password = 'me_gustas_tu'
     downloader = GroupsDownloader()
     subjects = downloader.download_groups(user_name, user_password)
-    file_name = '../../data/new_.json'
+    file_name = '../../data/courses.json'
     dump_to_file(subjects, file_name)
 
     """# Kliknięcie najnowszego zapisu driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) > 
