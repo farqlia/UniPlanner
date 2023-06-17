@@ -80,7 +80,6 @@ class Search:
             'gene_type': int,
             'crossover_probability': 0.75,
             'mutation_probability': 0.1,
-            'random_seed': 1,
         }
 
     @staticmethod
@@ -90,8 +89,6 @@ class Search:
     @staticmethod
     def preprocess(courses):
         return Search.delete_excluded(courses)
-
-
 
 
 def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
