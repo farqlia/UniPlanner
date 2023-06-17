@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 from typing import List
@@ -76,9 +76,19 @@ class Group:
     hall: str
     type: GroupType
 
+    def __repr__(self):
+        return f'{self.code} on {self.day.name} from ' \
+               f'{self.start_time.strftime("%H:%M")} to {self.end_time.strftime("%H:%M")}'
+
     @property
     def durance(self):
         return int((self.end_time - self.start_time).total_seconds() / 60.0)
+
+    def __lt__(self, other):
+        return self.start_time < other.start_time if self.day == other.day else self.day.value < other.day.value
+
+    def __gt__(self, other):
+        return self.start_time > other.start_time if self.day == other.day else self.day.value > other.day.value
 
 
 # Classes belong to courses
