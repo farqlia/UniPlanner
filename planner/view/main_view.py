@@ -26,52 +26,56 @@ from planner.view.view_utils import create_group
 
 class MainWindow(QMainWindow):
 
-    def __init__(self, width=1300, height=730):
+    def __init__(self, width=1500, height=750):
         super(MainWindow, self).__init__()
-        self.resize(width, height)
         self.setTabShape(QTabWidget.Rounded)
+        self.setFixedSize(width, height)
 
         self.centralwidget = QWidget(self)
         self.centralwidget.setObjectName(u"centralwidget")
 
         self.tab_widget = QTabWidget(self.centralwidget)
         self.tab_widget.setObjectName(u"tab_widget")
-        self.tab_widget.setGeometry(QRect(10, 10, 1280, 680))
+        self.tab_widget.setGeometry(QRect(10, 10, width - 20, height - 20))
         self.tab_widget.setCursor(QCursor(Qt.ArrowCursor))
 
         self.tab = QWidget()
         self.tab.setObjectName(u"Create plan")
 
+        x_grid_parent_widget, y_grid_parent_widget, w_grid_parent_widget, h_grid_parent_widget = 10, 10, 950, 640
         self.grid_parent_widget = QWidget(self.tab)
         self.grid_parent_widget.setObjectName(u"grid_parent_widget")
-        self.grid_parent_widget.setGeometry(QRect(10, 10, 930, 640))
+        self.grid_parent_widget.setGeometry(QRect(x_grid_parent_widget, y_grid_parent_widget,
+                                                  w_grid_parent_widget, h_grid_parent_widget))
 
         self.grid_widget = GridWidget(self.grid_parent_widget,
                                       120, 5, as_hour("7:00"), as_hour("21:00"))
 
         self.select_groups_parent_widget = QWidget(self.tab)
         self.select_groups_parent_widget.setObjectName(u"select_groups_parent_widget")
-        self.select_groups_parent_widget.setGeometry(QRect(930, 10, 340, 440))
+        self.select_groups_parent_widget.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget,
+                                                           y_grid_parent_widget, 400, 440))
 
-        self.select_groups_widget = SelectGroupsWidget(self.select_groups_parent_widget)
+        self.select_groups_widget = SelectGroupsWidget(self.select_groups_parent_widget,
+                                                       400)
 
         self.pushButton = QPushButton(self.tab)
         self.pushButton.setText("Generate plan")
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(1150, 590, 111, 41))
+        self.pushButton.setGeometry(QRect(width - 150, 590, 111, 41))
 
         self.pushButton.clicked.connect(self.generate_plan)
 
         self.exclude_area_check_box = QCheckBox(self.tab)
         self.exclude_area_check_box.setObjectName(u"exclude_area_check_box")
         self.exclude_area_check_box.setText("Exclude area")
-        self.exclude_area_check_box.setGeometry(QRect(930, 480, 101, 20))
+        self.exclude_area_check_box.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget, 480, 101, 20))
         # Change cursor on user action
         self.exclude_area_check_box.clicked.connect(self.allow_excluding_areas)
 
         self.remove_area_check_box = QCheckBox(self.tab)
         self.remove_area_check_box.setObjectName(u"remove_area_check_box")
-        self.remove_area_check_box.setGeometry(QRect(930, 510, 240, 20))
+        self.remove_area_check_box.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget, 510, 240, 20))
         self.remove_area_check_box.setText("Remove excluded area (Double click)")
         self.remove_area_check_box.clicked.connect(self.allow_removing_excluded_areas)
 
@@ -99,6 +103,9 @@ class MainWindow(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
+        self.grid_widget.add_listeners(self.select_groups_widget.update_categorized_groups_for_current_course)
+        self.select_groups_widget.add_listener_for_group_change(self.grid_widget.update)
+
     def load_courses(self, courses: List[Course]):
         self.select_groups_widget.load_courses(courses)
         self.grid_widget.add_groups([group for course in courses for group in course.groups])
@@ -124,57 +131,10 @@ class MainWindow(QMainWindow):
     # Main functionality !!!
     def generate_plan(self):
         # Get groups categorized by user, for each course
-        self.select_groups_widget.get_categorized_courses()
+        # self.select_groups_widget.courses
         # Areas excluded by user as rectangles
-        self.grid_widget.get_excluded_areas()
         # Here will be some additional constraints
         self.pushButton.setCursor(QCursor(Qt.BusyCursor))
         # Algorithm ...
 
         self.pushButton.setCursor(QCursor(Qt.ArrowCursor))
-
-
-
-if __name__ == "__main__":
-    app = QApplication()
-    window = MainWindow()
-
-    test_courses = [Course("Bazy danych", "INZ002007C", groups=[create_group(DayOfWeek.Monday, WeekType.ODD_WEEK,
-                                                                             as_hour("9:15"), as_hour("11:00"),
-                                                                             "K01-17a"),
-                                                                create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
-                                                                             as_hour("9:15"), as_hour("11:00"),
-                                                                             "K01-17b"),
-                                                                create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
-                                                                             as_hour("9:15"), as_hour("11:00"),
-                                                                             "K01-17c"),
-                                                                create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
-                                                                             as_hour("9:15"), as_hour("11:00"),
-                                                                             "K01-17d"),
-                                                                ]),
-                    Course("Metody systemowe i decyzyjne", "INZ002008L",
-                           groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                as_hour("13:15"), as_hour("15:00"), "K01-21a"),
-                                   create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                as_hour("15:15"), as_hour("16:55"), "K01-21b"),
-                                   create_group(DayOfWeek.Wednesday,
-                                                WeekType.EVEN_WEEK,
-                                                as_hour("15:15"),
-                                                as_hour("16:55"),
-                                                "K01-21d")]),
-                    Course("Języki skryptowe", "INZ002009L", groups=[create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                  as_hour("13:15"), as_hour("15:00"),
-                                                                                  "K01-23b"),
-                                                                     create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                  as_hour("15:15"), as_hour("16:55"),
-                                                                                  "K01-23c"),
-                                                                     create_group(DayOfWeek.Tuesday,
-                                                                                  WeekType.EVERY_WEEK, as_hour("17:05"),
-                                                                                  as_hour("18:45"), "K01-23e"),
-                                                                     create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
-                                                                                  as_hour("11:15"), as_hour("13:00"),
-                                                                                  "K01-28g")])
-                    ]
-    window.load_courses(test_courses)
-    window.show()
-    app.exec()

@@ -10,17 +10,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFrame,
                                QGroupBox, QLabel, QListWidget, QListWidgetItem,
                                QSizePolicy, QWidget, QMainWindow)
-from typing import List, Dict
+from typing import List, Dict, Callable
 from planner.models.groups import Group, Course, DayOfWeek, WeekType, GroupCategory
 from planner.models.classes_utils import find_course_by_code, find_group_by_code
 from planner.view.view_utils import create_group
 from planner.utils.datetime_utils import as_hour, TIME_FORMAT, WEEK_TYPE_POLISH_FORM
-
-
-@dataclass
-class CategorizedGroups:
-    # Store only code of a group
-    categorized_groups: Dict[GroupCategory, List[str]]
 
 
 def add_groups_to_list(course: Course, group_codes: List[str], list_widget: QListWidget):
@@ -39,8 +33,6 @@ class SelectGroupsWidget:
 
         self.courses: List[Course] = []
         self.current_course = None
-        # Store by course code because class 'Course' is unhashable
-        self.courses_to_categorized_groups: Dict[str, CategorizedGroups] = {}
 
         self.group_box_select_courses = QGroupBox(parent)
         self.group_box_select_courses.setTitle("Select groups")
@@ -107,14 +99,8 @@ class SelectGroupsWidget:
         self.courses = courses
         self.current_course = courses[0]
 
-        for course in self.courses:
-            self.courses_to_categorized_groups[course.code] = CategorizedGroups({k: [] for k in list(GroupCategory)})
-
         for course in courses:
             self.courses_combo_box.addItem(format_course_to_string(course))
-            for group in course.groups:
-                self.courses_to_categorized_groups[course.code].categorized_groups[GroupCategory.NEUTRAL]\
-                    .append(group.code)
 
         self.display_groups_of_course()
 
@@ -122,12 +108,8 @@ class SelectGroupsWidget:
         self.clear_lists()
         # Each row in a list widget is a string, so we need to find the corresponding Course object by code
         course = find_course_by_code(self.courses, extract_course_code(self.courses_combo_box.currentText()))
-        for category in list(GroupCategory):
-            add_groups_to_list(
-                course,
-                # For a given course and given category
-                self.courses_to_categorized_groups[course.code].categorized_groups[category],
-                self.map_list_widget_to_category[category])
+        for group in course.groups:
+            self.map_list_widget_to_category[group.category].addItem(format_group_to_string(group))
 
     def clear_lists(self):
         self.list_of_preferred_choices.clear()
@@ -140,18 +122,24 @@ class SelectGroupsWidget:
                                                   extract_course_code(self.courses_combo_box.currentText()))
         self.display_groups_of_course()
 
+    def update_categorized_groups_for_current_course(self):
+        self.display_groups_of_course()
+        self.parent.update()
+
+    def add_listener_for_group_change(self, listener: Callable):
+        self.list_of_neutral_choices.itemChanged.connect(listener)
+        self.list_of_preferred_choices.itemChanged.connect(listener)
+        self.list_of_excluded_choices.itemChanged.connect(listener)
+
     def update_categorized_groups(self, course):
         for category in list(GroupCategory):
             self.update_groups_for_category(course, category)
 
     def update_groups_for_category(self, course, category):
-        self.courses_to_categorized_groups[course.code].categorized_groups[category].clear()
         for i in range(self.map_list_widget_to_category[category].count()):
-            self.courses_to_categorized_groups[course.code].categorized_groups[category]\
-                .append(extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
-
-    def get_categorized_courses(self) -> Dict[str, CategorizedGroups]:
-        return self.courses_to_categorized_groups
+            group = find_group_by_code(course.groups,
+                    extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
+            group.category = category
 
 
 def format_course_to_string(course: Course):

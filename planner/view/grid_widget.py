@@ -3,12 +3,20 @@ from PySide6.QtCore import (QMetaObject, QObject, QRect,
                             Qt, QPoint)
 from PySide6.QtGui import (QFont, QCursor, QPalette, QBrush, QColor)
 from PySide6.QtWidgets import (QApplication, QTextEdit, QWidget, QMainWindow, QGridLayout, QLabel)
-from planner.models.groups import Group, DayOfWeek, WeekType
+from planner.models.groups import Group, DayOfWeek, WeekType, GroupCategory
 from datetime import datetime, timedelta
 from typing import Iterable, List, Dict
 from planner.utils.datetime_utils import get_eng_day_abbr, get_day_from_int, as_hour, TIME_FORMAT
 from planner.view.view_utils import create_group
 
+BLACK = (0, 0, 0, 255)
+GREEN = (0, 170, 0, 255)
+RED = (170, 39, 39, 255)
+GROUP_CATEGORY_COLORS = {GroupCategory.NEUTRAL: BLACK, GroupCategory.EXCLUDED: RED,
+                         GroupCategory.PREFERRED: GREEN}
+
+
+# TODO: add tool-tip with group details
 class GroupWidget(QWidget):
 
     def __init__(self, parent: QObject, group: Group, x, y, width, height):
@@ -22,12 +30,7 @@ class GroupWidget(QWidget):
         self.setFixedWidth(width)
         self.setGeometry(QRect(x, y, width, height))
 
-        font = QFont()
-        font.setFamilies([u"Arial Unicode MS"])
-        self.font_size = min(height, 8)
-        font.setPointSize(self.font_size)
-        self.setFont(font)
-
+        self.font_size = 0
         self.group_description = QTextEdit(self)
         self.group_description.setGeometry(QRect(0, 0, width, height))
         self.group_description.setReadOnly(True)
@@ -35,21 +38,35 @@ class GroupWidget(QWidget):
         self.group_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.group_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
+        self.change_font_color()
+
     def set_description(self):
         self.group_description.append(self.group.code)
-        if self.height > 2 * self.font_size:
-            self.group_description.append(self.group.start_time.strftime(TIME_FORMAT)
-                                     + " - " + self.group.end_time.strftime(TIME_FORMAT))
+        # if self.height > 2 * self.font_size:
+          #   self.group_description.append(self.group.start_time.strftime(TIME_FORMAT)
+            #                          + " - " + self.group.end_time.strftime(TIME_FORMAT))
 
-    def change_font_color(self, color):
+    def change_font_color(self):
         palette = QPalette()
-        brush = QBrush(QColor(*color))
+        brush = QBrush(QColor(*GROUP_CATEGORY_COLORS[self.group.category]))
         brush.setStyle(Qt.SolidPattern)
         palette.setBrush(QPalette.Active, QPalette.Text, brush)
         palette.setBrush(QPalette.Inactive, QPalette.Text, brush)
         self.group_description.setPalette(palette)
         self.update()
 
+    def change_font_size(self, size):
+        font = QFont()
+        font.setFamilies([u"Arial Unicode MS"])
+        self.font_size = size
+        font.setPixelSize(self.font_size)
+        self.setFont(font)
+        self.group_description.setFont(font)
+        self.update()
+
+    def set_group_category(self, new_cat: GroupCategory):
+        self.group.category = new_cat
+        self.change_font_color()
 
 # A panel to place courses for a given day of week
 # We assume that 1 minute = 1 unit of width
@@ -76,6 +93,7 @@ class DayOfWeekWidget(QWidget):
     def __init__(self, day_of_week: DayOfWeek, parent: QObject, time_0: datetime, x, y, width, height, label_width) -> None:
         super().__init__(parent)
         self.day_of_week = day_of_week
+        self.offset_from_edge = 2
         self.setGeometry(QRect(x, y, width + label_width, height))
         self.time_0 = time_0
         self.group_widgets: List[GroupWidget] = []      # all groups currently placed - sorted by x cooridnate
@@ -96,6 +114,18 @@ class DayOfWeekWidget(QWidget):
 
         self.rectangles: List[QRect] = []
 
+        self.release_mouse_listener = None
+
+    def repaint(self) -> None:
+        super(DayOfWeekWidget, self).repaint()
+        for w in self.group_widgets:
+            w.change_font_color()
+
+    def update(self) -> None:
+        super(DayOfWeekWidget, self).update()
+        for w in self.group_widgets:
+            w.change_font_color()
+
     def paintEvent(self, event):
         qp = QtGui.QPainter(self)
         br = QtGui.QBrush(QtGui.QColor(100, 10, 10, 40))
@@ -103,13 +133,12 @@ class DayOfWeekWidget(QWidget):
         if self.can_paint_rectangles:
             if not self.begin.isNull() and not self.end.isNull():
                 qp.drawRect(QRect(self.begin, self.end).normalized())
-        
+
         self.paint_rectangles(qp)
 
     def paint_rectangles(self, qp):
         for r in self.rectangles:
             qp.drawRect(r)
-        self.mark_group_widgets_as_intersecting()
             
     def mousePressEvent(self, event):
         self.begin = event.pos()
@@ -141,6 +170,7 @@ class DayOfWeekWidget(QWidget):
 
         self.begin = self.end = QPoint()
         self.update()
+        self.mark_group_widgets_as_intersecting()
         super(DayOfWeekWidget, self).mouseReleaseEvent(event)
 
     def get_geometry(self):
@@ -154,6 +184,7 @@ class DayOfWeekWidget(QWidget):
         while i < len(self.rectangles):
             if self.rectangles[i].contains(p):
                 self.reset_widgets_color_if_intersect(self.rectangles.pop(i))
+                self.release_mouse_listener()
                 i = len(self.rectangles)
             i += 1
 
@@ -162,7 +193,7 @@ class DayOfWeekWidget(QWidget):
 
     def place_group_widget(self, group: Group):
         x = self.label_width + int((group.start_time - self.time_0).total_seconds() / 60.0)
-        y = 0
+        y = self.offset_from_edge
         width = group.durance
         height = self.height()
         group_widget = GroupWidget(self, group, x, y, width, height)
@@ -185,23 +216,24 @@ class DayOfWeekWidget(QWidget):
             overlapping_widgets.append(self.group_widgets[i])
             i += 1
 
-        new_height = int(self.height() / len(overlapping_widgets))
+        new_height = int((self.height() - 2 * self.offset_from_edge) / len(overlapping_widgets))
         # sorted_widgets = sorted(overlapping_widgets, key=lambda w: (w.x, w.y))
 
         for i, widget in enumerate(overlapping_widgets):
-            widget.setGeometry(QRect(widget.x, i * new_height, widget.width, new_height))
+            widget.setGeometry(QRect(widget.x, self.offset_from_edge + i * new_height, widget.width, new_height))
+            widget.change_font_size(int(min(new_height / 2, 12)))
 
+    # This will be used by select groups widget to add excluded groups there
     def mark_group_widgets_as_intersecting(self):
-        red_color = (255, 80, 49, 255)
         for w in self.group_widgets:
             if does_group_intersect_rectangles(w, self.rectangles):
-                w.change_font_color(red_color)
+                w.set_group_category(GroupCategory.EXCLUDED)
+        self.release_mouse_listener()
 
     def reset_widgets_color_if_intersect(self, rectangle: QRect):
-        black_color = (0, 0, 0, 255)
         for w in self.group_widgets:
             if rectangle.intersects(w.geometry()):
-                w.change_font_color(black_color)
+                w.set_group_category(GroupCategory.NEUTRAL)
 
 
 class GridWidget:
@@ -219,11 +251,11 @@ class GridWidget:
         x_offset = 0
         y_offset = 0
 
-        # parent.resize(self.width, self.height)
-
         self.time_widget_height = 30
         self.days_of_week_labels_widget_width = 60
         self.n_days_of_week = n_days_of_week
+
+        parent.resize(self.width + self.days_of_week_labels_widget_width, self.height + self.time_widget_height)
 
         self.days_of_weeks_widgets: List[DayOfWeekWidget] = [None for _ in range(n_days_of_week)]
 
@@ -231,29 +263,23 @@ class GridWidget:
         self.widget.setGeometry(QRect(x_offset, y_offset, self.width + self.days_of_week_labels_widget_width,
                                 self.time_widget_height + self.height))
 
+        print(self.widget.geometry())
+
         self.widget_time = QWidget(self.widget)
         self.widget_time.setObjectName(u"widget_time")
         self.widget_time.setGeometry(QRect(self.days_of_week_labels_widget_width, 0,
                                            self.width,
                                            self.time_widget_height))
 
-        self.text_time = QTextEdit()
-        self.text_time.setObjectName(u"text_time")
-        self.text_time.setReadOnly(True)
-        self.text_time.setTextInteractionFlags(Qt.NoTextInteraction)
-        self.text_time.setGeometry(QRect(self.days_of_week_labels_widget_width,
-                                         0, self.width, self.time_widget_height))
-
-        self.text_time.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.text_time.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-
         self.main_grid_widget = QWidget(self.widget)
         self.main_grid_widget.setObjectName(u"main_grid_widget")
         self.main_grid_widget.setGeometry(QRect(0,
-                                                self.time_widget_height, self.width, self.height))
+                                                self.time_widget_height, self.widget.width(), self.height))
 
         self.add_days_of_week_widgets()
         self.add_minutes_labels()
+
+        print(self.main_grid_widget.geometry())
 
         # self.retranslateUi(parent)
         QMetaObject.connectSlotsByName(parent)
@@ -271,7 +297,6 @@ class GridWidget:
     def add_days_of_week_widgets(self):
         for i in range(1, self.n_days_of_week + 1):
             self.add_day_of_week_widget(i)
-
 
     def add_group_widget(self, group: Group, day_of_week: int):
         if 1 <= day_of_week <= self.n_days_of_week:
@@ -329,12 +354,13 @@ class GridWidget:
         for widget in self.days_of_weeks_widgets:
             widget.can_remove_rectangles = can_set
 
-    def get_excluded_areas(self) -> Dict[DayOfWeek, List[QRect]]:
-        excluded_area_mapping = {}
-        for day_of_week_widget in self.days_of_weeks_widgets:
-            excluded_area_mapping[day_of_week_widget.day_of_week] = day_of_week_widget.get_rectangles()
+    def add_listeners(self, listener):
+        for widget in self.days_of_weeks_widgets:
+            widget.release_mouse_listener = listener
 
-        return excluded_area_mapping
+    def update(self):
+        for w in self.days_of_weeks_widgets:
+            w.update()
 
     # retranslateUi
 
@@ -349,6 +375,8 @@ if __name__ == "__main__":
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("10:00"), "K01-30c"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30d"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30e"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30o"),
+                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30o"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30i"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30f"),
                    create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30g"),
