@@ -1,6 +1,6 @@
 import pygad
 from planner.parsing.parse_json import load_from_json
-from planner.models.groups import Group
+from planner.models.groups import Group, Course
 from typing import List
 
 file_name = '../../data/courses.json'
@@ -47,6 +47,10 @@ def on_generation(ga_instance):
     print("Change     = {change}".format(
         change=ga_instance.best_solution(pop_fitness=ga_instance.last_generation_fitness)[1] - last_fitness))
     last_fitness = ga_instance.best_solution(pop_fitness=ga_instance.last_generation_fitness)[1]
+
+
+def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
+    pass
 
 
 ga_instance = pygad.GA(num_generations=num_generations,
