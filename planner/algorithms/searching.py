@@ -73,19 +73,19 @@ class Search:
 
     def setup_parameters(self):
         return {
-            'num_generations': 20,
+            'num_generations': 100,
             'num_parents_mating': 8,
-            'sol_per_pop': 1000,
+            'sol_per_pop': 100,
             'num_genes': len(courses),
             'gene_space': [range(len(course.groups)) for course in courses],
             'fitness_func': self.fitness_func,
-            'keep_elitism': 5,
+            'keep_elitism': 25,
             'parent_selection_type': 'tournament',
             'K_tournament':  10,
             'crossover_type': 'scattered',
             'gene_type': int,
             'crossover_probability': 0.75,
-            'mutation_probability': 0.1,
+            'mutation_probability': 0.1
         }
 
     @staticmethod
