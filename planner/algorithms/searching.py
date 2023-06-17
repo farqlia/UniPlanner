@@ -3,9 +3,7 @@ from planner.models.groups import Group, Course
 from typing import List
 
 from planner.parsing.parse_json import load_from_json
-
-
-
+from planner.models.groups import DayOfWeek
 
 
 def is_possible(groups: List[Group]) -> bool:
@@ -29,10 +27,30 @@ class Search:
 
     def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
         sol_groups = self.translate_solution(solution)
-        if is_possible(sol_groups):
-            return 0
-        else:
-            return -9999
+        if not is_possible(sol_groups):
+            return -99999999
+        fitness = 0
+        fitness += Search.rate_shape(sol_groups)
+        fitness += Search.rate_category(sol_groups)
+        return fitness
+
+    @staticmethod
+    def rate_shape(groups, punish_many_days: bool = True):
+        punishment = 0
+        week_days: List[List[Group]] = [[group for group in groups if group.day == day] for day in DayOfWeek]
+        punishment += sum(
+            [(day_groups[-1].end_time - day_groups[0].start_time).seconds / 1000 for day_groups in week_days
+             if len(day_groups) > 0])
+        if punish_many_days:
+            days_num = len([day for day in week_days if len(day) > 0])
+            punishment *= days_num
+        return -punishment
+
+    @staticmethod
+    def rate_category(sol_groups):
+        reward = 0
+        reward += sum([100 for group in sol_groups if group.is_preferred()])
+        return reward
 
     def find_solutions(self):
         ga_instance = pygad.GA(**self.setup_parameters())
@@ -49,14 +67,19 @@ class Search:
 
     def setup_parameters(self):
         return {
-            'num_generations': 100,  # Number of generations.
-            'num_parents_mating': 3,  # Number of solutions to be selected as parents in the mating pool.
-            'sol_per_pop': 10,  # Number of solutions in the population.
+            'num_generations': 100,
+            'num_parents_mating': 4,
+            'sol_per_pop': 100,
             'num_genes': len(courses),
             'gene_space': [range(len(course.groups)) for course in courses],
             'fitness_func': self.fitness_func,
+            'keep_elitism': 25,
+            'parent_selection_type': 'tournament',
+            'K_tournament':  10,
             'crossover_type': 'scattered',
             'gene_type': int,
+            'crossover_probability': 0.75,
+            'mutation_probability': 0.1,
             'random_seed': 1,
         }
 
@@ -69,6 +92,8 @@ class Search:
         return Search.delete_excluded(courses)
 
 
+
+
 def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
     search = Search(courses=courses)
     return search.find_solutions()
@@ -77,4 +102,3 @@ def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
 if __name__ == '__main__':
     courses = load_from_json('../../data/courses.json')
     print(get_best_solutions(courses))
-

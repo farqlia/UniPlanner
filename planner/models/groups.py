@@ -94,6 +94,9 @@ class Group:
     def is_excluded(self):
         return self.category == GroupCategory.EXCLUDED
 
+    def is_preferred(self):
+        return self.category == GroupCategory.PREFERRED
+
 # Classes belong to courses
 @dataclass
 class Course:
