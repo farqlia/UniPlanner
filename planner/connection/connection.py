@@ -48,10 +48,19 @@ class GroupsDownloader:
     def go_to_current_enrollment(self):
         element = self.driver.find_element_by_xpath("//a[contains(text(), '2022/2023')]")
         element.click()
-        element = self.driver.find_element_by_xpath("//a[contains(text(), 'W04N_Wydz_Zapisy_s_letni_2022/23_ST')]")
+        element = self.driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) > td > table > "
+                                                            "tbody > tr:nth-child(1) > td.PRAWA_KOMORKA > table "
+                                                            "> tbody > tr > td > table:nth-child(23) > tbody > "
+                                                            "tr:nth-child(5) > td:nth-child(1) > table")
         element.click()
-        button = self.driver.find_elements_by_css_selector('input[name="event_ZapisyPrzegladanieGrup"]')[1]
+        button = self.driver.find_element(By.CSS_SELECTOR, '#GORAPORTALU > tbody > tr:nth-child(4) > td > table > '
+                                                           'tbody > tr:nth-child(1) > td.PRAWA_KOMORKA > table > '
+                                                           'tbody > tr > td > table:nth-child(23) > tbody > '
+                                                           'tr:nth-child(5) > td:nth-child(7) > table > tbody > '
+                                                           'tr:nth-child(1) > td:nth-child(8)')
         button.click()
+
+    def choose_criteria(self):
         criteria = Select(self.driver.find_element(By.NAME, "KryteriumFiltrowania"))
         criteria.select_by_visible_text("Z wektora zapisowego, do których słuchacz ma uprawnienia")
 
@@ -124,9 +133,28 @@ class GroupsDownloader:
             self.log_user_in(login=login, password=password)
             self.open_enrollment_website()
             self.go_to_current_enrollment()
+            self.choose_criteria()
             return self.download_courses()
         except NoSuchElementException:
             return []
+
+    def find_current_enrollment(self):
+        """""future version of go_to_current_enrollment function, working in current enrollment session"""
+        self.driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) td > table > tbody > tr: "
+                                                  "nth - child(1) > td.PRAWA_KOMORKA > table > tbody > tr > td > "
+                                                  "table:nth - child(16) > tbody > tr: nth - child(3) > td:nth - "
+                                                  "child(1) > a).click()")
+
+        tr_table = self.driver.find_elements(By.XPATH,
+                                             "//*[@id=\"GORAPORTALU\"]/tbody/tr[4]/td/table/tbody/tr[1]/td["
+                                             "3]/table/tbody/tr/td/table[8]/tbody/tr")
+        for i in range(len(tr_table)):
+            tr = tr_table[i]
+            enrollment_type = tr.find_element(By.CSS_SELECTOR, "td:nth-child(2)").text
+            if "Wydział" in enrollment_type:
+                tr.find_element(By.CSS_SELECTOR, "td:last-child > table > tbody > tr > td:last-child "
+                                                 "> input:last-child").click()
+                break
 
 
 def dump_to_file(courses, file: str):
@@ -134,26 +162,14 @@ def dump_to_file(courses, file: str):
         json.dump({'courses': courses}, f, indent=2, ensure_ascii=False)
 
 
+def download_to_file(name, password, file):
+    dump_to_file(GroupsDownloader().download_groups(name, password), file)
+
+
 if __name__ == '__main__':
     user_name = 'pwr345992'
     user_password = 'me_gustas_tu'
     downloader = GroupsDownloader()
     subjects = downloader.download_groups(user_name, user_password)
-    file_name = '../../data/courses.json'
+    file_name = '../../data/new_.json'
     dump_to_file(subjects, file_name)
-
-    """# Kliknięcie najnowszego zapisu driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) > 
-    td > table > tbody > tr:nth-child(1) > td.PRAWA_KOMORKA > table > tbody > tr > td > table:nth-child(16) > tbody > 
-    tr:nth-child(3) > td:nth-child(1) > a").click()
-
-    trTable = driver.find_elements(By.XPATH,
-                                   "//*[@id=\"GORAPORTALU\"]/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[8]/tbody/tr")
-
-    # Wyszukiwanie zapisów jednostki
-    for i in range(len(trTable)):
-        tr = trTable[i]
-        enrollmentType = tr.find_element(By.CSS_SELECTOR, "td:nth-child(2)").text
-        if "Wydział" in enrollmentType:
-            tr.find_element(By.CSS_SELECTOR,
-                            "td:last-child > table > tbody > tr > td:last-child > input:last-child").click()
-            break"""
