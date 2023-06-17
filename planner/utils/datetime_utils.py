@@ -20,6 +20,11 @@ def get_eng_day_abbr(day_of_week: DayOfWeek) -> str:
     return DAYS_OF_WEEK_ABBR[day_of_week.value - 1]
 
 
+def format_week_type(week_type: WeekType) -> str:
+    return WEEK_TYPE_POLISH_FORM[week_type] if len(
+        WEEK_TYPE_POLISH_FORM[week_type]) > 0 else ""
+
+
 def day_from_polish_abbr(abbr: str) -> DayOfWeek:
     return POLISH_ABBR_DAY_OF_WEEK[abbr]
 

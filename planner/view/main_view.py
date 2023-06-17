@@ -15,13 +15,15 @@ from PySide6.QtCore import (QMetaObject, QRect,
 from PySide6.QtGui import (QCursor)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
-                               QTabWidget, QWidget)
+                               QTabWidget, QWidget, QVBoxLayout)
 
 from planner.models.groups import Course, DayOfWeek, WeekType
 from planner.utils.datetime_utils import as_hour
 from planner.view.grid_widget import GridWidget
 from planner.view.select_groups_widget import SelectGroupsWidget
 from planner.view.view_utils import create_group
+from planner.controller.controller import get_dream_timetables
+from planner.view.plan_widget import PlanWidget
 
 
 class MainWindow(QMainWindow):
@@ -30,6 +32,8 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.setTabShape(QTabWidget.Rounded)
         self.setFixedSize(width, height)
+
+        self.courses = None
 
         self.centralwidget = QWidget(self)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -73,13 +77,6 @@ class MainWindow(QMainWindow):
         # Change cursor on user action
         self.exclude_area_check_box.clicked.connect(self.allow_excluding_areas)
 
-        # self.exclude_area_check_box.setCursor(QCursor(Qt.CrossCursor))
-        self.tab_widget.addTab(self.tab, "")
-
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.tab_widget.addTab(self.tab_2, "")
-
         self.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(self)
         self.menubar.setObjectName(u"menubar")
@@ -90,10 +87,13 @@ class MainWindow(QMainWindow):
         self.statusbar.setObjectName(u"statusbar")
         self.setStatusBar(self.statusbar)
 
+        self.tab_widget.addTab(self.tab, "Create plan")
         self.tab_widget.setCurrentIndex(0)
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab),
                                    "Create plan")
-        self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_2), "Tab2")
+        self.tab_2 = QWidget()
+        self.tab_widget.addTab(self.tab_2, "Best plan")
+        self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_2), "Best plan")
 
         QMetaObject.connectSlotsByName(self)
 
@@ -102,8 +102,9 @@ class MainWindow(QMainWindow):
         self.select_groups_widget.add_listener_for_group_change(self.grid_widget.update)
 
     def load_courses(self, courses: List[Course]):
+        self.courses = courses
         self.select_groups_widget.load_courses(courses)
-        self.grid_widget.add_groups([group for course in courses for group in course.groups])
+        self.grid_widget.load_courses(courses)
 
     def allow_excluding_areas(self):
         if self.exclude_area_check_box.isChecked():
@@ -113,14 +114,20 @@ class MainWindow(QMainWindow):
             self.grid_widget.change_cursor(QCursor(Qt.ArrowCursor))
             self.grid_widget.set_can_exclude_area(False)
 
-
     # Main functionality !!!
     def generate_plan(self):
         # Get groups categorized by user, for each course
         # self.select_groups_widget.courses
         # Areas excluded by user as rectangles
         # Here will be some additional constraints
+
         self.pushButton.setCursor(QCursor(Qt.BusyCursor))
-        # Algorithm ...
+
+        timetables = get_dream_timetables(self.courses)
+
+        self.best_plan_tab = PlanWidget(self.tab_2, timetables[0])
+        self.best_plan_tab.setGeometry(QRect(0, 0, self.best_plan_tab.width(), self.best_plan_tab.height()))
+
+        self.update()
 
         self.pushButton.setCursor(QCursor(Qt.ArrowCursor))

@@ -66,6 +66,14 @@ class DragDropListDisableOnCondition(DragDropList):
             else:
                 enable_item(self.item(i))
 
+    def update_items(self):
+        for i in range(self.count()):
+            should_be_disabled = self.condition(self, self.item(i))
+            if should_be_disabled:
+                disable_item(self.item(i))
+            else:
+                enable_item(self.item(i))
+
 
 def enable_item(item):
     item.setFlags(Qt.ItemFlag.ItemIsEnabled
@@ -88,7 +96,6 @@ def disable_if_in_excluded_area(grid_widget, wlist: DragDropListDisableOnConditi
 class SelectGroupsWidget:
 
     def __init__(self, parent: QWidget, grid_widget, width=340, height=440):
-
         self.parent = parent
         self.parent.resize(width, height)
         widgets_width = int(0.9 * width)
@@ -151,7 +158,13 @@ class SelectGroupsWidget:
         self.list_of_excluded_choices = DragDropListDisableOnCondition(self.group_box_select_courses,
                                                                        GroupCategory.EXCLUDED,
                                                                        lambda w, i: disable_if_in_excluded_area(grid_widget, w, i))
-        grid_widget.add_listener_on_excluding_areas(self.list_of_excluded_choices.update_groups)
+        # This is not working because it overrides category to excluded
+        # TODO : make it work
+        def condition():
+            self.list_of_excluded_choices.update_items()
+            self.parent.update()
+
+        grid_widget.add_listener_on_excluding_areas(condition)
         self.list_of_excluded_choices.drop_event_listener = grid_widget.update
         # self.add_listener_for_group_change(self.list_of_excluded_choices.react_on_signal)
         self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
