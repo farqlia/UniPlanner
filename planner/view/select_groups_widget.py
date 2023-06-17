@@ -1,8 +1,9 @@
 from dataclasses import dataclass
+from functools import partial
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
+                            QMetaObject, QObject, QPoint, QRect,
+                            QSize, QTime, QUrl, Qt, QMimeData)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
                            QFont, QFontDatabase, QGradient, QIcon,
                            QImage, QKeySequence, QLinearGradient, QPainter,
@@ -22,9 +23,65 @@ def add_groups_to_list(course: Course, group_codes: List[str], list_widget: QLis
         list_widget.addItem(format_group_to_string(find_group_by_code(course.groups, group_code)))
 
 
+class DragDropList(QListWidget):
+
+    def __init__(self, parent, category):
+        super(DragDropList, self).__init__(parent)
+        self.category = category
+        self.currently_selected_course = None
+        print(self)
+
+    def dropEvent(self, event: QDropEvent) -> None:
+        super(DragDropList, self).dropEvent(event)
+        if isinstance(event.source(), DragDropList) and event.source() != self:
+            source_list = event.source()
+            source_list.update_groups()
+            self.update_groups()
+
+    def update_groups(self):
+        print(self)
+        for i in range(self.count()):
+            group = find_group_by_code(self.currently_selected_course.groups,
+                        extract_group_code(self.item(i).text()))
+            group.category = self.category
+
+
+class DragDropListDisableOnCondition(DragDropList):
+
+    def __init__(self, parent, category, condition):
+        super(DragDropListDisableOnCondition, self).__init__(parent, category)
+        self.condition = condition
+
+    def react_on_signal(self):
+        for i in range(self.count()):
+            should_be_disabled = self.condition(self, self.item(i))
+            if should_be_disabled:
+                disable_item(self.item(i))
+            else:
+                enable_item(self.item(i))
+
+
+def enable_item(item):
+    item.setFlags(Qt.ItemFlag.ItemIsEnabled
+                              | Qt.ItemFlag.ItemIsDragEnabled
+                              | Qt.ItemFlag.ItemIsDropEnabled
+                              | Qt.ItemFlag.ItemIsSelectable)
+
+
+def disable_item(item):
+    item.setFlags(Qt.ItemFlag.NoItemFlags)
+
+
+def disable_if_in_excluded_area(grid_widget, wlist: DragDropListDisableOnCondition, item: QListWidgetItem):
+    gcode = extract_group_code(item.text())
+    group = find_group_by_code(wlist.currently_selected_course.groups,
+                               gcode)
+    return grid_widget.is_group_in_excluded_area(group)
+
+
 class SelectGroupsWidget:
 
-    def __init__(self, parent: QWidget, width=340, height=440):
+    def __init__(self, parent: QWidget, grid_widget, width=340, height=440):
 
         self.parent = parent
         self.parent.resize(width, height)
@@ -61,7 +118,7 @@ class SelectGroupsWidget:
         self.label_preferred.setObjectName(u"label_preferred")
         self.label_preferred.setGeometry(QRect(x_offset, 100, widgets_width, 16))
 
-        self.list_of_preferred_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_preferred_choices = DragDropList(self.group_box_select_courses, GroupCategory.PREFERRED)
         self.list_of_preferred_choices.setObjectName(u"list_of_preferred_choices")
         self.list_of_preferred_choices.setGeometry(QRect(x_offset, 120, widgets_width, 81))
         self.list_of_preferred_choices.setDragDropMode(QAbstractItemView.DragDrop)
@@ -72,7 +129,7 @@ class SelectGroupsWidget:
         self.label_neutral.setObjectName(u"label_neutral")
         self.label_neutral.setGeometry(QRect(x_offset, 210, widgets_width, 16))
 
-        self.list_of_neutral_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_neutral_choices = DragDropList(self.group_box_select_courses, GroupCategory.NEUTRAL)
         self.list_of_neutral_choices.setObjectName(u"list_of_neutral_choices")
         self.list_of_neutral_choices.setGeometry(QRect(x_offset, 230, widgets_width, 81))
         self.list_of_neutral_choices.setDragDropMode(QAbstractItemView.DragDrop)
@@ -83,7 +140,11 @@ class SelectGroupsWidget:
         self.label_excluded.setObjectName(u"label_excluded")
         self.label_excluded.setGeometry(QRect(x_offset, 320, widgets_width, 20))
 
-        self.list_of_excluded_choices = QListWidget(self.group_box_select_courses)
+        self.list_of_excluded_choices = DragDropListDisableOnCondition(self.group_box_select_courses,
+                                                                       GroupCategory.EXCLUDED,
+                                                                       lambda w, i: disable_if_in_excluded_area(grid_widget, w, i))
+        grid_widget.add_listener_on_excluding_areas(self.list_of_excluded_choices.react_on_signal)
+        # self.add_listener_for_group_change(self.list_of_excluded_choices.react_on_signal)
         self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
         self.list_of_excluded_choices.setGeometry(QRect(x_offset, 340, widgets_width, 81))
         self.list_of_excluded_choices.setDragDropMode(QAbstractItemView.DragDrop)
@@ -108,6 +169,7 @@ class SelectGroupsWidget:
         self.clear_lists()
         # Each row in a list widget is a string, so we need to find the corresponding Course object by code
         course = find_course_by_code(self.courses, extract_course_code(self.courses_combo_box.currentText()))
+        self.set_course_displayed_by_lists(course)
         for group in course.groups:
             self.map_list_widget_to_category[group.category].addItem(format_group_to_string(group))
 
@@ -116,30 +178,28 @@ class SelectGroupsWidget:
         self.list_of_neutral_choices.clear()
         self.list_of_excluded_choices.clear()
 
+    def set_course_displayed_by_lists(self, course):
+        for widget_list in self.map_list_widget_to_category.values():
+            widget_list.currently_selected_course = course
+
     def update_on_course_change(self):
-        self.update_categorized_groups(self.current_course)
-        self.current_course = find_course_by_code(self.courses,
-                                                  extract_course_code(self.courses_combo_box.currentText()))
+        self.assign_groups_to_categories()
         self.display_groups_of_course()
 
-    def update_categorized_groups_for_current_course(self):
-        self.display_groups_of_course()
-        self.parent.update()
+    def assign_groups_to_categories(self):
+        for widget_list in self.map_list_widget_to_category.values():
+            widget_list.update_groups()
 
     def add_listener_for_group_change(self, listener: Callable):
         self.list_of_neutral_choices.itemChanged.connect(listener)
         self.list_of_preferred_choices.itemChanged.connect(listener)
         self.list_of_excluded_choices.itemChanged.connect(listener)
 
-    def update_categorized_groups(self, course):
-        for category in list(GroupCategory):
-            self.update_groups_for_category(course, category)
-
-    def update_groups_for_category(self, course, category):
-        for i in range(self.map_list_widget_to_category[category].count()):
-            group = find_group_by_code(course.groups,
-                    extract_group_code(self.map_list_widget_to_category[category].item(i).text()))
-            group.category = category
+    def update_categorized_groups_for_current_course(self):
+        self.display_groups_of_course()
+        for g in self.current_course.groups:
+            print(g.code, g.category)
+        # self.parent.update()
 
 
 def format_course_to_string(course: Course):
