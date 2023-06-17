@@ -75,7 +75,7 @@ class Group:
     building: str
     hall: str
     type: GroupType
-    category: GroupCategory
+    category: GroupCategory = GroupCategory.NEUTRAL
 
     def __repr__(self):
         return f'{self.code} on {self.day.name} from ' \
