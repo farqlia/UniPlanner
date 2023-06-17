@@ -1,12 +1,12 @@
 from PySide6.QtWidgets import QApplication
 
-from planner.controller.controller import get_courses
+from planner.parsing.parse_json import load_from_json
 from planner.view.main_view import MainWindow
 
-
 if __name__ == "__main__":
+    path = r"..\..\data\courses.json"
 
-    courses = get_courses()
+    courses = load_from_json(path)
     app = QApplication()
     window = MainWindow()
     window.load_courses(courses)

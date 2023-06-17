@@ -91,6 +91,11 @@ class Group:
     def __gt__(self, other):
         return self.start_time > other.start_time if self.day == other.day else self.day.value > other.day.value
 
+    def is_excluded(self):
+        return self.category == GroupCategory.EXCLUDED
+
+    def is_preferred(self):
+        return self.category == GroupCategory.PREFERRED
 
 # Classes belong to courses
 @dataclass
