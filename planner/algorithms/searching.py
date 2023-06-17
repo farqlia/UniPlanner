@@ -33,7 +33,6 @@ class Search:
 
     def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
         odd_groups, even_groups = self.translate_solution(solution)
-        print(odd_groups,even_groups)
         if not is_possible(odd_groups) or not is_possible(even_groups):
             return -99999999
         fitness = 0
@@ -74,9 +73,9 @@ class Search:
 
     def setup_parameters(self):
         return {
-            'num_generations': 100,
-            'num_parents_mating': 4,
-            'sol_per_pop': 100,
+            'num_generations': 20,
+            'num_parents_mating': 8,
+            'sol_per_pop': 1000,
             'num_genes': len(courses),
             'gene_space': [range(len(course.groups)) for course in courses],
             'fitness_func': self.fitness_func,
