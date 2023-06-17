@@ -86,7 +86,7 @@ class Group:
     category: GroupCategory = GroupCategory.NEUTRAL
 
     def __repr__(self):
-        return f'{self.code} on {self.day.name} from ' \
+        return f'{self.code} on {self.day.name} in {self.week_type.name} from ' \
                f'{self.start_time.strftime("%H:%M")} to {self.end_time.strftime("%H:%M")}'
 
     @property
@@ -98,6 +98,12 @@ class Group:
 
     def __gt__(self, other):
         return self.start_time > other.start_time if self.day == other.day else self.day.value > other.day.value
+
+    def occurs_even(self):
+        return self.week_type == WeekType.EVEN_WEEK or self.week_type == WeekType.EVERY_WEEK
+
+    def occurs_odd(self):
+        return self.week_type == WeekType.ODD_WEEK or self.week_type == WeekType.EVERY_WEEK
 
     def is_excluded(self):
         return self.category == GroupCategory.EXCLUDED

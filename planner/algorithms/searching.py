@@ -22,16 +22,25 @@ class Search:
     def get_group(self, course_id: int, group_id: int) -> Group:
         return self.courses[course_id][group_id]
 
-    def translate_solution(self, gen_solution: List[int]) -> List[Group]:
+    def translate_solution(self, gen_solution: List[int]) -> tuple[list[Group], list[Group]]:
+        return sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)
+                      if self.get_group(gene_id, gene).occurs_odd()]),\
+            sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)
+                    if self.get_group(gene_id, gene).occurs_even()])
+
+    def get_all_courses(self,gen_solution: List[int]) -> list[Group]:
         return sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)])
 
     def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
-        sol_groups = self.translate_solution(solution)
-        if not is_possible(sol_groups):
+        odd_groups, even_groups = self.translate_solution(solution)
+        print(odd_groups,even_groups)
+        if not is_possible(odd_groups) or not is_possible(even_groups):
             return -99999999
         fitness = 0
-        fitness += Search.rate_shape(sol_groups)
-        fitness += Search.rate_category(sol_groups)
+        fitness += Search.rate_shape(odd_groups)
+        fitness += Search.rate_shape(even_groups)
+        fitness += Search.rate_category(odd_groups)
+        fitness += Search.rate_category(even_groups)
         return fitness
 
     @staticmethod
@@ -43,7 +52,7 @@ class Search:
              if len(day_groups) > 0])
         if punish_many_days:
             days_num = len([day for day in week_days if len(day) > 0])
-            punishment *= days_num
+            punishment += days_num*1000
         return -punishment
 
     @staticmethod
@@ -57,11 +66,11 @@ class Search:
         ga_instance.run()
         ga_instance.plot_fitness()
         solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance.last_generation_fitness)
-        for group in self.translate_solution(solution):
+        for group in self.get_all_courses(solution):
             print(group)
         print('fitness = ', solution_fitness)
         print('solution idx = ', solution_idx)
-        return [self.translate_solution(solution)]
+        return [self.get_all_courses(solution)]
 
     def setup_parameters(self):
         return {
@@ -96,4 +105,5 @@ def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
 
 if __name__ == '__main__':
     courses = load_from_json('../../data/courses.json')
-    print(get_best_solutions(courses))
+    best_sol = get_best_solutions(courses)
+    print(best_sol)
