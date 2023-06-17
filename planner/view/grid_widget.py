@@ -54,10 +54,10 @@ class GroupWidget(QFrame):
                            .format(255, 255, 255))
 
     def set_description(self):
-        self.group_description.append(POLISH_GROUP_TYPE[self.group.type] + " " + self.group.course)
+        self.group_description.append(POLISH_GROUP_TYPE[self.group.type] + " " + self.group.course.name)
         label = QLabel()
         label.setFont(self.group_description.font())
-        label.setText(self.group.course)
+        label.setText(self.group.course.name)
         print(label.width())
 
         # if self.height > 2 * self.font_size:

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import List
+from typing import List, Any
 
 
 class GroupCategory(Enum):
@@ -61,12 +61,20 @@ class CourseGroup:
     pass
 
 
+# Classes belong to courses
+@dataclass
+class Course:
+    """Class for the course student may complete"""
+    name: str
+    code: str
+    groups: list
+    link: str = ''
+
 @dataclass
 class Group:
     """Class for classes the student may enrol on"""
     code: str
-    course: str  # code
-    # course: Course -< for key in database
+    course: Course
     lecturer: Teacher
     day: DayOfWeek
     week_type: WeekType
@@ -97,12 +105,5 @@ class Group:
     def is_preferred(self):
         return self.category == GroupCategory.PREFERRED
 
-# Classes belong to courses
-@dataclass
-class Course:
-    """Class for the course student may complete"""
-    name: str
-    code: str
-    groups: List[Group]  # dupa
-    link: str = ''
-    # type: GroupType
+
+
