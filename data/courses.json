@@ -1,1217 +1,632 @@
 {
-  "course": [
+  "courses": [
     {
-      "name": "Bazy danych",
       "code": "INZ002007C",
+      "name": "Bazy danych",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394410&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-17a",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Monday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "pn/TN+1/2 09:15-11:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-17b",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "pn/TP+1/2 09:15-11:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-17c",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "wt/TN+1/2 09:15-11:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-17e",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "wt/TN+1/2 11:15-13:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-17d",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "wt/TP+1/2 09:15-11:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-17f",
           "course": "INZ002007C",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "wt/TP+1/2 11:15-13:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         }
       ]
     },
     {
-      "name": "Bazy danych",
       "code": "INZ002007L",
+      "name": "Bazy danych",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394407&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-18k",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TN+1/2 09:15-11:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18a",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "ODD_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TN+1/2 13:15-15:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18c",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TN+1/2 15:15-16:55, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18l",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TP+1/2 09:15-11:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18b",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TP+1/2 13:15-15:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18d",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "pn/TP+1/2 15:15-16:55, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18e",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "wt/TN+1/2 09:15-11:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18g",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "wt/TN+1/2 11:15-13:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18i",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "wt/TN+1/2 13:15-15:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-18f",
           "course": "INZ002007L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Hanna Mazur"
-          },
-          "day": "Tuesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Hanna Mazur",
+          "date_and_place": "wt/TP+1/2 09:15-11:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Bazy danych",
       "code": "INZ002007W",
+      "name": "Bazy danych",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394408&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-19a",
           "course": "INZ002007W",
-          "lecturer": {
-            "title": "Dr hab.",
-            "name": "Zygmunt Mazur"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "A-1",
-          "hall": "329",
-          "type": "LECTURE"
+          "lecturer": "Dr hab. Zygmunt Mazur",
+          "date_and_place": "pn 11:15-13:00, bud. A-1, sala 329",
+          "type": "Wykład"
         }
       ]
     },
     {
-      "name": "Metody systemowe i decyzyjne",
       "code": "INZ002008C",
+      "name": "Metody systemowe i decyzyjne",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394412&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-20a",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Wednesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "śr/TN+1/2 15:15-16:55, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-20c",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Wednesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-1",
-          "hall": "311d",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "śr/TN+1/2 18:55-20:35, bud. D-1, sala 311d",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-20b",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "śr/TP+1/2 15:15-16:55, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-20d",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-1",
-          "hall": "311d",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "śr/TP+1/2 18:55-20:35, bud. D-1, sala 311d",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-20e",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Friday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "C-3",
-          "hall": "22",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "pt/TN+1/2 15:15-16:55, bud. C-3, sala 22",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-20f",
           "course": "INZ002008C",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Zbigniew Pliszka"
-          },
-          "day": "Friday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "C-3",
-          "hall": "22",
-          "type": "PRACTICALS"
+          "lecturer": "Dr Zbigniew Pliszka",
+          "date_and_place": "pt/TP+1/2 15:15-16:55, bud. C-3, sala 22",
+          "type": "Ćwiczenia"
         }
       ]
     },
     {
-      "name": "Metody systemowe i decyzyjne",
       "code": "INZ002008L",
+      "name": "Metody systemowe i decyzyjne",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394414&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-21a",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Michał Czuba"
-          },
-          "day": "Wednesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Michał Czuba",
+          "date_and_place": "śr/TN+1/2 13:15-15:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21b",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Piotr Kawa"
-          },
-          "day": "Wednesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Piotr Kawa",
+          "date_and_place": "śr/TN+1/2 15:15-16:55, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21d",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Piotr Kawa"
-          },
-          "day": "Wednesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Piotr Kawa",
+          "date_and_place": "śr/TN+1/2 18:55-20:35, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21c",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Piotr Kawa"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Piotr Kawa",
+          "date_and_place": "śr/TP+1/2 15:15-16:55, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21e",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Piotr Kawa"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Piotr Kawa",
+          "date_and_place": "śr/TP+1/2 18:55-20:35, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21f",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Konrad Wojtasik"
-          },
-          "day": "Thursday",
-          "week_type": "ODD_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "C-6",
-          "hall": "129",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Konrad Wojtasik",
+          "date_and_place": "cz/TN+1/2 17:05-18:45, bud. C-6, sala 129",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21g",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Konrad Wojtasik"
-          },
-          "day": "Thursday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "C-6",
-          "hall": "129",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Konrad Wojtasik",
+          "date_and_place": "cz/TP+1/2 17:05-18:45, bud. C-6, sala 129",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21h",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Konrad Wojtasik"
-          },
-          "day": "Thursday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "18:50",
-          "end_time": "20:35",
-          "building": "C-6",
-          "hall": "129",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Konrad Wojtasik",
+          "date_and_place": "cz/TP+1/2 18:50-20:35, bud. C-6, sala 129",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21l",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Dominika Dudziak-Gajowiak"
-          },
-          "day": "Friday",
-          "week_type": "ODD_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Dominika Dudziak-Gajowiak",
+          "date_and_place": "pt/TN+1/2 09:15-11:00, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-21j",
           "course": "INZ002008L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Dominika Dudziak-Gajowiak"
-          },
-          "day": "Friday",
-          "week_type": "ODD_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Dominika Dudziak-Gajowiak",
+          "date_and_place": "pt/TN+1/2 11:15-13:00, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Metody systemowe i decyzyjne",
       "code": "INZ002008W",
+      "name": "Metody systemowe i decyzyjne",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394415&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-22a",
           "course": "INZ002008W",
-          "lecturer": {
-            "title": "Prof. dr hab. inż.",
-            "name": "Jerzy Świątek"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "07:30",
-          "end_time": "09:00",
-          "building": "A-1",
-          "hall": "329",
-          "type": "LECTURE"
+          "lecturer": "Prof. dr hab. inż. Jerzy Świątek",
+          "date_and_place": "pn 07:30-09:00, bud. A-1, sala 329",
+          "type": "Wykład"
         }
       ]
     },
     {
-      "name": "Języki skryptowe",
       "code": "INZ002009L",
+      "name": "Języki skryptowe",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394417&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-23a",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Marcin Pietranik"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Marcin Pietranik",
+          "date_and_place": "pn 09:15-11:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23b",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Marcin Jodłowiec"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Marcin Jodłowiec",
+          "date_and_place": "pn 13:15-15:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23c",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Marcin Jodłowiec"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Marcin Jodłowiec",
+          "date_and_place": "pn 15:15-16:55, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23d",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "pn 17:05-18:45, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23e",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Natalia Piórkowska"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Natalia Piórkowska",
+          "date_and_place": "wt 17:05-18:45, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23j",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Natalia Piórkowska"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Natalia Piórkowska",
+          "date_and_place": "wt 18:55-20:35, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23f",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "śr 09:15-11:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23g",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "śr 11:15-13:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23k",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Natalia Piórkowska"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Natalia Piórkowska",
+          "date_and_place": "śr 18:55-20:35, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-23h",
           "course": "INZ002009L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Natalia Piórkowska"
-          },
-          "day": "Thursday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Natalia Piórkowska",
+          "date_and_place": "cz 17:05-18:45, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Języki skryptowe",
       "code": "INZ002009W",
+      "name": "Języki skryptowe",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=394416&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-24a",
           "course": "INZ002009W",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Marcin Jodłowiec"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "A-1",
-          "hall": "329",
-          "type": "LECTURE"
+          "lecturer": "Dr inż. Marcin Jodłowiec",
+          "date_and_place": "śr 17:05-18:45, bud. A-1, sala 329",
+          "type": "Wykład"
         }
       ]
     },
     {
-      "name": "Podstawy inżynierii oprogram.",
       "code": "INZ004353C",
+      "name": "Podstawy inżynierii oprogram.",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381866&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-25a",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Piotr Zabawa"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-1",
-          "hall": "312a",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Piotr Zabawa",
+          "date_and_place": "pn 15:15-16:55, bud. D-1, sala 312a",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-25b",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Piotr Zabawa"
-          },
-          "day": "Monday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Piotr Zabawa",
+          "date_and_place": "pn 17:05-18:45, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-25c",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Krystian Wojtkiewicz"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Krystian Wojtkiewicz",
+          "date_and_place": "śr 09:15-11:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-25d",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Iwona Dubielewicz"
-          },
-          "day": "Wednesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Iwona Dubielewicz",
+          "date_and_place": "śr 11:15-13:00, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-25e",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Anita Walkowiak-Gall"
-          },
-          "day": "Thursday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Anita Walkowiak-Gall",
+          "date_and_place": "cz 17:05-18:45, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         },
         {
           "code": "K01-25f",
           "course": "INZ004353C",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Anita Walkowiak-Gall"
-          },
-          "day": "Thursday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "18:55",
-          "end_time": "20:35",
-          "building": "D-1",
-          "hall": "311c",
-          "type": "PRACTICALS"
+          "lecturer": "Dr inż. Anita Walkowiak-Gall",
+          "date_and_place": "cz 18:55-20:35, bud. D-1, sala 311c",
+          "type": "Ćwiczenia"
         }
       ]
     },
     {
-      "name": "Podstawy inżynierii oprogram.",
       "code": "INZ004353L",
+      "name": "Podstawy inżynierii oprogram.",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381864&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-26b",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Tuesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "wt/TP+1/2 13:15-15:00, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26d",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Tuesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "wt/TP+1/2 15:15-16:55, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26f",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Iwona Dubielewicz"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "127c",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Iwona Dubielewicz",
+          "date_and_place": "śr/TP+1/2 09:15-11:00, bud. D-2, sala 127c",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26g",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "ODD_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TN+1/2 13:15-15:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26i",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TN+1/2 15:15-16:55, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26k",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "ODD_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TN+1/2 17:05-18:45, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26h",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TP+1/2 13:15-15:00, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26j",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TP+1/2 15:15-16:55, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26l",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Thursday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "107b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "cz/TP+1/2 17:05-18:45, bud. D-2, sala 107b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-26c",
           "course": "INZ004353L",
-          "lecturer": {
-            "title": "Mgr",
-            "name": "Urszula Staszak"
-          },
-          "day": "Tuesday",
-          "week_type": "ODD_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "127b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr Urszula Staszak",
+          "date_and_place": "wt/TN+1/2 15:15-16:55, bud. D-2, sala 127b",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Podstawy inżynierii oprogram.",
       "code": "INZ004353W",
+      "name": "Podstawy inżynierii oprogram.",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381865&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-27a",
           "course": "INZ004353W",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Krystian Wojtkiewicz"
-          },
-          "day": "Wednesday",
-          "week_type": "EVEN_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "A-1",
-          "hall": "329",
-          "type": "LECTURE"
+          "lecturer": "Dr inż. Krystian Wojtkiewicz",
+          "date_and_place": "śr/TP+1/2 13:15-15:00, bud. A-1, sala 329",
+          "type": "Wykład"
         }
       ]
     },
     {
-      "name": "Administracja serwerami Linux",
       "code": "INZ004354L",
+      "name": "Administracja serwerami Linux",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381868&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-28a",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Kamil Nowak"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Kamil Nowak",
+          "date_and_place": "wt 11:15-13:00, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28b",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Wojciech Thomas"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Wojciech Thomas",
+          "date_and_place": "wt 13:15-15:00, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28c",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Wojciech Thomas"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Dr inż. Wojciech Thomas",
+          "date_and_place": "wt 15:15-16:55, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28d",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Dominika Dudziak-Gajowiak"
-          },
-          "day": "Thursday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "15:15",
-          "end_time": "16:55",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Dominika Dudziak-Gajowiak",
+          "date_and_place": "cz 15:15-16:55, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28e",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Dominika Dudziak-Gajowiak"
-          },
-          "day": "Thursday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Dominika Dudziak-Gajowiak",
+          "date_and_place": "cz 17:05-18:45, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28h",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "07:30",
-          "end_time": "09:00",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "pt 07:30-09:00, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28f",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "pt 09:15-11:00, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-28g",
           "course": "INZ004354L",
-          "lecturer": {
-            "title": "Dr",
-            "name": "Iuliia Arkhangelska"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "D-2",
-          "hall": "333b",
-          "type": "LABORATORY"
+          "lecturer": "Dr Iuliia Arkhangelska",
+          "date_and_place": "pt 11:15-13:00, bud. D-2, sala 333b",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Administracja serwerami Linux",
       "code": "INZ004354W",
+      "name": "Administracja serwerami Linux",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381867&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-29a",
           "course": "INZ004354W",
-          "lecturer": {
-            "title": "Dr inż.",
-            "name": "Krzysztof Chudzik"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "17:05",
-          "end_time": "18:45",
-          "building": "A-1",
-          "hall": "329",
-          "type": "LECTURE"
+          "lecturer": "Dr inż. Krzysztof Chudzik",
+          "date_and_place": "wt 17:05-18:45, bud. A-1, sala 329",
+          "type": "Wykład"
         }
       ]
     },
     {
-      "name": "Routing i przełącz. w sieciach",
       "code": "INZ004356L",
+      "name": "Routing i przełącz. w sieciach",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381873&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-30a",
           "course": "INZ004356L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Kamil Nowak"
-          },
-          "day": "Tuesday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "C-6",
-          "hall": "128",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Kamil Nowak",
+          "date_and_place": "wt 13:15-15:00, bud. C-6, sala 128",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-30d",
           "course": "INZ004356L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Kamil Nowak"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "11:15",
-          "end_time": "13:00",
-          "building": "C-6",
-          "hall": "128",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Kamil Nowak",
+          "date_and_place": "pt 11:15-13:00, bud. C-6, sala 128",
+          "type": "Zajęcia laboratoryjne"
         },
         {
           "code": "K01-30c",
           "course": "INZ004356L",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Kamil Nowak"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "13:15",
-          "end_time": "15:00",
-          "building": "C-6",
-          "hall": "128",
-          "type": "LABORATORY"
+          "lecturer": "Mgr inż. Kamil Nowak",
+          "date_and_place": "pt 13:15-15:00, bud. C-6, sala 128",
+          "type": "Zajęcia laboratoryjne"
         }
       ]
     },
     {
-      "name": "Routing i przełącz. w sieciach",
       "code": "INZ004356W",
+      "name": "Routing i przełącz. w sieciach",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4Njk4Nzk5NzY1NA==&event=wyborKursuWGrupieBlokuRow&rowId=381872&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
       "groups": [
         {
           "code": "K01-31a",
           "course": "INZ004356W",
-          "lecturer": {
-            "title": "Mgr inż.",
-            "name": "Kamil Nowak"
-          },
-          "day": "Friday",
-          "week_type": "EVERY_WEEK",
-          "start_time": "09:15",
-          "end_time": "11:00",
-          "building": "C-16",
-          "hall": "D3",
-          "type": "LECTURE"
+          "lecturer": "Mgr inż. Kamil Nowak",
+          "date_and_place": "pt 09:15-11:00, bud. C-16, sala D3.2",
+          "type": "Wykład"
         }
       ]
     }
