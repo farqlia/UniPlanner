@@ -75,6 +75,7 @@ class Group:
     building: str
     hall: str
     type: GroupType
+    category: GroupCategory
 
     def __repr__(self):
         return f'{self.code} on {self.day.name} from ' \
