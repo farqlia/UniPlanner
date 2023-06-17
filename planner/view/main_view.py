@@ -66,13 +66,20 @@ class MainWindow(QMainWindow):
 
         self.pushButton.clicked.connect(self.generate_plan)
 
-        self.checkBox = QCheckBox(self.tab)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setText("Exclude area")
-        self.checkBox.setGeometry(QRect(930, 480, 101, 20))
+        self.exclude_area_check_box = QCheckBox(self.tab)
+        self.exclude_area_check_box.setObjectName(u"exclude_area_check_box")
+        self.exclude_area_check_box.setText("Exclude area")
+        self.exclude_area_check_box.setGeometry(QRect(930, 480, 101, 20))
         # Change cursor on user action
-        self.checkBox.clicked.connect(self.change_grid_cursor)
-        # self.checkBox.setCursor(QCursor(Qt.CrossCursor))
+        self.exclude_area_check_box.clicked.connect(self.allow_excluding_areas)
+
+        self.remove_area_check_box = QCheckBox(self.tab)
+        self.remove_area_check_box.setObjectName(u"remove_area_check_box")
+        self.remove_area_check_box.setGeometry(QRect(930, 510, 240, 20))
+        self.remove_area_check_box.setText("Remove excluded area (Double click)")
+        self.remove_area_check_box.clicked.connect(self.allow_removing_excluded_areas)
+
+        # self.exclude_area_check_box.setCursor(QCursor(Qt.CrossCursor))
         self.tab_widget.addTab(self.tab, "")
 
         self.tab_2 = QWidget()
@@ -100,23 +107,36 @@ class MainWindow(QMainWindow):
         self.select_groups_widget.load_courses(courses)
         self.grid_widget.add_groups([group for course in courses for group in course.groups])
 
-    def change_grid_cursor(self):
-        if self.checkBox.isChecked():
+    def allow_excluding_areas(self):
+        if self.exclude_area_check_box.isChecked():
+            self.remove_area_check_box.setChecked(False)
             self.grid_widget.change_cursor(QCursor(Qt.CrossCursor))
             self.grid_widget.set_can_exclude_area(True)
         else:
             self.grid_widget.change_cursor(QCursor(Qt.ArrowCursor))
             self.grid_widget.set_can_exclude_area(False)
 
+    def allow_removing_excluded_areas(self):
+        if self.remove_area_check_box.isChecked():
+            self.exclude_area_check_box.setChecked(False)
+            self.grid_widget.change_cursor(QCursor(Qt.OpenHandCursor))
+            self.grid_widget.set_can_remove_area(True)
+        else:
+            self.grid_widget.change_cursor(QCursor(Qt.ArrowCursor))
+            self.grid_widget.set_can_remove_area(False)
+
     # Main functionality !!!
     def generate_plan(self):
         # Get groups categorized by user, for each course
         self.select_groups_widget.get_categorized_courses()
+        # Areas excluded by user as rectangles
+        self.grid_widget.get_excluded_areas()
         # Here will be some additional constraints
         self.pushButton.setCursor(QCursor(Qt.BusyCursor))
         # Algorithm ...
 
         self.pushButton.setCursor(QCursor(Qt.ArrowCursor))
+
 
 
 if __name__ == "__main__":
