@@ -24,11 +24,11 @@ class Search:
 
     def translate_solution(self, gen_solution: List[int]) -> tuple[list[Group], list[Group]]:
         return sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)
-                      if self.get_group(gene_id, gene).occurs_odd()]),\
+                       if self.get_group(gene_id, gene).occurs_odd()]), \
             sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)
                     if self.get_group(gene_id, gene).occurs_even()])
 
-    def get_all_courses(self,gen_solution: List[int]) -> list[Group]:
+    def get_all_courses(self, gen_solution: List[int]) -> list[Group]:
         return sorted([self.get_group(gene_id, gene) for gene_id, gene in enumerate(gen_solution)])
 
     def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
@@ -51,7 +51,7 @@ class Search:
              if len(day_groups) > 0])
         if punish_many_days:
             days_num = len([day for day in week_days if len(day) > 0])
-            punishment += days_num*1000
+            punishment += days_num * 1000
         return -punishment
 
     @staticmethod
@@ -81,7 +81,7 @@ class Search:
             'fitness_func': self.fitness_func,
             'keep_elitism': 5,
             'parent_selection_type': 'tournament',
-            'K_tournament':  10,
+            'K_tournament': 10,
             'crossover_type': 'scattered',
             'gene_type': int,
             'crossover_probability': 0.75,
@@ -89,16 +89,22 @@ class Search:
         }
 
     @staticmethod
-    def delete_excluded(courses):
-        return [[group_ for group_ in course.groups if not group_.is_excluded()] for course in courses]
+    def delete_excluded_groups(courses_: List[Course]) -> List[List[Group]]:
+        return [[group_ for group_ in course.groups if not group_.is_excluded()] for course in courses_]
 
     @staticmethod
-    def preprocess(courses):
-        return Search.delete_excluded(courses)
+    def delete_excluded_courses(courses_: List[List[Group]]):
+        return [course_groups for course_groups in courses_ if len(course_groups) > 0]
+
+    @staticmethod
+    def preprocess(cour):
+        without_excluded_groups = Search.delete_excluded_groups(cour)
+        without_excluded_courses = Search.delete_excluded_courses(without_excluded_groups)
+        return without_excluded_courses
 
 
-def get_best_solutions(courses: List[Course]) -> List[List[Group]]:
-    search = Search(courses=courses)
+def get_best_solutions(cour: List[Course]) -> List[List[Group]]:
+    search = Search(courses=cour)
     return search.find_solutions()
 
 
