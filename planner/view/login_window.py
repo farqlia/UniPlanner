@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 
 ################################################################################
 ## Form generated from reading UI file 'login_windowGNOIOv.ui'
@@ -19,16 +20,17 @@ from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
     QMenuBar, QPushButton, QSizePolicy, QStatusBar,
     QWidget)
 from typing import Callable
+from planner.view.main_window import MainWindow
+from planner.controller.controller import get_courses
 
 
 class LoginWindow(QMainWindow):
 
-    def __init__(self, action_login_authenticate: Callable[[str, str], bool],
-                 action_login_successful: Callable[[str, str], None]):
+    def __init__(self, is_login_successful):
         super(LoginWindow, self).__init__()
         self.resize(462, 308)
-        self.action_login_authenticate = action_login_authenticate
-        self.action_login_successful = action_login_successful
+
+        self.is_login_successful = is_login_successful
 
         self.centralwidget = QWidget(self)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -56,21 +58,8 @@ class LoginWindow(QMainWindow):
         self.pushButton.clicked.connect(self.login_event)
 
     def login_event(self):
-        if self.action_login_authenticate(self.lineEdit.text(), self.lineEdit_2.text()):
-            self.action_login_successful(self.lineEdit.text(), self.lineEdit_2.text())
+        if self.is_login_successful(self.lineEdit.text(), self.lineEdit_2.text()):
+            main_window = MainWindow(self)
+            main_window.load_courses(get_courses())
+            main_window.show()
             self.hide()
-        else:
-            # Inform about wrong password
-            pass
-
-
-def do_login(action_login_authenticate: Callable[[str, str], bool],
-             action_login_successful: Callable[[str, str], None]):
-
-    app = QApplication()
-
-    instance = LoginWindow(action_login_authenticate, action_login_successful)
-    instance.show()
-
-    app.exec()
-    # app.exit(0)

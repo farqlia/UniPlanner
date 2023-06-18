@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import sys
 ################################################################################
 ## Form generated from reading UI file 'main_window_ui_2mCHydd.ui'
 ##
@@ -12,7 +12,7 @@ from typing import List
 
 from PySide6.QtCore import (QMetaObject, QRect,
                             Qt)
-from PySide6.QtGui import (QCursor)
+from PySide6.QtGui import (QCursor, QCloseEvent, QHideEvent)
 from PySide6.QtWidgets import (QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
                                QTabWidget, QWidget, QMessageBox, QGridLayout)
@@ -27,8 +27,8 @@ from planner.view.select_groups_widget import SelectGroupsWidget
 
 class MainWindow(QMainWindow):
 
-    def __init__(self, width=1500, height=750):
-        super(MainWindow, self).__init__()
+    def __init__(self, parent, width=1500, height=750):
+        super(MainWindow, self).__init__(parent)
         self.setWindowTitle('UniPlanner')
         self.setTabShape(QTabWidget.Rounded)
         self.setFixedSize(width, height)
@@ -110,7 +110,6 @@ class MainWindow(QMainWindow):
 
         self.tab.setLayout(grid_layout)
 
-
     def load_courses(self, courses: List[Course]):
         self.courses = courses
         self.select_groups_widget.load_courses(courses)
@@ -166,5 +165,9 @@ class MainWindow(QMainWindow):
         dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         dlg.setIcon(QMessageBox.Icon.Question)
         return dlg.exec() == QMessageBox.StandardButton.Yes
+
+    def closeEvent(self, event: QCloseEvent) -> None:
+        super(MainWindow, self).closeEvent(event)
+        sys.exit()
 
 
