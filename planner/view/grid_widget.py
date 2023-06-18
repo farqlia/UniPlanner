@@ -45,7 +45,7 @@ def acronym_name(group: Group):
 class GroupWidget(QFrame):
 
     def __init__(self, parent: QObject, group: Group, x, y, width, height,
-                 display_description: Callable[[Group], str]):
+                 **kwargs):
         super(GroupWidget, self).__init__(parent)
         self.x = x
         self.y = y
@@ -54,14 +54,15 @@ class GroupWidget(QFrame):
         self.group = group
         self.margin = 2
         self.color = COLOR_FOR_GROUP_TYPE[group.type]
-        self.display_description = display_description
+        self.display_description = kwargs.get('description', full_name_description)
 
         self.group_description = QTextEdit(self)
         self.group_description.setReadOnly(True)
         self.group_description.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.group_description.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
-        self.change_font_color()
+        if kwargs.get('set_color', False):
+            self.change_font_color()
 
         self.setToolTip(f"{group.type.name.capitalize()} {self.group.code}\n{self.group.course.code}"
                         f"\n{self.group.course.name}\n{self.group.lecturer.title} {self.group.lecturer.name}\n"
@@ -123,7 +124,7 @@ class BasicDayOfWeekWidget(QWidget):
 
     # x, y are positions regarding the 'widget_group' widget
     def __init__(self, day_of_week: DayOfWeek, parent: QObject, time_0: datetime, x, y, width, height,
-                 label_width, group_description: Callable[[Group], str]) -> None:
+                 label_width, **kwargs) -> None:
         super().__init__(parent)
         self.day_of_week = day_of_week
         self.offset_from_edge = 0
@@ -132,7 +133,7 @@ class BasicDayOfWeekWidget(QWidget):
         self.group_widgets: List[GroupWidget] = []  # all groups currently placed - sorted by x cooridnate
 
         self.label_width = label_width
-        self.group_description = group_description
+        self.kwargs = kwargs
 
         day_label = QTextEdit(self)
         day_label.setTextInteractionFlags(Qt.NoTextInteraction)
@@ -147,7 +148,7 @@ class BasicDayOfWeekWidget(QWidget):
         y = self.offset_from_edge
         width = group.durance
         height = self.height()
-        group_widget = GroupWidget(self, group, x, y, width, height, self.group_description)
+        group_widget = GroupWidget(self, group, x, y, width, height, **self.kwargs)
         group_widget.setObjectName(group.code)
         self.add_to_list(group_widget)
 
@@ -183,8 +184,8 @@ class DayOfWeekWidget(BasicDayOfWeekWidget):
 
     # x, y are positions regarding the 'widget_group' widget
     def __init__(self, day_of_week: DayOfWeek, parent: QObject,
-                 time_0: datetime, x, y, width, height, label_width, group_description: Callable[[Group], str]) -> None:
-        super(DayOfWeekWidget, self).__init__(day_of_week, parent, time_0, x, y, width, height, label_width, group_description)
+                 time_0: datetime, x, y, width, height, label_width, **kwargs) -> None:
+        super(DayOfWeekWidget, self).__init__(day_of_week, parent, time_0, x, y, width, height, label_width, **kwargs)
         self.begin = QPoint()
         self.end = QPoint()
 
@@ -286,9 +287,9 @@ class BasicGridWidget:
 
     def __init__(self, parent: QWidget, cell_height: int = 120, n_days_of_week: int = 5,
                  start_time: datetime = as_hour("7:00"), end_time: datetime = as_hour("21:00"),
-                 group_description: Callable[[Group], str]=full_name_description) -> None:
+                 **kwargs) -> None:
 
-        self.group_description = group_description
+        self.kwargs = kwargs
         # What time range we consider
         self.start_time = start_time
         self.end_time = end_time
@@ -382,7 +383,7 @@ class BasicGridWidget:
                                                                         index_day_of_week * self.cell_height,
                                                                         self.width, self.cell_height,
                                                                         self.days_of_week_labels_widget_width,
-                                                                        self.group_description)
+                                                                        **self.kwargs)
 
     def load_groups(self, groups: List[Group]):
         for group in groups:
@@ -400,7 +401,8 @@ class GridWidget(BasicGridWidget):
     def __init__(self, parent: QWidget, cell_height: int, n_days_of_week: int,
                  start_time: datetime, end_time: datetime) -> None:
         super(GridWidget, self).__init__(parent, cell_height,
-                                         n_days_of_week, start_time, end_time, full_name_description)
+                                         n_days_of_week, start_time, end_time, description=full_name_description,
+                                         set_color=True)
 
     def change_cursor(self, new_cursor):
         self.main_grid_widget.setCursor(QCursor(new_cursor))

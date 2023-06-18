@@ -14,7 +14,8 @@ class PlanWidget(QWidget):
         self.setFixedHeight(h_grid_widget)
 
         self.grid_widget = BasicGridWidget(self,
-                                           group_description=detailed_description)
+                                           description=detailed_description,
+                                           set_color=False)
         self.grid_widget.load_groups(groups)
         self.update()
 
