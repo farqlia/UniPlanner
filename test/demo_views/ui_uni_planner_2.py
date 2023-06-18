@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(880, 380, 281, 16))
         self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setObjectName(u"generate_plan_button")
         self.pushButton.setGeometry(QRect(1200, 560, 81, 41))
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")

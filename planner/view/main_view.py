@@ -15,7 +15,7 @@ from PySide6.QtCore import (QMetaObject, QRect,
 from PySide6.QtGui import (QCursor)
 from PySide6.QtWidgets import (QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
-                               QTabWidget, QWidget)
+                               QTabWidget, QWidget, QMessageBox, QTabBar, QHBoxLayout)
 
 from planner.controller.controller import get_dream_timetables
 from planner.models.groups import Course
@@ -63,12 +63,12 @@ class MainWindow(QMainWindow):
         self.select_groups_widget = SelectGroupsWidget(self.select_groups_parent_widget, self.grid_widget,
                                                        400)
 
-        self.pushButton = QPushButton(self.tab)
-        self.pushButton.setText("Generate plan")
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(width - 150, 590, 111, 41))
+        self.generate_plan_button = QPushButton(self.tab)
+        self.generate_plan_button.setText("Generate plan")
+        self.generate_plan_button.setObjectName(u"generate_plan_button")
+        self.generate_plan_button.setGeometry(QRect(width - 150, 590, 111, 41))
 
-        self.pushButton.clicked.connect(self.generate_plan)
+        self.generate_plan_button.clicked.connect(self.generate_plan_action)
 
         self.exclude_area_check_box = QCheckBox(self.tab)
         self.exclude_area_check_box.setObjectName(u"exclude_area_check_box")
@@ -91,9 +91,6 @@ class MainWindow(QMainWindow):
         self.tab_widget.setCurrentIndex(0)
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab),
                                    "Create plan")
-        self.tab_2 = QWidget()
-        self.tab_widget.addTab(self.tab_2, "Best plan")
-        self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_2), "Best plan")
 
         QMetaObject.connectSlotsByName(self)
 
@@ -114,20 +111,52 @@ class MainWindow(QMainWindow):
             self.grid_widget.change_cursor(QCursor(Qt.ArrowCursor))
             self.grid_widget.set_can_exclude_area(False)
 
-    # Main functionality !!!
-    def generate_plan(self):
-        # Get groups categorized by user, for each course
-        # self.select_groups_widget.courses
-        # Areas excluded by user as rectangles
-        # Here will be some additional constraints
+    def generate_plan_action(self):
+        if not self.display_yes_no_msg("All generated plans will be removed. Do you want to save them?"):
+            # Cursor is not working now
+            self.generate_plan_button.setCursor(QCursor(Qt.BusyCursor))
+            self.generate_plan()
+            self.generate_plan_button.setCursor(QCursor(Qt.ArrowCursor))
 
-        self.pushButton.setCursor(QCursor(Qt.BusyCursor))
+    def generate_plan(self):
 
         timetables = get_dream_timetables(self.courses)
+        self.remove_plan_tabs()
 
-        self.best_plan_tab = PlanWidget(self.tab_2, timetables[0])
-        self.best_plan_tab.setGeometry(QRect(0, 0, self.best_plan_tab.width(), self.best_plan_tab.height()))
+        if len(timetables) > 0:
+            for i, timetable in enumerate(timetables, start=1):
+                self.display_plan(timetable, f"Plan {i}")
+        else:
+            self.display_warning_msg("No plans were generated")
 
-        self.update()
+    def display_plan(self, timetable, name):
+        plan_tab_widget = QWidget()
+        plan_tab_widget_layout = QHBoxLayout(plan_tab_widget)
+        plan_widget = PlanWidget(plan_tab_widget, timetable)
+        plan_tab_widget_layout.addWidget(plan_widget)
+        plan_tab_widget.setLayout(plan_tab_widget_layout)
+        self.tab_widget.addTab(plan_tab_widget, name)
+        plan_widget.setGeometry(QRect(0, 0, plan_widget.width(), plan_tab_widget.height()))
+        self.tab_widget.setTabEnabled(self.tab_widget.indexOf(plan_tab_widget), True)
 
-        self.pushButton.setCursor(QCursor(Qt.ArrowCursor))
+    def remove_plan_tabs(self):
+        for i in range(1, self.tab_widget.count()):
+            self.tab_widget.removeTab(i)
+        # self.tab_widget.update()
+
+    def display_warning_msg(self, msg=""):
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("Error")
+        dlg.setText(msg)
+        dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
+        dlg.setIcon(QMessageBox.Icon.Warning)
+        dlg.exec()
+
+    def display_yes_no_msg(self, msg=""):
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("Information")
+        dlg.setText(msg)
+        dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        dlg.setIcon(QMessageBox.Icon.Question)
+        return dlg.exec() == QMessageBox.StandardButton.Yes
+

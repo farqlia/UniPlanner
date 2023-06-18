@@ -210,7 +210,7 @@ class Ui_MainWindow(object):
         self.widget_detailed_course_information.setObjectName(u"widget_detailed_course_information")
         self.widget_detailed_course_information.setGeometry(QRect(10, 400, 331, 111))
         self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setObjectName(u"generate_plan_button")
         self.pushButton.setGeometry(QRect(1190, 570, 121, 41))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)

@@ -492,26 +492,3 @@ class GridWidget(BasicGridWidget):
         print(self.days_of_weeks_widgets[group.day.value - 1])
         return self.days_of_weeks_widgets[group.day.value - 1].is_in_excluded_area(group)
 
-
-if __name__ == "__main__":
-    app = QApplication()
-    window = QMainWindow()
-    grid = GridWidget(window, 120, 5, datetime.strptime("7:00", "%H:%M"), datetime.strptime("21:00", "%H:%M"))
-
-    test_groups = [create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("9:00"), "K01-30a"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("8:00"), as_hour("10:00"), "K01-30b"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("7:30"), as_hour("10:00"), "K01-30c"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30d"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30e"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30o"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30o"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30i"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30f"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30g"),
-                   create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-30h"),
-                   create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31c"),
-                   create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK, as_hour("11:15"), as_hour("13:00"), "K01-31d")]
-
-    grid.load_groups(test_groups)
-    window.show()
-    app.exec()
