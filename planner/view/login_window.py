@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import sys
 
 ################################################################################
 ## Form generated from reading UI file 'login_windowGNOIOv.ui'
@@ -9,28 +8,21 @@ import sys
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QWidget)
-from typing import Callable
+from PySide6.QtCore import (QRect)
+from PySide6.QtWidgets import (QLabel, QLineEdit, QMainWindow,
+                               QPushButton, QWidget)
+
+from planner.connection.connection import LoginException
+from planner.controller.controller import get_courses, download_to_file
 from planner.view.main_window import MainWindow
-from planner.controller.controller import get_courses
+from planner.view.view_utils import display_error_msg
 
 
 class LoginWindow(QMainWindow):
 
-    def __init__(self, is_login_successful):
+    def __init__(self):
         super(LoginWindow, self).__init__()
         self.resize(462, 308)
-
-        self.is_login_successful = is_login_successful
 
         self.centralwidget = QWidget(self)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -46,6 +38,7 @@ class LoginWindow(QMainWindow):
         self.pushButton.setText("Log in")
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setGeometry(QRect(310, 200, 81, 31))
+
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(130, 70, 250, 25))
@@ -58,8 +51,18 @@ class LoginWindow(QMainWindow):
         self.pushButton.clicked.connect(self.login_event)
 
     def login_event(self):
-        if self.is_login_successful(self.lineEdit.text(), self.lineEdit_2.text()):
+        if self.is_login_successful():
             main_window = MainWindow(self)
             main_window.load_courses(get_courses())
             main_window.show()
             self.hide()
+
+    def is_login_successful(self):
+        try:
+            download_to_file(self.lineEdit.text(), self.lineEdit_2.text())
+            return True
+        except LoginException:
+            display_error_msg(self, "Login credentials are invalid")
+        except:
+            display_error_msg(self, "Unknown error occurred")
+

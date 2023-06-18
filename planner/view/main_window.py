@@ -1,21 +1,13 @@
 # -*- coding: utf-8 -*-
 import sys
-################################################################################
-## Form generated from reading UI file 'main_window_ui_2mCHydd.ui'
-##
-## Created by: Qt User Interface Compiler version 6.4.3
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from typing import List
 
 from PySide6.QtCore import (QMetaObject, QRect,
                             Qt)
-from PySide6.QtGui import (QCursor, QCloseEvent, QHideEvent)
+from PySide6.QtGui import (QCursor, QCloseEvent)
 from PySide6.QtWidgets import (QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
-                               QTabWidget, QWidget, QMessageBox, QGridLayout)
+                               QTabWidget, QWidget, QGridLayout)
 
 from planner.controller.controller import get_dream_timetables
 from planner.models.groups import Course
@@ -23,7 +15,16 @@ from planner.utils.datetime_utils import as_hour
 from planner.view.grid_widget import GridWidget
 from planner.view.plan_widget import PlanTabWidget
 from planner.view.select_groups_widget import SelectGroupsWidget
+from planner.view.view_utils import display_yes_no_msg, display_warning_msg
 
+
+################################################################################
+## Form generated from reading UI file 'main_window_ui_2mCHydd.ui'
+##
+## Created by: Qt User Interface Compiler version 6.4.3
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
 class MainWindow(QMainWindow):
 
@@ -124,7 +125,7 @@ class MainWindow(QMainWindow):
             self.grid_widget.set_can_exclude_area(False)
 
     def generate_plan_action(self):
-        if self.display_yes_no_msg("It will remove all the plans you've already generated. "
+        if display_yes_no_msg(self, "It will remove all the plans you've already generated. "
                                    "Are you sure you want to do this?"):
             # Cursor is not working now
             self.generate_plan_button.setCursor(QCursor(Qt.BusyCursor))
@@ -141,7 +142,7 @@ class MainWindow(QMainWindow):
             self.tab_widget.setCurrentIndex(1)
 
         else:
-            self.display_warning_msg("No plans were generated")
+            display_warning_msg(self, "No plans were generated")
 
     def display_plan(self, timetable, name):
         PlanTabWidget(self.tab_widget, timetable, name)
@@ -149,22 +150,6 @@ class MainWindow(QMainWindow):
     def remove_plan_tabs(self):
         while self.tab_widget.count() > 1:
             self.tab_widget.removeTab(1)
-
-    def display_warning_msg(self, msg=""):
-        dlg = QMessageBox(self)
-        dlg.setWindowTitle("Error")
-        dlg.setText(msg)
-        dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
-        dlg.setIcon(QMessageBox.Icon.Warning)
-        dlg.exec()
-
-    def display_yes_no_msg(self, msg=""):
-        dlg = QMessageBox(self)
-        dlg.setWindowTitle("Information")
-        dlg.setText(msg)
-        dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-        dlg.setIcon(QMessageBox.Icon.Question)
-        return dlg.exec() == QMessageBox.StandardButton.Yes
 
     def closeEvent(self, event: QCloseEvent) -> None:
         super(MainWindow, self).closeEvent(event)
