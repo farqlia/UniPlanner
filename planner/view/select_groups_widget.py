@@ -54,18 +54,6 @@ class DragDropListDisableOnCondition(DragDropList):
         super(DragDropListDisableOnCondition, self).__init__(parent, category)
         self.condition = condition
 
-    def update_groups(self):
-        print(self)
-        for i in range(self.count()):
-            group = find_group_by_code(self.currently_selected_course.groups,
-                        extract_group_code(self.item(i).text()))
-            group.category = self.category
-            should_be_disabled = self.condition(self, self.item(i))
-            if should_be_disabled:
-                disable_item(self.item(i))
-            else:
-                enable_item(self.item(i))
-
     def update_items(self):
         for i in range(self.count()):
             should_be_disabled = self.condition(self, self.item(i))

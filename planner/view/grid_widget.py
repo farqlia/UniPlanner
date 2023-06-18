@@ -168,6 +168,83 @@ class BasicDayOfWeekWidget(QWidget):
     def compute_x(self, group: Group):
         return self.label_width + int((group.start_time - self.time_0).total_seconds() / 60.0)
 
+class ColorableWidget(QWidget):
+
+    def __init__(self, parent, width, height):
+        super(ColorableWidget, self).__init__(parent)
+        palette = QPalette()
+        self.setGeometry(0, 0, width, height)
+        brush = QBrush(QColor(100, 100, 100, 255))
+        brush.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Base, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Base, brush)
+        self.setPalette(palette)
+
+        self.can_paint_rectangles = False
+
+        self.rectangles: List[QRect] = []
+
+        self.draw_rectangle_listener = None
+        self.remove_rectangle_listener = None
+
+        self.begin = QPoint()
+        self.end = QPoint()
+
+    def paintEvent(self, event):
+        qp = QtGui.QPainter(self)
+        br = QtGui.QBrush(QtGui.QColor(100, 10, 10, 40))
+        qp.setBrush(br)
+        # qp.setBackgroundMode(Qt.OpaqueMode)
+        if self.can_paint_rectangles:
+            if not self.begin.isNull() and not self.end.isNull():
+                qp.drawRect(QRect(self.begin, self.end).normalized())
+
+        self.paint_rectangles(qp)
+
+    def paint_rectangles(self, qp):
+        for r in self.rectangles:
+            qp.drawRect(r)
+
+    def mousePressEvent(self, event):
+        self.begin = event.pos()
+        self.end = event.pos()
+        self.update()
+        super(ColorableWidget, self).mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        self.end = event.pos()
+        self.update()
+        super(ColorableWidget, self).mouseMoveEvent(event)
+
+    def mouseDoubleClickEvent(self, event) -> None:
+        if self.can_paint_rectangles:
+            self.remove_rectangle_listener(event.pos())
+        super(ColorableWidget, self).mouseDoubleClickEvent(event)
+
+    def get_geometry(self):
+        width = abs(self.end.x() - self.begin.x())
+        height = self.height()
+        return QRect(min(self.begin.x(), self.end.x()), 0, width, height)
+
+    def mouseReleaseEvent(self, event):
+        if self.can_paint_rectangles:
+            if self.begin != self.end:
+                r = QRect(self.get_geometry()).normalized()
+                i = 0
+                while i < len(self.rectangles) and (
+                        r.x() >= self.rectangles[i].x() or r.intersects(self.rectangles[i])):
+                    if r.intersects(self.rectangles[i]):
+                        r = r.united(self.rectangles[i])
+                        self.rectangles.pop(i)
+                    else:
+                        i += 1
+                self.rectangles.insert(i, r)
+
+        self.begin = self.end = QPoint()
+        self.update()
+        self.draw_rectangle_listener(self.begin, self.end)
+        super(ColorableWidget, self).mouseReleaseEvent(event)
+
 
 class DayOfWeekWidget(BasicDayOfWeekWidget):
 
@@ -192,6 +269,7 @@ class DayOfWeekWidget(BasicDayOfWeekWidget):
         qp = QtGui.QPainter(self)
         br = QtGui.QBrush(QtGui.QColor(100, 10, 10, 40))
         qp.setBrush(br)
+        # qp.setBackgroundMode(Qt.OpaqueMode)
         if self.can_paint_rectangles:
             if not self.begin.isNull() and not self.end.isNull():
                 qp.drawRect(QRect(self.begin, self.end).normalized())
@@ -383,7 +461,6 @@ class BasicGridWidget:
     def load_courses(self, courses: List[Course]):
         for course in courses:
             self.load_groups(course.groups)
-
 
 
 
