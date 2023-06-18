@@ -5,6 +5,7 @@ from typing import List
 from planner.parsing.parse_json import load_from_json
 from planner.models.groups import DayOfWeek
 
+IMPOSSIBLE_VALUE = -99999999
 
 def is_possible(groups: List[Group]) -> bool:
     for index in range(len(groups) - 1):
@@ -34,7 +35,7 @@ class Search:
     def fitness_func(self, ga_instance, solution: List[int], solution_idx) -> int:
         odd_groups, even_groups = self.translate_solution(solution)
         if not is_possible(odd_groups) or not is_possible(even_groups):
-            return -99999999
+            return IMPOSSIBLE_VALUE
         fitness = 0
         fitness += Search.rate_shape(odd_groups)
         fitness += Search.rate_shape(even_groups)
@@ -60,6 +61,12 @@ class Search:
         reward += sum([100 for group in sol_groups if group.is_preferred()])
         return reward
 
+    def select_solutions(self, solutions) -> List:
+        unique_solutions = set(tuple(solution) for solution in solutions
+                               if self.fitness_func(None,solution,None) > -99999999)
+        return reversed(list(unique_solutions)) \
+            if len(unique_solutions) > 0 else []
+
     def find_solutions(self):
         ga_instance = pygad.GA(**self.setup_parameters())
         ga_instance.run()
@@ -69,7 +76,9 @@ class Search:
             print(group)
         print('fitness = ', solution_fitness)
         print('solution idx = ', solution_idx)
-        return [self.get_all_courses(solution)]
+        selected_solutions = self.select_solutions(ga_instance.best_solutions)
+        print(selected_solutions)
+        return [(self.get_all_courses(list(solution))) for solution in selected_solutions]
 
     def setup_parameters(self):
         return {
@@ -86,6 +95,8 @@ class Search:
             'gene_type': int,
             'crossover_probability': 0.75,
             'mutation_probability': 0.1,
+            'save_best_solutions': True,
+            'suppress_warnings': True,
         }
 
     @staticmethod
