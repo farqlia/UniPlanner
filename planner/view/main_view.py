@@ -13,23 +13,23 @@ from typing import List
 from PySide6.QtCore import (QMetaObject, QRect,
                             Qt)
 from PySide6.QtGui import (QCursor)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QMainWindow, QMenuBar,
+from PySide6.QtWidgets import (QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
-                               QTabWidget, QWidget, QVBoxLayout)
+                               QTabWidget, QWidget)
 
-from planner.models.groups import Course, DayOfWeek, WeekType
+from planner.controller.controller import get_dream_timetables
+from planner.models.groups import Course
 from planner.utils.datetime_utils import as_hour
 from planner.view.grid_widget import GridWidget
-from planner.view.select_groups_widget import SelectGroupsWidget
-from planner.view.view_utils import create_group
-from planner.controller.controller import get_dream_timetables
 from planner.view.plan_widget import PlanWidget
+from planner.view.select_groups_widget import SelectGroupsWidget
 
 
 class MainWindow(QMainWindow):
 
     def __init__(self, width=1500, height=750):
         super(MainWindow, self).__init__()
+        self.setWindowTitle('UniPlanner')
         self.setTabShape(QTabWidget.Rounded)
         self.setFixedSize(width, height)
 
