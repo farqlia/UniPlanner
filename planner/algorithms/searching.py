@@ -62,29 +62,39 @@ class Search:
         return reward
 
     def select_solutions(self, solutions) -> List:
-        unique_solutions = set(tuple(solution) for solution in solutions
-                               if self.fitness_func(None,solution,None) > -99999999)
-        return reversed(list(unique_solutions)) \
+        unique_solutions = list(set(tuple(solution) for solution in solutions
+                               if self.fitness_func(None,solution,None) > -99999999))
+
+        fitness_values = [self.fitness_func(None,sol,None) for sol in unique_solutions]
+        unique_solutions = [solution for _, solution in sorted(zip(fitness_values,unique_solutions),
+                                                               reverse=True)]
+        return (list(unique_solutions)) \
             if len(unique_solutions) > 0 else []
 
-    def find_solutions(self):
+    def search_in_one_population(self):
         ga_instance = pygad.GA(**self.setup_parameters())
         ga_instance.run()
-        ga_instance.plot_fitness()
+        #ga_instance.plot_fitness()
         solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance.last_generation_fitness)
-        for group in self.get_all_courses(solution):
-            print(group)
         print('fitness = ', solution_fitness)
-        print('solution idx = ', solution_idx)
         selected_solutions = self.select_solutions(ga_instance.best_solutions)
-        print(selected_solutions)
-        return [(self.get_all_courses(list(solution))) for solution in selected_solutions]
+        return [(list(solution)) for solution in selected_solutions]
+
+    def find_solutions(self):
+        solutions = []
+        for i in range(10):
+            solutions += self.search_in_one_population()
+        selected_solutions = self.select_solutions(solutions)
+        sols = [(list(solution)) for solution in selected_solutions]
+        print([self.fitness_func(None,sol,None) for sol in sols])
+        return [(self.get_all_courses(list(solution))) for solution in sols]
+
 
     def setup_parameters(self):
         return {
             'num_generations': 20,
             'num_parents_mating': 8,
-            'sol_per_pop': 1000,
+            'sol_per_pop': 100,
             'num_genes': len(self.courses),
             'gene_space': [range(len(course)) for course in self.courses],
             'fitness_func': self.fitness_func,
