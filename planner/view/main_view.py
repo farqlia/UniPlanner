@@ -112,7 +112,8 @@ class MainWindow(QMainWindow):
             self.grid_widget.set_can_exclude_area(False)
 
     def generate_plan_action(self):
-        if not self.display_yes_no_msg("All generated plans will be removed. Do you want to save them?"):
+        if self.display_yes_no_msg("It will remove all the plans you've already generated. "
+                                   "Are you sure you want to do this?"):
             # Cursor is not working now
             self.generate_plan_button.setCursor(QCursor(Qt.BusyCursor))
             self.generate_plan()
