@@ -23,7 +23,6 @@ class DragDropList(QListWidget):
         self.category = category
         self.currently_selected_course = None
         self.drop_event_listener = None
-        print(self)
 
     def dropEvent(self, event: QDropEvent) -> None:
         super(DragDropList, self).dropEvent(event)
@@ -34,7 +33,6 @@ class DragDropList(QListWidget):
         self.drop_event_listener()
 
     def update_groups(self):
-        print(self)
         for i in range(self.count()):
             group = find_group_by_code(self.currently_selected_course.groups,
                         extract_group_code(self.item(i).text()))
@@ -197,12 +195,6 @@ class SelectGroupsWidget:
         self.list_of_neutral_choices.itemChanged.connect(listener)
         self.list_of_preferred_choices.itemChanged.connect(listener)
         self.list_of_excluded_choices.itemChanged.connect(listener)
-
-    def update_categorized_groups_for_current_course(self):
-        self.display_groups_of_course()
-        for g in self.current_course.groups:
-            print(g.code, g.category)
-        # self.parent.update()
 
 
 def format_course_to_string(course: Course):

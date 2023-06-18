@@ -99,7 +99,7 @@ class MainWindow(QMainWindow):
         QMetaObject.connectSlotsByName(self)
 
         self.grid_widget.add_listener_on_excluding_areas(
-            self.select_groups_widget.update_categorized_groups_for_current_course)
+            self.select_groups_widget.display_groups_of_course)
         self.select_groups_widget.add_listener_for_group_change(self.grid_widget.update)
 
         grid_layout = QGridLayout(self.centralwidget)
@@ -109,6 +109,7 @@ class MainWindow(QMainWindow):
         grid_layout.addWidget(self.exclude_area_check_box, 14, 14, 2, 2)
 
         self.tab.setLayout(grid_layout)
+
 
     def load_courses(self, courses: List[Course]):
         self.courses = courses

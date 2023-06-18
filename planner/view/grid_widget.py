@@ -311,8 +311,6 @@ class BasicGridWidget:
         self.widget.setGeometry(QRect(x_offset, y_offset, self.width + self.days_of_week_labels_widget_width,
                                       self.time_widget_height + self.height))
 
-        print(self.widget.geometry())
-
         self.widget_time = QWidget(self.widget)
         self.widget_time.setObjectName(u"widget_time")
         self.widget_time.setGeometry(QRect(self.days_of_week_labels_widget_width, 0,
@@ -326,8 +324,6 @@ class BasicGridWidget:
 
         self.add_days_of_week_widgets()
         self.add_minutes_labels()
-
-        print(self.main_grid_widget.geometry())
 
         # self.retranslateUi(parent)
         QMetaObject.connectSlotsByName(parent)

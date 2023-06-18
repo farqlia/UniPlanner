@@ -168,7 +168,7 @@ def download_to_file(name, password, file):
 
 if __name__ == '__main__':
     user_name = 'pwr345992'
-    user_password = 'me_gustas_tu'
+    user_password = ''
     downloader = GroupsDownloader()
     subjects = downloader.download_groups(user_name, user_password)
     file_name = '../../data/new_.json'
