@@ -33,14 +33,15 @@ class GroupsDownloader:
         password_input.send_keys(password)
         login_button = self.driver.find_element(By.CSS_SELECTOR, ".BUTTON_ZALOGUJ")
         login_button.click()
-        self.check_if_success()
+        if not self.is_logged():
+            raise LoginException
 
-    def check_if_success(self):
+    def is_logged(self):
         try:
             _ = self.driver.find_element(By.XPATH, FAILED_LOG_IN_XPATH).text
-            print("Login failed")
+            return False
         except NoSuchElementException:
-            print("Login succeeded")
+            return True
 
     def open_enrollment_website(self):
         self.driver.find_element(By.XPATH, ENROLLMENT_XPATH).click()
@@ -164,6 +165,11 @@ def dump_to_file(courses, file: str):
 
 def download_to_file(name, password, file):
     dump_to_file(GroupsDownloader().download_groups(name, password), file)
+
+
+class LoginException(Exception):
+    """login to edukacja failed"""
+    pass
 
 
 if __name__ == '__main__':
