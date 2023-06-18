@@ -59,7 +59,7 @@ class LoginWindow(QMainWindow):
 
     def is_login_successful(self):
         try:
-            ## download_to_file(self.lineEdit.text(), self.lineEdit_2.text())
+            download_to_file(self.lineEdit.text(), self.lineEdit_2.text())
             return True
         except LoginException:
             display_error_msg(self, "Login credentials are invalid")
