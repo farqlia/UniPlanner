@@ -15,13 +15,13 @@ from PySide6.QtCore import (QMetaObject, QRect,
 from PySide6.QtGui import (QCursor)
 from PySide6.QtWidgets import (QCheckBox, QMainWindow, QMenuBar,
                                QPushButton, QStatusBar,
-                               QTabWidget, QWidget, QMessageBox, QTabBar, QHBoxLayout)
+                               QTabWidget, QWidget, QMessageBox, QGridLayout)
 
 from planner.controller.controller import get_dream_timetables
 from planner.models.groups import Course
 from planner.utils.datetime_utils import as_hour
 from planner.view.grid_widget import GridWidget
-from planner.view.plan_widget import PlanWidget
+from planner.view.plan_widget import PlanTabWidget
 from planner.view.select_groups_widget import SelectGroupsWidget
 
 
@@ -32,6 +32,9 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('UniPlanner')
         self.setTabShape(QTabWidget.Rounded)
         self.setFixedSize(width, height)
+
+        self.buttons_width = 110
+        self.buttons_height = 40
 
         self.courses = None
 
@@ -49,16 +52,16 @@ class MainWindow(QMainWindow):
         x_grid_parent_widget, y_grid_parent_widget, w_grid_parent_widget, h_grid_parent_widget = 10, 10, 950, 640
         self.grid_parent_widget = QWidget(self.tab)
         self.grid_parent_widget.setObjectName(u"grid_parent_widget")
-        self.grid_parent_widget.setGeometry(QRect(x_grid_parent_widget, y_grid_parent_widget,
-                                                  w_grid_parent_widget, h_grid_parent_widget))
+        self.grid_parent_widget.setFixedWidth(w_grid_parent_widget)
+        self.grid_parent_widget.setFixedHeight(h_grid_parent_widget)
 
         self.grid_widget = GridWidget(self.grid_parent_widget,
                                       120, 5, as_hour("7:00"), as_hour("21:00"))
 
         self.select_groups_parent_widget = QWidget(self.tab)
         self.select_groups_parent_widget.setObjectName(u"select_groups_parent_widget")
-        self.select_groups_parent_widget.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget,
-                                                           y_grid_parent_widget, 400, 440))
+        self.select_groups_parent_widget.setFixedWidth(400)
+        self.select_groups_parent_widget.setFixedHeight(440)
 
         self.select_groups_widget = SelectGroupsWidget(self.select_groups_parent_widget, self.grid_widget,
                                                        400)
@@ -66,14 +69,15 @@ class MainWindow(QMainWindow):
         self.generate_plan_button = QPushButton(self.tab)
         self.generate_plan_button.setText("Generate plan")
         self.generate_plan_button.setObjectName(u"generate_plan_button")
-        self.generate_plan_button.setGeometry(QRect(width - 150, 590, 111, 41))
+        self.generate_plan_button.setFixedWidth(110)
+        self.generate_plan_button.setFixedHeight(40)
 
         self.generate_plan_button.clicked.connect(self.generate_plan_action)
 
         self.exclude_area_check_box = QCheckBox(self.tab)
         self.exclude_area_check_box.setObjectName(u"exclude_area_check_box")
         self.exclude_area_check_box.setText("Exclude area")
-        self.exclude_area_check_box.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget, 480, 101, 20))
+        # self.exclude_area_check_box.setGeometry(QRect(x_grid_parent_widget + w_grid_parent_widget, 480, 101, 20))
         # Change cursor on user action
         self.exclude_area_check_box.clicked.connect(self.allow_excluding_areas)
 
@@ -98,6 +102,14 @@ class MainWindow(QMainWindow):
             self.select_groups_widget.update_categorized_groups_for_current_course)
         self.select_groups_widget.add_listener_for_group_change(self.grid_widget.update)
 
+        grid_layout = QGridLayout(self.centralwidget)
+        grid_layout.addWidget(self.grid_parent_widget, 0, 0, 20, 1)
+        grid_layout.addWidget(self.select_groups_parent_widget, 1, 14, 6, 6)
+        grid_layout.addWidget(self.generate_plan_button, 18, 18, 2, 2)
+        grid_layout.addWidget(self.exclude_area_check_box, 14, 14, 2, 2)
+
+        self.tab.setLayout(grid_layout)
+
     def load_courses(self, courses: List[Course]):
         self.courses = courses
         self.select_groups_widget.load_courses(courses)
@@ -120,7 +132,6 @@ class MainWindow(QMainWindow):
             self.generate_plan_button.setCursor(QCursor(Qt.ArrowCursor))
 
     def generate_plan(self):
-
         timetables = get_dream_timetables(self.courses)
         self.remove_plan_tabs()
 
@@ -133,19 +144,11 @@ class MainWindow(QMainWindow):
             self.display_warning_msg("No plans were generated")
 
     def display_plan(self, timetable, name):
-        plan_tab_widget = QWidget()
-        plan_tab_widget_layout = QHBoxLayout(plan_tab_widget)
-        plan_widget = PlanWidget(plan_tab_widget, timetable)
-        plan_tab_widget_layout.addWidget(plan_widget)
-        plan_tab_widget.setLayout(plan_tab_widget_layout)
-        self.tab_widget.addTab(plan_tab_widget, name)
-        plan_widget.setGeometry(QRect(0, 0, plan_widget.width(), plan_tab_widget.height()))
-        self.tab_widget.setTabEnabled(self.tab_widget.indexOf(plan_tab_widget), True)
+        PlanTabWidget(self.tab_widget, timetable, name)
 
     def remove_plan_tabs(self):
-        for i in range(1, self.tab_widget.count()):
-            self.tab_widget.removeTab(i)
-        # self.tab_widget.update()
+        while self.tab_widget.count() > 1:
+            self.tab_widget.removeTab(1)
 
     def display_warning_msg(self, msg=""):
         dlg = QMessageBox(self)
@@ -162,4 +165,5 @@ class MainWindow(QMainWindow):
         dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         dlg.setIcon(QMessageBox.Icon.Question)
         return dlg.exec() == QMessageBox.StandardButton.Yes
+
 
