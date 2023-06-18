@@ -1,21 +1,16 @@
-from dataclasses import dataclass
-from functools import partial
+from typing import List, Callable
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt, QMimeData)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform, QDropEvent, QDragEnterEvent, QDragLeaveEvent, QDragMoveEvent)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFrame,
-                               QGroupBox, QLabel, QListWidget, QListWidgetItem,
-                               QSizePolicy, QWidget, QMainWindow)
-from typing import List, Dict, Callable
-from planner.models.groups import Group, Course, DayOfWeek, WeekType, GroupCategory
+from PySide6.QtCore import (QMetaObject, QRect,
+                            Qt)
+from PySide6.QtGui import (QDropEvent)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QGroupBox, QLabel, QListWidget,
+                               QListWidgetItem,
+                               QWidget, QMainWindow)
+
 from planner.models.classes_utils import find_course_by_code, find_group_by_code
-from planner.view.view_utils import create_group
+from planner.models.groups import Group, Course, DayOfWeek, WeekType, GroupCategory
 from planner.utils.datetime_utils import as_hour, TIME_FORMAT, WEEK_TYPE_POLISH_FORM
+from planner.view.view_utils import create_group
 
 
 def add_groups_to_list(course: Course, group_codes: List[str], list_widget: QListWidget):
@@ -44,7 +39,7 @@ class DragDropList(QListWidget):
         print(self)
         for i in range(self.count()):
             group = find_group_by_code(self.currently_selected_course.groups,
-                        extract_group_code(self.item(i).text()))
+                                       extract_group_code(self.item(i).text()))
             group.category = self.category
 
 
@@ -65,9 +60,9 @@ class DragDropListDisableOnCondition(DragDropList):
 
 def enable_item(item):
     item.setFlags(Qt.ItemFlag.ItemIsEnabled
-                              | Qt.ItemFlag.ItemIsDragEnabled
-                              | Qt.ItemFlag.ItemIsDropEnabled
-                              | Qt.ItemFlag.ItemIsSelectable)
+                  | Qt.ItemFlag.ItemIsDragEnabled
+                  | Qt.ItemFlag.ItemIsDropEnabled
+                  | Qt.ItemFlag.ItemIsSelectable)
 
 
 def disable_item(item):
@@ -145,7 +140,9 @@ class SelectGroupsWidget:
 
         self.list_of_excluded_choices = DragDropListDisableOnCondition(self.group_box_select_courses,
                                                                        GroupCategory.EXCLUDED,
-                                                                       lambda w, i: disable_if_in_excluded_area(grid_widget, w, i))
+                                                                       lambda w, i: disable_if_in_excluded_area(
+                                                                           grid_widget, w, i))
+
         # This is not working because it overrides category to excluded
         # TODO : make it work
         def condition():
@@ -226,44 +223,52 @@ def extract_group_code(group_repr: str):
 
 def format_group_to_string(group: Group):
     return group.code + ", " + group.day.name.lower() + \
-           ("/" + WEEK_TYPE_POLISH_FORM[group.week_type] if len(
-               WEEK_TYPE_POLISH_FORM[group.week_type]) > 0 else "") + " " + \
-           group.start_time.strftime(TIME_FORMAT) + "-" + group.end_time.strftime(TIME_FORMAT) \
-           + ", " + str(group.lecturer)
+        ("/" + WEEK_TYPE_POLISH_FORM[group.week_type] if len(
+            WEEK_TYPE_POLISH_FORM[group.week_type]) > 0 else "") + " " + \
+        group.start_time.strftime(TIME_FORMAT) + "-" + group.end_time.strftime(TIME_FORMAT) \
+        + ", " + str(group.lecturer)
 
 
 if __name__ == "__main__":
-
     app = QApplication()
     window = QMainWindow()
 
     test_courses = [Course("Bazy danych", "INZ002007C", groups=[create_group(DayOfWeek.Monday, WeekType.ODD_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17a"),
-                                                                    create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17b"),
-                                                                    create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"), "K01-17c"),
-                                                                    create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
-                                                                                 as_hour("9:15"), as_hour("11:00"),"K01-17d"),
-                                                                    ]),
-                    Course("Metody systemowe i decyzyjne", "INZ002008L", groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                                                                  as_hour("13:15"), as_hour("15:00"), "K01-21a"),
-                                                                                     create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
-                                                                                                  as_hour("15:15"), as_hour("16:55"), "K01-21b"),
-                                                                                     create_group(DayOfWeek.Wednesday,
-                                                                                                  WeekType.EVEN_WEEK,
-                                                                                                  as_hour("15:15"),
-                                                                                                  as_hour("16:55"),
-                                                                                                   "K01-21d")]),
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17a"),
+                                                                create_group(DayOfWeek.Monday, WeekType.EVEN_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17b"),
+                                                                create_group(DayOfWeek.Tuesday, WeekType.ODD_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17c"),
+                                                                create_group(DayOfWeek.Tuesday, WeekType.EVEN_WEEK,
+                                                                             as_hour("9:15"), as_hour("11:00"),
+                                                                             "K01-17d"),
+                                                                ]),
+                    Course("Metody systemowe i decyzyjne", "INZ002008L",
+                           groups=[create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
+                                                as_hour("13:15"), as_hour("15:00"), "K01-21a"),
+                                   create_group(DayOfWeek.Wednesday, WeekType.ODD_WEEK,
+                                                as_hour("15:15"), as_hour("16:55"), "K01-21b"),
+                                   create_group(DayOfWeek.Wednesday,
+                                                WeekType.EVEN_WEEK,
+                                                as_hour("15:15"),
+                                                as_hour("16:55"),
+                                                "K01-21d")]),
                     Course("Języki skryptowe", "INZ002009L", groups=[create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("13:15"), as_hour("15:00"), "K01-23b"),
-                                                                         create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("15:15"), as_hour("16:55"), "K01-23c"),
-                                                                         create_group(DayOfWeek.Tuesday, WeekType.EVERY_WEEK, as_hour("17:05"),
-                                                                                      as_hour("18:45"), "K01-23e"),
-                                                                         create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
-                                                                                      as_hour("11:15"), as_hour("13:00"), "K01-28g")])
-    ]
+                                                                                  as_hour("13:15"), as_hour("15:00"),
+                                                                                  "K01-23b"),
+                                                                     create_group(DayOfWeek.Monday, WeekType.EVERY_WEEK,
+                                                                                  as_hour("15:15"), as_hour("16:55"),
+                                                                                  "K01-23c"),
+                                                                     create_group(DayOfWeek.Tuesday,
+                                                                                  WeekType.EVERY_WEEK, as_hour("17:05"),
+                                                                                  as_hour("18:45"), "K01-23e"),
+                                                                     create_group(DayOfWeek.Friday, WeekType.EVERY_WEEK,
+                                                                                  as_hour("11:15"), as_hour("13:00"),
+                                                                                  "K01-28g")])
+                    ]
 
     select_groups_widget = SelectGroupsWidget(window)
     select_groups_widget.load_courses(test_courses)

@@ -127,6 +127,8 @@ class MainWindow(QMainWindow):
         if len(timetables) > 0:
             for i, timetable in enumerate(timetables, start=1):
                 self.display_plan(timetable, f"Plan {i}")
+            self.tab_widget.setCurrentIndex(1)
+
         else:
             self.display_warning_msg("No plans were generated")
 
