@@ -23,7 +23,7 @@ class GroupType(Enum):
     LECTURE = 1
     PRACTICALS = 2
     LABORATORY = 3
-    PRACTICE = 4
+    PROJECT = 4
     SEMINAR = 5
 
     def __str__(self):

@@ -7,6 +7,7 @@ from planner.models.groups import DayOfWeek
 
 IMPOSSIBLE_VALUE = -99999999
 
+
 def is_possible(groups: List[Group]) -> bool:
     for index in range(len(groups) - 1):
         curr_group = groups[index]
@@ -58,15 +59,15 @@ class Search:
     @staticmethod
     def rate_category(sol_groups):
         reward = 0
-        reward += sum([100 for group in sol_groups if group.is_preferred()])
+        reward += sum([10000 for group in sol_groups if group.is_preferred()])
         return reward
 
     def select_solutions(self, solutions) -> List:
         unique_solutions = list(set(tuple(solution) for solution in solutions
-                               if self.fitness_func(None,solution,None) > -99999999))
+                                    if self.fitness_func(None, solution, None) > -99999999))
 
-        fitness_values = [self.fitness_func(None,sol,None) for sol in unique_solutions]
-        unique_solutions = [solution for _, solution in sorted(zip(fitness_values,unique_solutions),
+        fitness_values = [self.fitness_func(None, solution, None) for solution in unique_solutions]
+        unique_solutions = [solution for _, solution in sorted(zip(fitness_values, unique_solutions),
                                                                reverse=True)]
         return (list(unique_solutions)) \
             if len(unique_solutions) > 0 else []
@@ -74,9 +75,9 @@ class Search:
     def search_in_one_population(self):
         ga_instance = pygad.GA(**self.setup_parameters())
         ga_instance.run()
-        #ga_instance.plot_fitness()
+        # ga_instance.plot_fitness()
         solution, solution_fitness, solution_idx = ga_instance.best_solution(ga_instance.last_generation_fitness)
-        print('fitness = ', solution_fitness)
+        # print('fitness = ', solution_fitness)
         selected_solutions = self.select_solutions(ga_instance.best_solutions)
         return [(list(solution)) for solution in selected_solutions]
 
@@ -86,9 +87,8 @@ class Search:
             solutions += self.search_in_one_population()
         selected_solutions = self.select_solutions(solutions)
         sols = [(list(solution)) for solution in selected_solutions]
-        print([self.fitness_func(None,sol,None) for sol in sols])
+        # print([self.fitness_func(None,sol,None) for sol in sols])
         return [(self.get_all_courses(list(solution))) for solution in sols]
-
 
     def setup_parameters(self):
         return {

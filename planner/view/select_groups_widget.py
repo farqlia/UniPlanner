@@ -145,7 +145,7 @@ class SelectGroupsWidget:
 
         grid_widget.add_listener_on_excluding_areas(condition)
         self.list_of_excluded_choices.drop_event_listener = grid_widget.update
-        # self.add_listener_for_group_change(self.list_of_excluded_choices.react_on_signal)
+        # self.add_listener_for_group_change(self.list_of_excluded_choices.update_items)
         self.list_of_excluded_choices.setObjectName(u"list_of_excluded_choices")
         self.list_of_excluded_choices.setGeometry(QRect(x_offset, 340, widgets_width, 81))
         self.list_of_excluded_choices.setDragDropMode(QAbstractItemView.DragDrop)

@@ -7,8 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
 
-ENROLLMENT_XPATH = "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[" \
-                   "1]/td/table[2]/tbody/tr[15]/td/a"
 FAILED_LOG_IN_XPATH = "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/b[" \
                       "2]/font"
 PREFIX_COURSE = '/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table[' \
@@ -20,6 +18,7 @@ class GroupsDownloader:
     def __init__(self):
         op = webdriver.ChromeOptions()
         op.add_argument('headless')
+        op.add_argument('--silent')
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
 
     def open_website(self):
@@ -44,9 +43,10 @@ class GroupsDownloader:
             return True
 
     def open_enrollment_website(self):
-        self.driver.find_element(By.XPATH, ENROLLMENT_XPATH).click()
+        self.driver.find_element_by_xpath("//a[@title='Zapisy']").click()
 
     def go_to_current_enrollment(self):
+
         element = self.driver.find_element_by_xpath("//a[contains(text(), '2022/2023')]")
         element.click()
         element = self.driver.find_element(By.CSS_SELECTOR, "#GORAPORTALU > tbody > tr:nth-child(4) > td > table > "

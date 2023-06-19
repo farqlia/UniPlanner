@@ -65,4 +65,3 @@ class LoginWindow(QMainWindow):
             display_error_msg(self, "Login credentials are invalid")
         except:
             display_error_msg(self, "Unknown error occurred")
-

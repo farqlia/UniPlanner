@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.tab_widget.setCursor(QCursor(Qt.ArrowCursor))
 
         self.tab = QWidget()
-        self.tab.setObjectName(u"Create plan")
+        self.tab.setObjectName(u"Create schedule")
 
         x_grid_parent_widget, y_grid_parent_widget, w_grid_parent_widget, h_grid_parent_widget = 10, 10, 950, 640
         self.grid_parent_widget = QWidget(self.tab)
@@ -68,7 +68,7 @@ class MainWindow(QMainWindow):
                                                        400)
 
         self.generate_plan_button = QPushButton(self.tab)
-        self.generate_plan_button.setText("Generate plan")
+        self.generate_plan_button.setText("Generate schedule")
         self.generate_plan_button.setObjectName(u"generate_plan_button")
         self.generate_plan_button.setFixedWidth(110)
         self.generate_plan_button.setFixedHeight(40)
@@ -92,10 +92,10 @@ class MainWindow(QMainWindow):
         self.statusbar.setObjectName(u"statusbar")
         self.setStatusBar(self.statusbar)
 
-        self.tab_widget.addTab(self.tab, "Create plan")
+        self.tab_widget.addTab(self.tab, "Create schedule")
         self.tab_widget.setCurrentIndex(0)
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab),
-                                   "Create plan")
+                                   "Create schedule")
 
         QMetaObject.connectSlotsByName(self)
 
@@ -138,7 +138,7 @@ class MainWindow(QMainWindow):
 
         if len(timetables) > 0:
             for i, timetable in enumerate(timetables, start=1):
-                self.display_plan(timetable, f"Plan {i}")
+                self.display_plan(timetable, f"Schedule {i}")
             self.tab_widget.setCurrentIndex(1)
 
         else:

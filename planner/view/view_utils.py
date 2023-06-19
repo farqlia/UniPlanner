@@ -6,7 +6,7 @@ POLISH_GROUP_TYPE = {GroupType.LECTURE: 'W',
                      GroupType.LABORATORY: 'L',
                      GroupType.PRACTICALS: 'C',
                      GroupType.SEMINAR: 'S',
-                     GroupType.PRACTICE: 'P'}
+                     GroupType.PROJECT: 'P'}
 
 
 def create_group(day, week_type, start_time, end_time, code):

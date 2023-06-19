@@ -20,7 +20,8 @@ GROUP_CATEGORY_COLORS = {GroupCategory.NEUTRAL: BLACK, GroupCategory.EXCLUDED: R
 
 # TODO: Add colors for other types
 COLOR_FOR_GROUP_TYPE = {GroupType.LECTURE: (24, 131, 22), GroupType.PRACTICALS: (255, 191, 80),
-                        GroupType.LABORATORY: (22, 166, 218)}
+                        GroupType.LABORATORY: (22, 166, 218), GroupType.PROJECT: (255,0,0),
+                        GroupType.SEMINAR: (221, 160, 221)}
 
 
 def name_and_lecturer(group: Group):

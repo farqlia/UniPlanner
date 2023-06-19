@@ -47,7 +47,7 @@ class PlanTabWidget(QWidget):
         self.setLayout(grid_layout)
 
         for group in self.timetable:
-            self.codes_text_widget.append(f"{group.course.name} - {group.code}")
+            self.codes_text_widget.append(f"{group.course.name} ({group.course.code}) - {group.code}")
 
         parent.addTab(self, name)
 
