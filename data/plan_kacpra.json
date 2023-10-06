@@ -1,0 +1,466 @@
+{
+  "courses": [
+    {
+      "code": "CBEK00006S",
+      "name": "Kryptografia",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366642&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-73a",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "wt/TN+1/2 17:05-18:45, bud. C-4, sala 33",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73c",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "wt/TN+1/2 18:55-20:35, bud. C-4, sala 33",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73b",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "wt/TP+1/2 17:05-18:45, bud. C-4, sala 33",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73d",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "wt/TP+1/2 18:55-20:35, bud. C-4, sala 33",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73e",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "cz/TN+1/2 17:05-18:45, bud. D-1, sala 311a",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73f",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "cz/TP+1/2 17:05-18:45, bud. D-1, sala 311a",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73h",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "cz/TP+1/2 18:55-20:35, bud. D-1, sala 311a",
+          "type": "Seminarium"
+        },
+        {
+          "code": "K02-73g",
+          "course": "CBEK00006S",
+          "lecturer": "Dr inż. Andrzej Zygmunt",
+          "date_and_place": "cz/TN+1/2 18:55-20:35, bud. D-1, sala 311a",
+          "type": "Seminarium"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00006W",
+      "name": "Kryptografia",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366641&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-74a",
+          "course": "CBEK00006W",
+          "lecturer": "Dr inż. Robert Borowiec",
+          "date_and_place": "śr 09:15-11:00, bud. C-13, sala 1.28",
+          "type": "Wykład"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00007P",
+      "name": "Media transmisyjne",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366644&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-75c",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "pn/TN+1/2 09:15-11:00, bud. D-1, sala 311a",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75d",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "pn/TP+1/2 09:15-11:00, bud. D-1, sala 311a",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75e",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "wt/TN+1/2 11:15-13:00, bud. C-4, sala 33",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75g",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "wt/TN+1/2 13:15-15:00, bud. C-4, sala 33",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75f",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "wt/TP+1/2 11:15-13:00, bud. C-4, sala 33",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75h",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "wt/TP+1/2 13:15-15:00, bud. C-4, sala 33",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75a",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "cz/TN+1/2 11:15-13:00, bud. D-1, sala 311a",
+          "type": "Projekt"
+        },
+        {
+          "code": "K02-75b",
+          "course": "CBEK00007P",
+          "lecturer": "Dr inż. Mateusz Mądry",
+          "date_and_place": "cz/TP+1/2 11:15-13:00, bud. D-1, sala 311a",
+          "type": "Projekt"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00007W",
+      "name": "Media transmisyjne",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366643&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-76a",
+          "course": "CBEK00007W",
+          "lecturer": "Dr inż. Jarosław Janiszewski",
+          "date_and_place": "pn 13:15-15:00, bud. C-1, sala 205",
+          "type": "Wykład"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00008C",
+      "name": "Elektryczność i magnetyzm",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366645&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-77e",
+          "course": "CBEK00008C",
+          "lecturer": "Dr inż. Janusz Pieńkowski",
+          "date_and_place": "pn 17:05-18:45, bud. C-4, sala 33",
+          "type": "Ćwiczenia"
+        },
+        {
+          "code": "K02-77d",
+          "course": "CBEK00008C",
+          "lecturer": "Mgr inż. Anna Grytsko",
+          "date_and_place": "wt 09:15-11:00, bud. C-4, sala 32",
+          "type": "Ćwiczenia"
+        },
+        {
+          "code": "K02-77b",
+          "course": "CBEK00008C",
+          "lecturer": "Dr inż. Janusz Pieńkowski",
+          "date_and_place": "śr 11:15-13:00, bud. D-1, sala 311a",
+          "type": "Ćwiczenia"
+        },
+        {
+          "code": "K02-77c",
+          "course": "CBEK00008C",
+          "lecturer": "Dr inż. Janusz Pieńkowski",
+          "date_and_place": "śr 13:15-15:00, bud. D-1, sala 311a",
+          "type": "Ćwiczenia"
+        },
+        {
+          "code": "K02-77a",
+          "course": "CBEK00008C",
+          "lecturer": "Prof. dr hab. Edward Pliński",
+          "date_and_place": "pt 13:15-15:00, bud. D-1, sala 311a",
+          "type": "Ćwiczenia"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00010L",
+      "name": "Sieci komputerowe",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366649&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K05-67a",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Sławomir Kubal",
+          "date_and_place": "pn 09:15-13:00, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67b",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Jacek Skrzypczyński",
+          "date_and_place": "pn 17:05-20:35, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67c",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Sławomir Kubal",
+          "date_and_place": "wt 09:15-13:00, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67d",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Jacek Skrzypczyński",
+          "date_and_place": "wt 13:15-16:55, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67e",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Jacek Skrzypczyński",
+          "date_and_place": "śr 13:15-16:55, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67f",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Jacek Skrzypczyński",
+          "date_and_place": "śr 17:05-20:35, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67g",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Sławomir Kubal",
+          "date_and_place": "cz 07:30-11:00, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67h",
+          "course": "CBEK00010L",
+          "lecturer": "Mgr inż. Monika Szafrańska",
+          "date_and_place": "cz 11:15-15:00, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67i",
+          "course": "CBEK00010L",
+          "lecturer": "Mgr inż. Jarosław Janukiewicz",
+          "date_and_place": "pt 07:30-11:00, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K05-67j",
+          "course": "CBEK00010L",
+          "lecturer": "Dr inż. Waldemar Grzebyk",
+          "date_and_place": "pt 13:15-16:35, bud. C-4, sala 344",
+          "type": "Zajęcia laboratoryjne"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00010W",
+      "name": "Sieci komputerowe",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=366648&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-78a",
+          "course": "CBEK00010W",
+          "lecturer": "Mgr inż. Jarosław Janukiewicz",
+          "date_and_place": "pt 11:15-13:00, bud. D-1, sala 30",
+          "type": "Wykład"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00027L",
+      "name": "Ochrona systemów operacyjnych",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=416579&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-79f",
+          "course": "CBEK00027L",
+          "lecturer": "Dr inż. Dominik Żelazny",
+          "date_and_place": "wt/TN+1/2 13:15-15:00, bud. C-3, sala 127L",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79a",
+          "course": "CBEK00027L",
+          "lecturer": "Mgr inż. Bartłomiej Czesak",
+          "date_and_place": "wt/TN+1/2 17:05-18:45, bud. C-1, sala sala wirtualna",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79b",
+          "course": "CBEK00027L",
+          "lecturer": "Mgr inż. Bartłomiej Czesak",
+          "date_and_place": "wt/TP+1/2 17:05-18:45, bud. C-1, sala sala wirtualna",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79h",
+          "course": "CBEK00027L",
+          "lecturer": "Dr Marek Bazan",
+          "date_and_place": "śr/TN+1/2 17:05-18:45, bud. C-4, sala 345",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79i",
+          "course": "CBEK00027L",
+          "lecturer": "Dr Marek Bazan",
+          "date_and_place": "śr/TP+1/2 17:05-18:45, bud. C-4, sala 345",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79c",
+          "course": "CBEK00027L",
+          "lecturer": "Dr inż. Krzysztof Kępa",
+          "date_and_place": "cz/TN+1/2 09:15-11:00, bud. C-16, sala L3.1",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79e",
+          "course": "CBEK00027L",
+          "lecturer": "Dr inż. Krzysztof Kępa",
+          "date_and_place": "cz/TN+1/2 13:15-15:00, bud. C-16, sala L3.1",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79d",
+          "course": "CBEK00027L",
+          "lecturer": "Dr inż. Krzysztof Kępa",
+          "date_and_place": "cz/TP+1/2 09:15-11:00, bud. C-16, sala L3.1",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-79g",
+          "course": "CBEK00027L",
+          "lecturer": "Dr inż. Dominik Żelazny",
+          "date_and_place": "wt/TP+1/2 13:15-15:00, bud. C-3, sala 127L",
+          "type": "Zajęcia laboratoryjne"
+        }
+      ]
+    },
+    {
+      "code": "CBEK00027W",
+      "name": "Ochrona systemów operacyjnych",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=416578&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-80a",
+          "course": "CBEK00027W",
+          "lecturer": "Dr inż. Tomasz Surmacz",
+          "date_and_place": "cz 15:15-16:55, bud. D-1, sala 29",
+          "type": "Wykład"
+        }
+      ]
+    },
+    {
+      "code": "ETEW00010L",
+      "name": "Podstawy przetwarzania syg...",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=181930&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-81a",
+          "course": "ETEW00010L",
+          "lecturer": "Dr inż. Paweł Biernacki",
+          "date_and_place": "pn/TN+1/2 11:15-13:00, bud. C-16, sala L3.3",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81b",
+          "course": "ETEW00010L",
+          "lecturer": "Dr inż. Paweł Biernacki",
+          "date_and_place": "pn/TP+1/2 11:15-13:00, bud. C-16, sala L3.3",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81c",
+          "course": "ETEW00010L",
+          "lecturer": "Dr inż. Agnieszka Wielgus",
+          "date_and_place": "wt/TN+1/2 11:15-13:00, bud. C-5, sala 308A",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81d",
+          "course": "ETEW00010L",
+          "lecturer": "Dr inż. Agnieszka Wielgus",
+          "date_and_place": "wt/TP+1/2 11:15-13:00, bud. C-5, sala 308A",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81e",
+          "course": "ETEW00010L",
+          "lecturer": "Mgr inż. Stanisław Gmyrek",
+          "date_and_place": "śr/TN+1/2 15:15-16:55, bud. C-16, sala L3.4",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81k",
+          "course": "ETEW00010L",
+          "lecturer": "Dr inż. Jan Mazur",
+          "date_and_place": "śr/TP+1/2 13:15-15:00, bud. C-16, sala L3.3",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81f",
+          "course": "ETEW00010L",
+          "lecturer": "Mgr inż. Stanisław Gmyrek",
+          "date_and_place": "śr/TP+1/2 15:15-16:55, bud. C-16, sala L3.4",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81g",
+          "course": "ETEW00010L",
+          "lecturer": "Dr hab. inż. Paweł Kabacik",
+          "date_and_place": "pt/TN+1/2 09:15-11:00, bud. C-16, sala L3.4",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81i",
+          "course": "ETEW00010L",
+          "lecturer": "Dr hab. inż. Paweł Kabacik",
+          "date_and_place": "pt/TN+1/2 13:15-15:00, bud. C-16, sala L3.4",
+          "type": "Zajęcia laboratoryjne"
+        },
+        {
+          "code": "K02-81h",
+          "course": "ETEW00010L",
+          "lecturer": "Dr hab. inż. Paweł Kabacik",
+          "date_and_place": "pt/TP+1/2 09:15-11:00, bud. C-16, sala L3.4",
+          "type": "Zajęcia laboratoryjne"
+        }
+      ]
+    },
+    {
+      "code": "ETEW00010W",
+      "name": "Podstawy przetwarzania syg...",
+      "link": "https://edukacja.pwr.wroc.pl/EdukacjaWeb/zapisy.do?clEduWebSESSIONTOKEN=SMTY4NzEyMTIyODMxMg==&event=wyborKursuWGrupieBlokuRow&rowId=181929&positionIterator=KursyWEKROViewIterator&href=#hrefKursyWGrupieTabela",
+      "groups": [
+        {
+          "code": "K02-82a",
+          "course": "ETEW00010W",
+          "lecturer": "Dr inż. Bogusław Szlachetko",
+          "date_and_place": "pn 15:15-16:55, bud. A-1, sala 329",
+          "type": "Wykład"
+        }
+      ]
+    }
+  ]
+}
